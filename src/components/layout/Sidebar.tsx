@@ -40,20 +40,20 @@ export function Sidebar() {
           Dashboard
         </NavLink>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-2">
           {TOOL_CATEGORIES.map((category) => (
             <NavLink
               key={category.id}
               to={category.path}
               className={({ isActive }) => cn(
-                "flex flex-col items-center justify-center gap-1 p-3 rounded-lg transition-all duration-150",
+                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-150",
                 isActive 
                   ? "bg-primary-fixed text-on-primary-fixed" 
                   : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
               )}
             >
               <category.icon className="w-5 h-5" />
-              <span className="text-xs font-medium">{category.name}</span>
+              <span className="text-sm font-medium">{category.name}</span>
             </NavLink>
           ))}
         </div>

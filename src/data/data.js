@@ -1,4 +1,4 @@
-import { Calculator, CreditCard, FlaskConical, Terminal, Heart, Binary } from 'lucide-react';
+import { Calculator, CreditCard, FlaskConical, Terminal, Heart, Scale, Clock, Activity } from 'lucide-react';
 
 export const APP_NAME = "TheCalHub";
 export const APP_VERSION = "1.0.0";
@@ -9,6 +9,10 @@ export const TOOL_CATEGORIES = [
   { id: 'health', name: 'Health', icon: Heart, path: '/health.html' },
   { id: 'scientific', name: 'Scientific', icon: FlaskConical, path: '/scientific.html' },
   { id: 'programming', name: 'Programming', icon: Terminal, path: '/programming.html' },
+  { id: 'math', name: 'Math', icon: Calculator, path: '/math.html' },
+  { id: 'fitness', name: 'Fitness', icon: Activity, path: '/fitness.html' },
+  { id: 'dateTime', name: 'Date & Time', icon: Clock, path: '/datetime.html' },
+  { id: 'utilities', name: 'Utilities', icon: Scale, path: '/utilities.html' },
 ];
 
 export const CALCULATORS = {
@@ -32,6 +36,15 @@ export const CALCULATORS = {
     { name: 'Tax Calculator', path: '/tax.html', description: 'Income tax estimation' },
     { name: 'Capital Gains', path: '/capital-gains.html', description: 'Investment gains' },
     { name: 'Income Tax', path: '/income-tax.html', description: 'Tax liability' },
+    { name: 'Mortgage Calculator', path: '/mortgage.html', description: 'Calculate mortgage payments' },
+    { name: 'Loan Calculator', path: '/loan.html', description: 'General loan calculator' },
+    { name: 'Auto Loan Calculator', path: '/auto-loan.html', description: 'Auto loan EMI' },
+    { name: 'Interest Calculator', path: '/interest.html', description: 'Calculate interest' },
+    { name: 'Retirement Calculator', path: '/retirement.html', description: 'Plan retirement savings' },
+    { name: 'Investment Calculator', path: '/investment.html', description: 'Investment growth' },
+    { name: 'Savings Calculator', path: '/savings.html', description: 'Savings projections' },
+    { name: 'Budget Calculator', path: '/budget.html', description: 'Monthly budget planning' },
+    { name: 'ROI Calculator', path: '/roi.html', description: 'Return on investment' },
   ],
   health: [
     { name: 'BMI Calculator', path: '/bmi.html', description: 'Body mass index' },
@@ -40,6 +53,7 @@ export const CALCULATORS = {
     { name: 'Body Fat Calculator', path: '/body-fat.html', description: 'Body fat percentage' },
     { name: 'Ideal Weight', path: '/ideal-weight.html', description: 'Target weight' },
     { name: 'Water Intake', path: '/water.html', description: 'Daily water needs' },
+    { name: 'Pregnancy Calculator', path: '/pregnancy.html', description: 'Due date and pregnancy' },
   ],
   scientific: [
     { name: 'Scientific Calculator', path: '/scientific.html', description: 'Advanced calculations' },
@@ -53,6 +67,47 @@ export const CALCULATORS = {
     { name: 'Hash Generator', path: '/hash.html', description: 'Generate hashes' },
     { name: 'Color Converter', path: '/color.html', description: 'Color format conversion' },
     { name: 'JSON Formatter', path: '/json.html', description: 'Format and validate JSON' },
+  ],
+  math: [
+    { name: 'Scientific Calculator', path: '/scientific.html', description: 'Advanced math functions' },
+    { name: 'Fraction Calculator', path: '/fraction.html', description: 'Calculate with fractions' },
+    { name: 'Percent Calculator', path: '/percent.html', description: 'Percentage calculations' },
+    { name: 'Triangle Calculator', path: '/triangle.html', description: 'Triangle calculations' },
+    { name: 'Volume Calculator', path: '/volume.html', description: 'Calculate volume' },
+    { name: 'Standard Deviation', path: '/std-dev.html', description: 'Statistical deviation' },
+    { name: 'Random Number', path: '/random.html', description: 'Generate random numbers' },
+    { name: 'Binary Calculator', path: '/binary.html', description: 'Binary operations' },
+    { name: 'Hex Calculator', path: '/hex.html', description: 'Hexadecimal operations' },
+    { name: 'Area Calculator', path: '/area.html', description: 'Calculate area' },
+    { name: 'Pythagorean Calculator', path: '/pythagorean.html', description: 'Right triangle' },
+    { name: 'Root Calculator', path: '/root.html', description: 'Square and cube roots' },
+    { name: 'LCM Calculator', path: '/lcm.html', description: 'Least common multiple' },
+    { name: 'GCF Calculator', path: '/gcf.html', description: 'Greatest common factor' },
+    { name: 'Factor Calculator', path: '/factor.html', description: 'Prime factorization' },
+  ],
+  fitness: [
+    { name: 'Pace Calculator', path: '/pace.html', description: 'Running pace' },
+    { name: 'Calorie Burned', path: '/calories-burned.html', description: 'Calories burned' },
+    { name: 'One Rep Max', path: '/one-rep-max.html', description: '1RM calculation' },
+    { name: 'Target Heart Rate', path: '/heart-rate.html', description: 'Target heart rate' },
+    { name: 'Protein Calculator', path: '/protein.html', description: 'Protein needs' },
+    { name: 'TDEE Calculator', path: '/tdee.html', description: 'Total daily energy' },
+  ],
+  dateTime: [
+    { name: 'Age Calculator', path: '/age.html', description: 'Calculate age' },
+    { name: 'Date Calculator', path: '/date-calc.html', description: 'Date operations' },
+    { name: 'Time Calculator', path: '/time-calc.html', description: 'Time operations' },
+    { name: 'Day Counter', path: '/day-counter.html', description: 'Count days' },
+    { name: 'Hours Calculator', path: '/hours.html', description: 'Work hours' },
+  ],
+  utilities: [
+    { name: 'Conversion Calculator', path: '/conversion.html', description: 'Unit conversions' },
+    { name: 'Password Generator', path: '/password.html', description: 'Generate passwords' },
+    { name: 'Dice Roller', path: '/dice.html', description: 'Roll dice' },
+    { name: 'IP Subnet Calculator', path: '/ip-subnet.html', description: 'Subnet calculations' },
+    { name: 'Concrete Calculator', path: '/concrete.html', description: 'Concrete needed' },
+    { name: 'GPA Calculator', path: '/gpa.html', description: 'Grade point average' },
+    { name: 'Grade Calculator', path: '/grade.html', description: 'Grade calculations' },
   ],
 };
 

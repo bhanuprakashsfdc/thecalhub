@@ -162,7 +162,7 @@ export default function Dashboard() {
         key={activeCategory}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+        className="grid grid-cols-4 gap-6"
       >
         {(CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []).map((calc, idx) => {
           const Icon = calculatorIcons[calc.name] || Bolt;
