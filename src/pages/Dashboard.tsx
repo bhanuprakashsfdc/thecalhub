@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, ArrowRight, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Droplets, Activity } from 'lucide-react';
+import { Search, ArrowRight, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Droplets, Activity, Grid3X3, Clock, LayoutGrid } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { TOOL_CATEGORIES, CALCULATORS, APP_NAME, APP_VERSION } from '@/src/data/data';
 import { cn } from '@/src/lib/utils';
 
 const categoryIcons: Record<string, React.ElementType> = {
+  all: LayoutGrid,
   standard: Calculator,
   financial: CreditCard,
   health: Heart,
@@ -15,22 +16,36 @@ const categoryIcons: Record<string, React.ElementType> = {
 
 const calculatorIcons: Record<string, React.ElementType> = {
   'EMI Calculator': TrendingUp,
-  'Compound Interest': TrendingUp,
-  'Simple Interest': TrendingUp,
+  'Compound Interest Calculator': TrendingUp,
+  'Simple Interest Calculator': TrendingUp,
   'FD Calculator': TrendingUp,
   'RD Calculator': TrendingUp,
   'PPF Calculator': TrendingUp,
   'NPS Calculator': TrendingUp,
-  'Home Loan EMI': TrendingUp,
-  'Car Loan EMI': TrendingUp,
-  'Personal Loan EMI': TrendingUp,
+  'SIP Calculator': TrendingUp,
+  'Home Loan Calculator': TrendingUp,
+  'Car Loan Calculator': TrendingUp,
+  'Personal Loan Calculator': TrendingUp,
   'Tax Calculator': TrendingUp,
+  'Mortgage Calculator': TrendingUp,
+  'Loan Calculator': TrendingUp,
+  'Retirement Calculator': TrendingUp,
+  'Investment Calculator': TrendingUp,
+  'Basic Calculator': Calculator,
+  'Percentage Calculator': Calculator,
+  'Tip Calculator': Calculator,
+  'GST Calculator': Calculator,
+  'Scientific Calculator': FlaskConical,
+  'Programming Calculator': Terminal,
+  'Fraction Calculator': Grid3X3,
+  'Percent Calculator': Grid3X3,
   'BMI Calculator': Scale,
   'BMR Calculator': Activity,
   'Calorie Calculator': Activity,
-  'Body Fat Calculator': Scale,
-  'Ideal Weight': Scale,
-  'Water Intake': Droplets,
+  'Pace Calculator': Activity,
+  'TDEE Calculator': Activity,
+  'Age Calculator': Clock,
+  'Date Calculator': Clock,
 };
 
 export default function Dashboard() {
@@ -162,21 +177,35 @@ export default function Dashboard() {
         key={activeCategory}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="grid grid-cols-4 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
       >
         {(CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []).map((calc, idx) => {
-          const Icon = calculatorIcons[calc.name] || Bolt;
+          const getIcon = (iconType?: string) => {
+            switch(iconType) {
+              case 'financial': return TrendingUp;
+              case 'health': return Scale;
+              case 'scientific': return FlaskConical;
+              case 'programming': return Terminal;
+              case 'math': return Grid3X3;
+              case 'datetime': return Clock;
+              case 'fitness': return Activity;
+              default: return Calculator;
+            }
+          };
+          const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
           return (
             <Link
               key={calc.name}
               to={calc.path}
-              className="group bg-surface-container-low p-4 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer"
+              className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary-fixed/10 flex items-center justify-center mb-3 group-hover:bg-primary-fixed/20 transition-colors">
-                <Icon className="w-5 h-5 text-primary-fixed" />
+              <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
+                <Icon className="w-6 h-6 text-primary-fixed" />
               </div>
-              <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
-              <p className="text-[11px] text-neutral-500 line-clamp-2">{calc.description}</p>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
+                <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
+              </div>
             </Link>
           );
         })}

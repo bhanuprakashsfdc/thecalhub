@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, HelpCircle, Settings, Bolt, CornerDownLeft } from 'lucide-react';
+import { Search, HelpCircle, Settings, Bolt, CornerDownLeft, Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { SEARCHABLE_TOOLS } from '@/src/constants';
@@ -43,9 +43,16 @@ export function TopBar({ title }: { title?: string }) {
   };
 
   return (
-    <header className="fixed top-0 right-0 left-0 md:left-64 z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 h-14 px-6 flex justify-between items-center shadow-2xl shadow-black/50">
-      <div className="flex-1 max-w-md relative" ref={searchRef}>
-        {title ? (
+    <header className="fixed top-0 right-0 left-0 z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 h-14 px-6 flex justify-between items-center shadow-2xl shadow-black/50">
+      <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+        <div className="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center shadow-lg shadow-primary-fixed/20">
+          <Calculator className="text-on-primary-fixed w-5 h-5" />
+        </div>
+        <span className="text-white font-black tracking-widest text-sm">TheCalHub</span>
+      </div>
+
+      <div className="flex-1 max-w-md ml-8 relative" ref={searchRef}>
+        {title && title !== 'Dashboard' ? (
           <span className="text-lg font-bold text-neutral-100 font-sans tracking-tight">{title}</span>
         ) : (
           <div className="relative group">
