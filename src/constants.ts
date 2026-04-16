@@ -1,5 +1,7 @@
+import { APP_NAME } from './data/data';
+
 export const SEARCHABLE_TOOLS = [
-  { name: 'Calculator Suite', path: '/suite.html', category: 'General' },
+  { name: 'Calculator Suite', path: '/suite.html', category: APP_NAME },
   { name: 'EMI Calculator', path: '/standard.html', category: 'Financial' },
   { name: 'Compound Interest', path: '#', category: 'Financial' },
   { name: 'Tax Estimator', path: '#', category: 'Financial' },

@@ -6,58 +6,57 @@ import {
   CreditCard, 
   FlaskConical, 
   Terminal, 
-  Plus, 
+  Heart,
   FileText, 
-  LifeBuoy,
-  LayoutGrid
+  LifeBuoy
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-
-const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/index.html' },
-  { icon: LayoutGrid, label: 'Suite', path: '/suite.html' },
-  { icon: Calculator, label: 'Standard', path: '/standard.html' },
-  { icon: CreditCard, label: 'Financial', path: '/financial.html' },
-  { icon: FlaskConical, label: 'Scientific', path: '/scientific.html' },
-  { icon: Terminal, label: 'Programming', path: '/programming.html' },
-];
+import { TOOL_CATEGORIES, APP_NAME, APP_VERSION } from '@/src/data/data';
 
 export function Sidebar() {
   return (
     <aside className="hidden md:flex flex-col h-screen w-64 bg-neutral-900 border-r border-white/5 py-6 shrink-0 sticky top-0">
       <div className="px-6 mb-8 flex items-center gap-3">
         <div className="w-8 h-8 rounded bg-primary-fixed flex items-center justify-center">
-          <Terminal className="text-on-primary-fixed w-5 h-5" />
+          <Calculator className="text-on-primary-fixed w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-white font-black uppercase tracking-widest text-sm">DevCalc</h1>
-          <p className="text-[10px] text-neutral-500 font-mono tracking-tighter">v1.0.4</p>
+          <h1 className="text-white font-black uppercase tracking-widest text-sm">{APP_NAME}</h1>
+          <p className="text-[10px] text-neutral-500 font-mono tracking-tighter">v{APP_VERSION}</p>
         </div>
-      </div>
-
-      <div className="px-3 mb-6">
-        <button className="w-full py-2.5 px-4 rounded bg-primary-fixed text-on-primary-fixed text-sm font-bold flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:opacity-80">
-          <Plus className="w-4 h-4" />
-          New Calculation
-        </button>
       </div>
 
       <nav className="flex-1 space-y-1 px-3">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => cn(
-              "flex items-center gap-3 px-4 py-2.5 transition-all duration-150 ease-out rounded text-sm font-sans tracking-wide",
-              isActive 
-                ? "bg-white/5 text-primary-fixed font-medium border-r-2 border-primary-fixed translate-x-1" 
-                : "text-neutral-500 hover:text-neutral-300 hover:bg-white/5"
-            )}
-          >
-            <item.icon className="w-5 h-5" />
-            {item.label}
-          </NavLink>
-        ))}
+        <NavLink
+          to="/index.html"
+          className={({ isActive }) => cn(
+            "flex items-center gap-3 px-4 py-2.5 transition-all duration-150 ease-out rounded text-sm font-sans tracking-wide mb-4",
+            isActive 
+              ? "bg-white/5 text-primary-fixed font-medium border-r-2 border-primary-fixed translate-x-1" 
+              : "text-neutral-500 hover:text-neutral-300 hover:bg-white/5"
+          )}
+        >
+          <LayoutDashboard className="w-5 h-5" />
+          Dashboard
+        </NavLink>
+
+        <div className="grid grid-cols-2 gap-2">
+          {TOOL_CATEGORIES.map((category) => (
+            <NavLink
+              key={category.id}
+              to={category.path}
+              className={({ isActive }) => cn(
+                "flex flex-col items-center justify-center gap-1 p-3 rounded-lg transition-all duration-150",
+                isActive 
+                  ? "bg-primary-fixed text-on-primary-fixed" 
+                  : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
+              )}
+            >
+              <category.icon className="w-5 h-5" />
+              <span className="text-xs font-medium">{category.name}</span>
+            </NavLink>
+          ))}
+        </div>
       </nav>
 
       <div className="mt-auto px-3 pt-6 border-t border-white/5 space-y-1">
