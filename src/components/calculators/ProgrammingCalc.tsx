@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Terminal, Cpu, Binary } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
-export function ProgrammingCalc() {
+export default function ProgrammingCalc() {
   const [value, setValue] = useState(0);
 
   const handleInput = (val: string) => {
