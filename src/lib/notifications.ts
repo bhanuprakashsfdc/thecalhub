@@ -58,8 +58,8 @@ export async function showNotification(options: NotificationOptions): Promise<vo
   const registration = await navigator.serviceWorker.ready;
   await registration.showNotification(options.title, {
     body: options.body,
-    icon: options.icon || '/icon-192.png',
-    badge: options.badge || '/icon-192.png',
+    icon: options.icon || '/icon-192.svg',
+    badge: options.badge || '/icon-192.svg',
     tag: options.tag || 'thecalhub-notification',
     requireInteraction: options.requireInteraction || false
   });

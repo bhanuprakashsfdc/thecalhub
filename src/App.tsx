@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { Helmet } from 'react-helmet-async';
 import { Sparkles, Grid3X3, Percent, Clock, Calendar, Scale } from 'lucide-react';
 import { TopBar } from './components/layout/TopBar';
+import Footer from './components/Footer';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
@@ -302,10 +303,10 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-surface text-on-surface w-full max-w-full overflow-x-hidden flex flex-col">
         <SEO />
         <TopBar title={getTitle()} />
-        <main className="pt-14">
+        <main className="pt-14 flex-1">
           <ErrorBoundary>
             <Suspense fallback={<CalculatorLoader />}>
               <Routes>
@@ -360,6 +361,7 @@ function AppContent() {
             </Suspense>
           </ErrorBoundary>
         </main>
+        <Footer />
     </div>
   );
 }
