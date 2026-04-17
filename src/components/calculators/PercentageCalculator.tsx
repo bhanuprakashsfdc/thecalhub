@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { Sparkles, Percent, Calculator } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -6,6 +6,7 @@ export default function PercentageCalculator() {
   const [value, setValue] = useState(100);
   const [percentage, setPercentage] = useState(15);
   const [mode, setMode] = useState<'percent-of' | 'what-percent' | 'percent-change'>('percent-of');
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const result = useMemo(() => {
     const v = value;
@@ -28,6 +29,13 @@ export default function PercentageCalculator() {
         return { result: 0, display: '' };
     }
   }, [value, percentage, mode]);
+
+  // Screen reader announcement for results
+  useEffect(() => {
+    if (resultRef.current) {
+      resultRef.current.textContent = `Result: ${result.display}`;
+    }
+  }, [result]);
 
   const modes = [
     { id: 'percent-of', label: 'X% of Y' },
@@ -72,29 +80,37 @@ export default function PercentageCalculator() {
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
+                <label htmlFor="percent-value" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
                   {mode === 'percent-change' ? 'Old Value' : 'Value'}
                 </label>
                 <input
+                  id="percent-value"
                   type="number"
                   value={value}
                   onChange={(e) => setValue(Number(e.target.value))}
+                  aria-label={mode === 'percent-change' ? 'Old value' : 'Value to calculate percentage of'}
+                  aria-describedby="percent-value-desc"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                 />
+                <span id="percent-value-desc" className="sr-only">Enter a numeric value</span>
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
+                <label htmlFor="percent-percentage" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
                   {mode === 'percent-change' ? 'New Value' : 'Percentage'}
                 </label>
                 <div className="relative">
                   <input
+                    id="percent-percentage"
                     type="number"
                     value={percentage}
                     onChange={(e) => setPercentage(Number(e.target.value))}
+                    aria-label={mode === 'percent-change' ? 'New value' : 'Percentage value'}
+                    aria-describedby="percent-percentage-desc"
                     className="w-full bg-surface-container-highest border-none rounded-lg py-4 pr-10 pl-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 mono">%</span>
+                  <span id="percent-percentage-desc" className="sr-only">Enter percentage value</span>
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 mono" aria-hidden="true">%</span>
                 </div>
               </div>
             </div>
@@ -107,17 +123,20 @@ export default function PercentageCalculator() {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Percent className="w-32 h-32" />
             </div>
-            <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Result</label>
+            <span className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4" id="percent-result-label">Result</span>
+            <div aria-live="polite" aria-atomic="true" className="sr-only" ref={resultRef}></div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">{mode === 'what-percent' || mode === 'percent-change' ? `${result.result.toFixed(2)}%` : `$${result.result.toFixed(2)}`}</span>
+              <span className="text-5xl font-black text-white mono" aria-labelledby="percent-result-label">
+                {mode === 'what-percent' || mode === 'percent-change' ? `${result.result.toFixed(2)}%` : `$${result.result.toFixed(2)}`}
+              </span>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4" role="status" aria-live="polite">
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Calculation</label>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Calculation</span>
                 <p className="text-lg font-bold text-white mono">{result.display}</p>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Mode</label>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Mode</span>
                 <p className="text-lg font-bold text-primary-fixed mono">{modes.find(m => m.id === mode)?.label}</p>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { Sparkles, Activity, Flame } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -8,6 +8,7 @@ export default function TDEECalculator() {
   const [age, setAge] = useState(30);
   const [gender, setGender] = useState<'male' | 'female'>('male');
   const [activityLevel, setActivityLevel] = useState(1.2);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const bmr = useMemo(() => {
     if (gender === 'male') {
@@ -18,6 +19,13 @@ export default function TDEECalculator() {
   }, [weight, height, age, gender]);
 
   const tdee = useMemo(() => Math.round(bmr * activityLevel), [bmr, activityLevel]);
+
+  // Screen reader announcement
+  useEffect(() => {
+    if (resultRef.current) {
+      resultRef.current.textContent = `Your Total Daily Energy Expenditure is ${tdee} calories per day`;
+    }
+  }, [tdee]);
 
   const activityLevels = [
     { level: 'Sedentary', factor: 1.2, desc: 'Desk job, little exercise' },
@@ -53,30 +61,40 @@ export default function TDEECalculator() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Gender</label>
-                  <div className="flex gap-2">
-                    <button onClick={() => setGender('male')} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'male' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Male</button>
-                    <button onClick={() => setGender('female')} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'female' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Female</button>
+                  <div className="flex gap-2" role="radiogroup" aria-label="Gender selection">
+                    <button onClick={() => setGender('male')} role="radio" aria-checked={gender === 'male'} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'male' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Male</button>
+                    <button onClick={() => setGender('female')} role="radio" aria-checked={gender === 'female'} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'female' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Female</button>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Age</label>
-                  <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))}
+                  <label htmlFor="tdee-age" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Age</label>
+                  <input id="tdee-age" type="number" value={age} onChange={(e) => setAge(Number(e.target.value))}
+                    aria-label="Age in years"
+                    aria-describedby="tdee-age-desc"
                     className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
+                  <span id="tdee-age-desc" className="sr-only">Enter your age in years</span>
                 </div>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Weight (kg)</label>
-                <input type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))}
+                <label htmlFor="tdee-weight" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Weight (kg)</label>
+                <input id="tdee-weight" type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))}
+                  aria-label="Weight in kilograms"
+                  aria-describedby="tdee-weight-desc"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
+                <span id="tdee-weight-desc" className="sr-only">Enter your weight in kilograms</span>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Height (cm)</label>
-                <input type="number" value={height} onChange={(e) => setHeight(Number(e.target.value))}
+                <label htmlFor="tdee-height" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Height (cm)</label>
+                <input id="tdee-height" type="number" value={height} onChange={(e) => setHeight(Number(e.target.value))}
+                  aria-label="Height in centimeters"
+                  aria-describedby="tdee-height-desc"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
+                <span id="tdee-height-desc" className="sr-only">Enter your height in centimeters</span>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Activity Level</label>
-                <select value={activityLevel} onChange={(e) => setActivityLevel(Number(e.target.value))}
+                <label htmlFor="tdee-activity" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Activity Level</label>
+                <select id="tdee-activity" value={activityLevel} onChange={(e) => setActivityLevel(Number(e.target.value))}
+                  aria-label="Daily activity level"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none">
                   {activityLevels.map(a => <option key={a.factor} value={a.factor}>{a.level}</option>)}
                 </select>

@@ -43,7 +43,7 @@ export function TopBar({ title }: { title?: string }) {
   };
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 h-14 px-6 flex justify-between items-center shadow-2xl shadow-black/50">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 h-14 px-4 md:px-6 flex justify-between items-center shadow-2xl shadow-black/50 max-w-full overflow-hidden">
       <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
         <div className="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center shadow-lg shadow-primary-fixed/20">
           <Calculator className="text-on-primary-fixed w-5 h-5" />

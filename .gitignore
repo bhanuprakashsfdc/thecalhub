@@ -7,4 +7,5 @@ coverage/
 .env*
 !.env.example
 agents/ 
-shared
+playwright-report/
+shared/

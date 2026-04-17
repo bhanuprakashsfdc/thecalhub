@@ -38,7 +38,7 @@ const safeMath = (expr: string): number => {
   return result;
 };
 
-export function ScientificCalc() {
+export default function ScientificCalc() {
   const [display, setDisplay] = useState('0');
   const [memory, setMemory] = useState(0);
 

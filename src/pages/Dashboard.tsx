@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Search, ArrowRight, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Droplets, Activity, Grid3X3, Clock, LayoutGrid } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Search, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Activity, Grid3X3, Clock, LayoutGrid } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { TOOL_CATEGORIES, CALCULATORS, APP_NAME, APP_VERSION } from '@/src/data/data';
 import { cn } from '@/src/lib/utils';
+
+const ITEM_HEIGHT = 100;
+const ITEMS_PER_ROW = 4;
+const BUFFER_ROWS = 2;
 
 const categoryIcons: Record<string, React.ElementType> = {
   all: LayoutGrid,
@@ -173,43 +177,7 @@ export default function Dashboard() {
         })}
       </div>
 
-      <motion.div 
-        key={activeCategory}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-      >
-        {(CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []).map((calc, idx) => {
-          const getIcon = (iconType?: string) => {
-            switch(iconType) {
-              case 'financial': return TrendingUp;
-              case 'health': return Scale;
-              case 'scientific': return FlaskConical;
-              case 'programming': return Terminal;
-              case 'math': return Grid3X3;
-              case 'datetime': return Clock;
-              case 'fitness': return Activity;
-              default: return Calculator;
-            }
-          };
-          const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
-          return (
-            <Link
-              key={calc.name}
-              to={calc.path}
-              className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
-                <Icon className="w-6 h-6 text-primary-fixed" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
-                <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
-              </div>
-            </Link>
-          );
-        })}
-      </motion.div>
+      <VirtualizedCalculatorGrid activeCategory={activeCategory} />
 
       <footer className="mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-6">
@@ -222,5 +190,133 @@ export default function Dashboard() {
         </div>
       </footer>
     </div>
+  );
+}
+
+interface VirtualizedCalculatorGridProps {
+  activeCategory: string;
+}
+
+function VirtualizedCalculatorGrid({ activeCategory }: VirtualizedCalculatorGridProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(600);
+
+  const calculators = CALCULATORS[activeCategory as keyof typeof CALCULATORS] || [];
+  const totalItems = calculators.length;
+  const totalRows = Math.ceil(totalItems / ITEMS_PER_ROW);
+  const totalHeight = totalRows * ITEM_HEIGHT;
+
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    setScrollTop(e.currentTarget.scrollTop);
+  }, []);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (containerRef.current) {
+        setContainerHeight(window.innerHeight - containerRef.current.getBoundingClientRect().top - 100);
+      }
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
+  const startRow = Math.max(0, Math.floor(scrollTop / ITEM_HEIGHT) - BUFFER_ROWS);
+  const endRow = Math.min(totalRows, Math.ceil((scrollTop + containerHeight) / ITEM_HEIGHT) + BUFFER_ROWS);
+
+  const visibleItems = [];
+  for (let row = startRow; row < endRow; row++) {
+    for (let col = 0; col < ITEMS_PER_ROW; col++) {
+      const idx = row * ITEMS_PER_ROW + col;
+      if (idx < totalItems) {
+        visibleItems.push({ calc: calculators[idx], idx });
+      }
+    }
+  }
+
+  const getIcon = (iconType?: string) => {
+    switch(iconType) {
+      case 'financial': return TrendingUp;
+      case 'health': return Scale;
+      case 'scientific': return FlaskConical;
+      case 'programming': return Terminal;
+      case 'math': return Grid3X3;
+      case 'datetime': return Clock;
+      case 'fitness': return Activity;
+      default: return Calculator;
+    }
+  };
+
+  return (
+    <motion.div
+      key={activeCategory}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      {totalItems <= 16 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {calculators.map((calc) => {
+            const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
+            return (
+              <Link
+                key={calc.name}
+                to={calc.path}
+                className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
+                  <Icon className="w-6 h-6 text-primary-fixed" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
+                  <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      ) : (
+        <div
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="overflow-x-hidden"
+          style={{ height: containerHeight }}
+        >
+          <div style={{ height: totalHeight, position: 'relative', maxWidth: '100%' }}>
+            {visibleItems.map(({ calc, idx }) => {
+              const row = Math.floor(idx / ITEMS_PER_ROW);
+              const col = idx % ITEMS_PER_ROW;
+              const left = col * (100 / ITEMS_PER_ROW);
+              const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
+              return (
+                <div
+                  key={calc.name}
+                  className="absolute"
+                  style={{
+                    top: row * ITEM_HEIGHT,
+                    left: `${left}%`,
+                    width: `${100 / ITEMS_PER_ROW}%`,
+                    padding: '0 8px',
+                  }}
+                >
+                  <Link
+                    to={calc.path}
+                    className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
+                      <Icon className="w-6 h-6 text-primary-fixed" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
+                      <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </motion.div>
   );
 }

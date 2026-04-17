@@ -28,7 +28,7 @@ const evaluateExpression = (expr: string): number => {
   return result;
 };
 
-export function StandardCalc() {
+export default function StandardCalc() {
   const [display, setDisplay] = useState('0');
   const [equation, setEquation] = useState('');
 

@@ -1,4 +1,4 @@
-import { Calculator, CreditCard, FlaskConical, Terminal, Heart, Scale, Clock, Activity, LayoutGrid } from 'lucide-react';
+import { Calculator, CreditCard, FlaskConical, Terminal, Heart, Scale, Clock, Activity, LayoutGrid, Hammer } from 'lucide-react';
 
 export const APP_NAME = "TheCalHub";
 export const APP_VERSION = "1.0.0";
@@ -13,6 +13,7 @@ export const TOOL_CATEGORIES = [
   { id: 'math', name: 'Math', icon: Calculator, path: '/math.html' },
   { id: 'fitness', name: 'Fitness', icon: Activity, path: '/fitness.html' },
   { id: 'dateTime', name: 'Date & Time', icon: Clock, path: '/datetime.html' },
+  { id: 'construction', name: 'Construction', icon: Hammer, path: '/construction.html' },
 ];
 
 export const CALCULATORS = {
@@ -44,6 +45,13 @@ export const CALCULATORS = {
     { name: 'Date Calculator', path: '/date-calculator.html', description: 'Date operations', icon: 'datetime' },
     { name: 'Pace Calculator', path: '/pace-calculator.html', description: 'Running pace', icon: 'fitness' },
     { name: 'TDEE Calculator', path: '/tdee-calculator.html', description: 'Total daily energy', icon: 'fitness' },
+    { name: 'Concrete Calculator', path: '/concrete-calculator.html', description: 'Calculate concrete for slabs', icon: 'construction' },
+    { name: 'Stair Calculator', path: '/stair-calculator.html', description: 'Calculate stairs materials', icon: 'construction' },
+    { name: 'Gravel Calculator', path: '/gravel-calculator.html', description: 'Calculate gravel needed', icon: 'construction' },
+    { name: 'Tile Calculator', path: '/tile-calculator.html', description: 'Calculate tiles for flooring', icon: 'construction' },
+    { name: 'Paint Calculator', path: '/paint-calculator.html', description: 'Calculate paint needed', icon: 'construction' },
+    { name: 'Wood Calculator', path: '/wood-calculator.html', description: 'Calculate lumber board feet', icon: 'construction' },
+    { name: 'Cubic Yards Calculator', path: '/cubic-yards-calculator.html', description: 'Convert cubic feet to yards', icon: 'construction' },
   ],
   standard: [
     { name: 'Basic Calculator', path: '/standard.html', description: 'Simple arithmetic operations' },
@@ -91,6 +99,15 @@ export const CALCULATORS = {
   dateTime: [
     { name: 'Age Calculator', path: '/age-calculator.html', description: 'Calculate age' },
     { name: 'Date Calculator', path: '/date-calculator.html', description: 'Date operations' },
+  ],
+  construction: [
+    { name: 'Concrete Calculator', path: '/concrete-calculator.html', description: 'Calculate concrete for slabs' },
+    { name: 'Stair Calculator', path: '/stair-calculator.html', description: 'Calculate stairs materials' },
+    { name: 'Gravel Calculator', path: '/gravel-calculator.html', description: 'Calculate gravel needed' },
+    { name: 'Tile Calculator', path: '/tile-calculator.html', description: 'Calculate tiles for flooring' },
+    { name: 'Paint Calculator', path: '/paint-calculator.html', description: 'Calculate paint needed' },
+    { name: 'Wood Calculator', path: '/wood-calculator.html', description: 'Calculate lumber board feet' },
+    { name: 'Cubic Yards Calculator', path: '/cubic-yards-calculator.html', description: 'Convert cubic feet to yards' },
   ],
 };
 

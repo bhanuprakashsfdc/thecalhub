@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { Sparkles, Scale, Activity } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -6,6 +6,22 @@ export default function BMICalculator() {
   const [weight, setWeight] = useState(70);
   const [height, setHeight] = useState(170);
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Screen reader announcement
+  useEffect(() => {
+    if (resultRef.current) {
+      resultRef.current.textContent = `Your BMI is ${bmi.value.toFixed(1)}, category: ${bmi.category}`;
+    }
+  }, [bmi]);
+
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent, action: () => void) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      action();
+    }
+  };
 
   const bmi = useMemo(() => {
     const w = weight;
@@ -85,27 +101,37 @@ export default function BMICalculator() {
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
+                <label htmlFor="bmi-weight" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
                   Weight ({unit === 'metric' ? 'kg' : 'lbs'})
                 </label>
                 <input
+                  id="bmi-weight"
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
+                  onKeyDown={(e) => e.key === 'Enter' && setWeight(Number(e.target.value))}
+                  aria-label={`Weight in ${unit === 'metric' ? 'kilograms' : 'pounds'}`}
+                  aria-describedby="bmi-weight-desc"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                 />
+                <span id="bmi-weight-desc" className="sr-only">Enter your weight</span>
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
+                <label htmlFor="bmi-height" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
                   Height ({unit === 'metric' ? 'cm' : 'inches'})
                 </label>
                 <input
+                  id="bmi-height"
                   type="number"
                   value={height}
                   onChange={(e) => setHeight(Number(e.target.value))}
+                  onKeyDown={(e) => e.key === 'Enter' && setHeight(Number(e.target.value))}
+                  aria-label={`Height in ${unit === 'metric' ? 'centimeters' : 'inches'}`}
+                  aria-describedby="bmi-height-desc"
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                 />
+                <span id="bmi-height-desc" className="sr-only">Enter your height</span>
               </div>
             </div>
           </div>
@@ -117,14 +143,17 @@ export default function BMICalculator() {
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Scale className="w-32 h-32" />
             </div>
-            <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Your BMI</label>
+            <span className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4" id="bmi-result-label">Your BMI</span>
+            <div aria-live="polite" aria-atomic="true" className="sr-only" ref={resultRef}></div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">{bmi.value.toFixed(1)}</span>
+              <span className="text-5xl font-black text-white mono" aria-labelledby="bmi-result-label">{bmi.value.toFixed(1)}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3" role="status" aria-live="polite">
               <span
                 className="inline-block px-4 py-2 rounded-full text-lg font-bold"
                 style={{ backgroundColor: `${bmi.color}20`, color: bmi.color }}
+                role="text"
+                aria-label={`BMI Category: ${bmi.category}`}
               >
                 {bmi.category}
               </span>
