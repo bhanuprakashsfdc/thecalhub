@@ -52,7 +52,7 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState<Array<{ name: string; path: string; category: string }>>([]);
   const [isFocused, setIsFocused] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('financial');
+  const [activeCategory, setActiveCategory] = useState('all');
   const navigate = useNavigate();
   const searchRef = useRef<HTMLDivElement>(null);
 

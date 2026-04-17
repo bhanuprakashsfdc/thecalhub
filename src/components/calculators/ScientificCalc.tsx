@@ -2,6 +2,42 @@ import React, { useState } from 'react';
 import { FlaskConical, Sigma, FunctionSquare } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
+// Safe math expression evaluator
+const safeMath = (expr: string): number => {
+  if (!expr || expr === '0') return 0;
+  
+  // Only allow numbers, operators, and decimal point
+  if (!/^[\d+\-*/.]+$/.test(expr)) {
+    throw new Error('Invalid expression');
+  }
+  
+  // Tokenize and evaluate
+  const tokens = expr.match(/(\d+\.?\d*|[+\-*/])/g) || [];
+  if (tokens.length === 0) throw new Error('Invalid');
+  
+  let result = parseFloat(tokens[0]);
+  
+  for (let i = 1; i < tokens.length; i += 2) {
+    const op = tokens[i];
+    const val = parseFloat(tokens[i + 1]);
+    
+    if (isNaN(val)) throw new Error('Invalid');
+    
+    switch (op) {
+      case '+': result = result + val; break;
+      case '-': result = result - val; break;
+      case '*': result = result * val; break;
+      case '/': 
+        if (val === 0) throw new Error('Division by zero');
+        result = result / val; 
+        break;
+      default: throw new Error('Invalid operator');
+    }
+  }
+  
+  return result;
+};
+
 export function ScientificCalc() {
   const [display, setDisplay] = useState('0');
   const [memory, setMemory] = useState(0);
@@ -27,6 +63,23 @@ export function ScientificCalc() {
   const funcBtn = cn(btnClass, "bg-secondary-container/10 text-secondary-container hover:bg-secondary-container/20 border border-secondary-container/20");
   const numBtn = cn(btnClass, "bg-white/5 text-neutral-400 hover:bg-white/10");
 
+  const handleNumber = (n: string) => {
+    setDisplay(prev => prev === '0' ? n : prev + n);
+  };
+
+  const calculate = () => {
+    try {
+      const result = safeMath(display);
+      setDisplay(String(Math.round(result * 1000000) / 1000000));
+    } catch {
+      setDisplay('Error');
+    }
+  };
+
+  const clear = () => {
+    setDisplay('0');
+  };
+
   return (
     <div className="bg-surface-container-low p-4 rounded-xl border border-white/5 flex flex-col gap-3 h-full min-h-[320px]">
       <div className="flex items-center justify-between">
@@ -47,13 +100,13 @@ export function ScientificCalc() {
         ))}
         
         <div className="col-span-4 grid grid-cols-4 gap-1.5 mt-2">
-          {[7, 8, 9, '/'].map(n => <button key={n} onClick={() => setDisplay(prev => prev === '0' ? String(n) : prev + n)} className={numBtn}>{n}</button>)}
-          {[4, 5, 6, '*'].map(n => <button key={n} onClick={() => setDisplay(prev => prev === '0' ? String(n) : prev + n)} className={numBtn}>{n}</button>)}
-          {[1, 2, 3, '-'].map(n => <button key={n} onClick={() => setDisplay(prev => prev === '0' ? String(n) : prev + n)} className={numBtn}>{n}</button>)}
+          {[7, 8, 9, '/'].map(n => <button key={n} onClick={() => handleNumber(String(n))} className={numBtn}>{n}</button>)}
+          {[4, 5, 6, '*'].map(n => <button key={n} onClick={() => handleNumber(String(n))} className={numBtn}>{n}</button>)}
+          {[1, 2, 3, '-'].map(n => <button key={n} onClick={() => handleNumber(String(n))} className={numBtn}>{n}</button>)}
           {['0', '.', '=', '+'].map(n => (
             <button 
               key={n} 
-              onClick={() => n === '=' ? setDisplay(String(eval(display))) : setDisplay(prev => prev === '0' ? String(n) : prev + n)} 
+              onClick={() => n === '=' ? calculate() : handleNumber(n)} 
               className={n === '=' ? cn(btnClass, "bg-primary-fixed text-on-primary-fixed") : numBtn}
             >
               {n}
@@ -61,7 +114,7 @@ export function ScientificCalc() {
           ))}
         </div>
         
-        <button onClick={() => setDisplay('0')} className="col-span-4 h-8 mt-1 rounded bg-red-500/10 text-red-400 text-[10px] font-mono uppercase tracking-widest">Clear Buffer</button>
+        <button onClick={clear} className="col-span-4 h-8 mt-1 rounded bg-red-500/10 text-red-400 text-[10px] font-mono uppercase tracking-widest">Clear Buffer</button>
       </div>
     </div>
   );

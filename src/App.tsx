@@ -1,30 +1,69 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Sparkles, Grid3X3, Percent, Clock, Calendar, Scale } from 'lucide-react';
 import { TopBar } from './components/layout/TopBar';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import FractionCalculator from './components/calculators/FractionCalculator';
 import PercentCalculator from './components/calculators/PercentCalculator';
+import PercentageCalculator from './components/calculators/PercentageCalculator';
 import BMICalculator from './components/calculators/BMICalculator';
+import BMRCalculator from './components/calculators/BMRCalculator';
+import CalorieCalculator from './components/calculators/CalorieCalculator';
 import TipCalculator from './components/calculators/TipCalculator';
+import GSTCalculator from './components/calculators/GSTCalculator';
 import AgeCalculator from './components/calculators/AgeCalculator';
 import DateCalculator from './components/calculators/DateCalculator';
 import MortgageCalculator from './components/calculators/MortgageCalculator';
 import LoanCalculator from './components/calculators/LoanCalculator';
+import CarLoanCalculator from './components/calculators/CarLoanCalculator';
+import PersonalLoanCalculator from './components/calculators/PersonalLoanCalculator';
 import TaxCalculator from './components/calculators/TaxCalculator';
 import RetirementCalculator from './components/calculators/RetirementCalculator';
 import InvestmentCalculator from './components/calculators/InvestmentCalculator';
 import CompoundInterestCalc from './components/calculators/CompoundInterestCalc';
 import SimpleInterestCalc from './components/calculators/SimpleInterestCalc';
 import FDCalculator from './components/calculators/FDCalculator';
+import RDCalculator from './components/calculators/RDCalculator';
 import SIPCalculator from './components/calculators/SIPCalculator';
 import NPSCalculator from './components/calculators/NPSCalculator';
 import PPFCalculator from './components/calculators/PPFCalculator';
 import HomeLoanCalc from './components/calculators/HomeLoanCalc';
+import PaceCalculator from './components/calculators/PaceCalculator';
+import TDEECalculator from './components/calculators/TDEECalculator';
 import { StandardCalc } from './components/calculators/StandardCalc';
 import { ScientificCalc } from './components/calculators/ScientificCalc';
 import { ProgrammingCalc } from './components/calculators/ProgrammingCalc';
+
+const seoData: Record<string, { title: string; description: string }> = {
+  '/': { title: 'TheCalHub - All-in-One Free Online Calculators', description: 'Free online calculators for finance, health, math, and more. Calculate EMI, BMI, interest, taxes, and more with our professional tools.' },
+  '/all.html': { title: 'All Calculators - TheCalHub', description: 'Browse all available calculators. Financial, health, math, date & time calculators and more.' },
+  '/bmi-calculator.html': { title: 'BMI Calculator - TheCalHub', description: 'Calculate your Body Mass Index (BMI) online for free. Check if your weight is healthy.' },
+  '/emi-calculator.html': { title: 'EMI Calculator - TheCalHub', description: 'Calculate your loan EMI online. Free EMI calculator for home loan, car loan, personal loan and more.' },
+  '/compound-interest-calculator.html': { title: 'Compound Interest Calculator - TheCalHub', description: 'Calculate compound interest and see your investment growth over time with our free calculator.' },
+  '/tax-calculator.html': { title: 'Tax Calculator - TheCalHub', description: 'Estimate your income tax liability with our free online tax calculator.' },
+  '/age-calculator.html': { title: 'Age Calculator - TheCalHub', description: 'Calculate your exact age in years, months, and days. Free online age calculator.' },
+  '/retirement-calculator.html': { title: 'Retirement Calculator - TheCalHub', description: 'Plan your retirement savings. Calculate how much you need to save for retirement.' },
+  '/investment-calculator.html': { title: 'Investment Calculator - TheCalHub', description: 'Calculate your investment growth. See how your investments can grow over time.' },
+};
+
+function SEO() {
+  const location = useLocation();
+  const data = seoData[location.pathname] || seoData['/'];
+  return (
+    <Helmet>
+      <title>{data.title}</title>
+      <meta name="description" content={data.description} />
+      <meta name="keywords" content="calculator, online calculator, free calculator, BMI calculator, EMI calculator, tax calculator" />
+      <meta property="og:title" content={data.title} />
+      <meta property="og:description" content={data.description} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Helmet>
+  );
+}
 
 function MathPage() {
   return (
@@ -156,17 +195,26 @@ function AppContent() {
       '/support.html': 'About & Disclaimer',
       '/fraction-calculator.html': 'Fraction Calculator',
       '/percent-calculator.html': 'Percent Calculator',
+      '/percentage-calculator.html': 'Percentage Calculator',
       '/bmi-calculator.html': 'BMI Calculator',
+      '/bmr-calculator.html': 'BMR Calculator',
+      '/calorie-calculator.html': 'Calorie Calculator',
+      '/gst-calculator.html': 'GST Calculator',
       '/tip-calculator.html': 'Tip Calculator',
+      '/pace-calculator.html': 'Pace Calculator',
+      '/tdee-calculator.html': 'TDEE Calculator',
       '/age-calculator.html': 'Age Calculator',
       '/date-calculator.html': 'Date Calculator',
       '/compound-interest-calculator.html': 'Compound Interest Calculator',
       '/simple-interest-calculator.html': 'Simple Interest Calculator',
       '/fd-calculator.html': 'FD Calculator',
+      '/rd-calculator.html': 'RD Calculator',
       '/sip-calculator.html': 'SIP Calculator',
       '/nps-calculator.html': 'NPS Calculator',
       '/ppf-calculator.html': 'PPF Calculator',
       '/home-loan-calculator.html': 'Home Loan Calculator',
+      '/car-loan-calculator.html': 'Car Loan Calculator',
+      '/personal-loan-calculator.html': 'Personal Loan Calculator',
       '/mortgage-calculator.html': 'Mortgage Calculator',
       '/loan-calculator.html': 'Loan Calculator',
       '/tax-calculator.html': 'Tax Calculator',
@@ -183,40 +231,52 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
+        <SEO />
         <TopBar title={getTitle()} />
         <main className="pt-14">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/index.html" element={<Dashboard />} />
-            <Route path="/all.html" element={<Dashboard />} />
-            <Route path="/standard.html" element={<StandardPage />} />
-            <Route path="/financial.html" element={<Dashboard />} />
-            <Route path="/support.html" element={<About />} />
-            <Route path="/fraction-calculator.html" element={<FractionCalculator />} />
-            <Route path="/percent-calculator.html" element={<PercentCalculator />} />
-            <Route path="/bmi-calculator.html" element={<BMICalculator />} />
-            <Route path="/tip-calculator.html" element={<TipCalculator />} />
-            <Route path="/age-calculator.html" element={<AgeCalculator />} />
-            <Route path="/date-calculator.html" element={<DateCalculator />} />
-            <Route path="/compound-interest-calculator.html" element={<CompoundInterestCalc />} />
-            <Route path="/simple-interest-calculator.html" element={<SimpleInterestCalc />} />
-            <Route path="/fd-calculator.html" element={<FDCalculator />} />
-            <Route path="/sip-calculator.html" element={<SIPCalculator />} />
-            <Route path="/nps-calculator.html" element={<NPSCalculator />} />
-            <Route path="/ppf-calculator.html" element={<PPFCalculator />} />
-            <Route path="/home-loan-calculator.html" element={<HomeLoanCalc />} />
-            <Route path="/mortgage-calculator.html" element={<MortgageCalculator />} />
-            <Route path="/loan-calculator.html" element={<LoanCalculator />} />
-            <Route path="/tax-calculator.html" element={<TaxCalculator />} />
-            <Route path="/retirement-calculator.html" element={<RetirementCalculator />} />
-            <Route path="/investment-calculator.html" element={<InvestmentCalculator />} />
-            <Route path="/scientific-calculator.html" element={<ScientificPage />} />
-            <Route path="/programming-calculator.html" element={<ProgrammingPage />} />
-            <Route path="/math.html" element={<MathPage />} />
-            <Route path="/datetime.html" element={<DateTimePage />} />
-            <Route path="/health.html" element={<HealthPage />} />
-            <Route path="*" element={<Dashboard />} />
-          </Routes>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/index.html" element={<Dashboard />} />
+              <Route path="/all.html" element={<Dashboard />} />
+              <Route path="/standard.html" element={<StandardPage />} />
+              <Route path="/financial.html" element={<Dashboard />} />
+              <Route path="/support.html" element={<About />} />
+              <Route path="/fraction-calculator.html" element={<FractionCalculator />} />
+              <Route path="/percent-calculator.html" element={<PercentCalculator />} />
+              <Route path="/percentage-calculator.html" element={<PercentageCalculator />} />
+              <Route path="/bmi-calculator.html" element={<BMICalculator />} />
+              <Route path="/bmr-calculator.html" element={<BMRCalculator />} />
+              <Route path="/calorie-calculator.html" element={<CalorieCalculator />} />
+              <Route path="/gst-calculator.html" element={<GSTCalculator />} />
+              <Route path="/tip-calculator.html" element={<TipCalculator />} />
+              <Route path="/pace-calculator.html" element={<PaceCalculator />} />
+              <Route path="/tdee-calculator.html" element={<TDEECalculator />} />
+              <Route path="/age-calculator.html" element={<AgeCalculator />} />
+              <Route path="/date-calculator.html" element={<DateCalculator />} />
+              <Route path="/compound-interest-calculator.html" element={<CompoundInterestCalc />} />
+              <Route path="/simple-interest-calculator.html" element={<SimpleInterestCalc />} />
+              <Route path="/fd-calculator.html" element={<FDCalculator />} />
+              <Route path="/rd-calculator.html" element={<RDCalculator />} />
+              <Route path="/sip-calculator.html" element={<SIPCalculator />} />
+              <Route path="/nps-calculator.html" element={<NPSCalculator />} />
+              <Route path="/ppf-calculator.html" element={<PPFCalculator />} />
+              <Route path="/home-loan-calculator.html" element={<HomeLoanCalc />} />
+              <Route path="/car-loan-calculator.html" element={<CarLoanCalculator />} />
+              <Route path="/personal-loan-calculator.html" element={<PersonalLoanCalculator />} />
+              <Route path="/mortgage-calculator.html" element={<MortgageCalculator />} />
+              <Route path="/loan-calculator.html" element={<LoanCalculator />} />
+              <Route path="/tax-calculator.html" element={<TaxCalculator />} />
+              <Route path="/retirement-calculator.html" element={<RetirementCalculator />} />
+              <Route path="/investment-calculator.html" element={<InvestmentCalculator />} />
+              <Route path="/scientific-calculator.html" element={<ScientificPage />} />
+              <Route path="/programming-calculator.html" element={<ProgrammingPage />} />
+              <Route path="/math.html" element={<MathPage />} />
+              <Route path="/datetime.html" element={<DateTimePage />} />
+              <Route path="/health.html" element={<HealthPage />} />
+              <Route path="*" element={<Dashboard />} />
+            </Routes>
+          </ErrorBoundary>
         </main>
     </div>
   );

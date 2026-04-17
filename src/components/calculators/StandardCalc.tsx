@@ -2,6 +2,32 @@ import React, { useState } from 'react';
 import { Delete, Divide, Minus, Plus, X, Equal } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
+// Safe math expression evaluator (no eval())
+const evaluateExpression = (expr: string): number => {
+  const tokens = expr.split(/\s+/);
+  let result = parseFloat(tokens[0]);
+  
+  for (let i = 1; i < tokens.length; i += 2) {
+    const operator = tokens[i];
+    const operand = parseFloat(tokens[i + 1]);
+    
+    if (isNaN(operand)) throw new Error('Invalid');
+    
+    switch (operator) {
+      case '+': result += operand; break;
+      case '-': result -= operand; break;
+      case '*': result *= operand; break;
+      case '/': 
+        if (operand === 0) throw new Error('Division by zero');
+        result /= operand; 
+        break;
+      default: throw new Error('Invalid operator');
+    }
+  }
+  
+  return result;
+};
+
 export function StandardCalc() {
   const [display, setDisplay] = useState('0');
   const [equation, setEquation] = useState('');
@@ -17,8 +43,9 @@ export function StandardCalc() {
 
   const calculate = () => {
     try {
-      const result = eval(equation + display);
-      setDisplay(String(result));
+      const fullExpr = equation + display;
+      const result = evaluateExpression(fullExpr);
+      setDisplay(String(Math.round(result * 1000000) / 1000000)); // 6 decimal places
       setEquation('');
     } catch {
       setDisplay('Error');
