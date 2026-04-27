@@ -3,9 +3,9 @@ import { Scale } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export function BMICalculator() {
-  const [weight, setWeight] = useState<number>(70);
-  const [height, setHeight] = useState<number>(170);
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
+  const [weight, setWeight] = useState<number>(unit === 'metric' ? 70 : 154);
+  const [height, setHeight] = useState<number>(unit === 'metric' ? 170 : 67);
   const resultRef = useRef<HTMLDivElement>(null);
 
   const bmi = useMemo(() => {
@@ -51,13 +51,21 @@ export function BMICalculator() {
           <div className="space-y-8">
             <div className="flex p-1 bg-surface-container-highest rounded-xl w-fit">
               <button
-                onClick={() => setUnit('metric')}
+                onClick={() => {
+                  setUnit('metric');
+                  setWeight(Math.round(weight / 2.205));
+                  setHeight(Math.round(height / 0.394));
+                }}
                 className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${unit === 'metric' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'text-neutral-500 hover:text-white'}`}
               >
                 Metric
               </button>
               <button
-                onClick={() => setUnit('imperial')}
+                onClick={() => {
+                  setUnit('imperial');
+                  setWeight(Math.round(weight * 2.205));
+                  setHeight(Math.round(height * 0.394));
+                }}
                 className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${unit === 'imperial' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'text-neutral-500 hover:text-white'}`}
               >
                 Imperial
