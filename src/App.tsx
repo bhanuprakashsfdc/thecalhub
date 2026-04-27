@@ -13,6 +13,10 @@ import FitnessPage from './pages/FitnessPage';
 import ScientificPage from './pages/ScientificPage';
 import ProgrammingPage from './pages/ProgrammingPage';
 import TradingPage from './pages/TradingPage';
+import Blog from './pages/Blog';
+import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 // Lazy load all calculator components for code splitting
 const FractionCalculator = lazy(() => import('./components/calculators/FractionCalculator'));
@@ -589,6 +593,11 @@ function AppContent() {
                 <Route path="/programming.html" element={<ProgrammingPage />} />
                 <Route path="/fitness.html" element={<FitnessPage />} />
                 <Route path="/trading.html" element={<TradingPage />} />
+                <Route path="/blog.html" element={<Blog />} />
+                <Route path="/blog/:slug.html" element={<Blog />} />
+                <Route path="/contact.html" element={<Contact />} />
+                <Route path="/privacy-policy.html" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service.html" element={<TermsOfService />} />
                 <Route path="*" element={<Dashboard />} />
               </Routes>
             </Suspense>
