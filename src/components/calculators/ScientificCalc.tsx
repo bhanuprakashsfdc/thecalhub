@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FlaskConical, Sigma, FunctionSquare } from 'lucide-react';
+import { useState } from 'react';
+import { FlaskConical } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 // Safe math expression evaluator
@@ -15,7 +15,7 @@ const safeMath = (expr: string): number => {
   const tokens = expr.match(/(\d+\.?\d*|[+\-*/])/g) || [];
   if (tokens.length === 0) throw new Error('Invalid');
   
-  let result = parseFloat(tokens[0]);
+  let result = parseFloat(tokens[0]!);
   
   for (let i = 1; i < tokens.length; i += 2) {
     const op = tokens[i];
@@ -40,7 +40,7 @@ const safeMath = (expr: string): number => {
 
 export default function ScientificCalc() {
   const [display, setDisplay] = useState('0');
-  const [memory, setMemory] = useState(0);
+
 
   const handleFunc = (func: string) => {
     const val = parseFloat(display);

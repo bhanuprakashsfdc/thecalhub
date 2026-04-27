@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Info, BarChart2, AlertTriangle } from 'lucide-react';
 
 export default function About() {

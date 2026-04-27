@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion } from 'motion/react';
-import { StandardCalc } from '@/src/components/calculators/StandardCalc';
-import { FinancialCalc } from '@/src/components/calculators/FinancialCalc';
-import { ScientificCalc } from '@/src/components/calculators/ScientificCalc';
-import { ProgrammingCalc } from '@/src/components/calculators/ProgrammingCalc';
+import StandardCalc from '@/src/components/calculators/StandardCalc';
+import FinancialCalc from '@/src/components/calculators/FinancialCalc';
+import ScientificCalc from '@/src/components/calculators/ScientificCalc';
+import ProgrammingCalc from '@/src/components/calculators/ProgrammingCalc';
 import { Sparkles, LayoutGrid } from 'lucide-react';
 
 export default function CalculatorSuite() {

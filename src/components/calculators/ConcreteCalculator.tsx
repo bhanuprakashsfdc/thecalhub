@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Layers } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function ConcreteCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [length, setLength] = useState(10);
   const [width, setWidth] = useState(10);
   const [depth, setDepth] = useState(4);
@@ -43,7 +46,7 @@ export default function ConcreteCalculator() {
           <input type="number" value={depth} onChange={(e) => setDepth(Number(e.target.value))} className={inputClass} />
         </div>
         <div>
-          <label className={labelClass}>Price per cubic yard ($)</label>
+          <label className={labelClass}>Price per cubic yard ({symbol})</label>
           <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className={inputClass} />
         </div>
 
@@ -64,7 +67,7 @@ export default function ConcreteCalculator() {
             </div>
             <div className="border-t border-white/10 pt-3 mt-3 flex justify-between">
               <span className="text-neutral-400">Estimated Cost</span>
-              <span className="text-primary-fixed font-mono text-xl">${result.cost}</span>
+              <span className="text-primary-fixed font-mono text-xl">{symbol}{result.cost}</span>
             </div>
           </div>
         </div>
