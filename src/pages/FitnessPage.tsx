@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Activity, Scale, Droplets, TrendingUp } from 'lucide-react';
 
 const fitnessCalculators = [

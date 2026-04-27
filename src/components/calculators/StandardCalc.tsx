@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Delete, Divide, Minus, Plus, X, Equal } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 

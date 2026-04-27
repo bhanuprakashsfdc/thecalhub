@@ -1,27 +1,12 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { Sparkles, Scale, Activity } from 'lucide-react';
+import { Scale } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function BMICalculator() {
-  const [weight, setWeight] = useState(70);
-  const [height, setHeight] = useState(170);
+export function BMICalculator() {
+  const [weight, setWeight] = useState<number>(70);
+  const [height, setHeight] = useState<number>(170);
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
   const resultRef = useRef<HTMLDivElement>(null);
-
-  // Screen reader announcement
-  useEffect(() => {
-    if (resultRef.current) {
-      resultRef.current.textContent = `Your BMI is ${bmi.value.toFixed(1)}, category: ${bmi.category}`;
-    }
-  }, [bmi]);
-
-  // Keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent, action: () => void) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      action();
-    }
-  };
 
   const bmi = useMemo(() => {
     const w = weight;
@@ -45,153 +30,106 @@ export default function BMICalculator() {
     return { value: bmiValue, category, color };
   }, [weight, height, unit]);
 
-  const categories = [
-    { range: 'Below 18.5', label: 'Underweight', color: '#3b82f6', min: 0, max: 18.5 },
-    { range: '18.5 - 24.9', label: 'Normal', color: '#22c55e', min: 18.5, max: 25 },
-    { range: '25 - 29.9', label: 'Overweight', color: '#f59e0b', min: 25, max: 30 },
-    { range: '30 and above', label: 'Obese', color: '#ef4444', min: 30, max: 100 },
-  ];
-
-  const getCategoryPosition = (bmiValue: number) => {
-    if (bmiValue < 18.5) return 12;
-    if (bmiValue < 25) return 37;
-    if (bmiValue < 30) return 62;
-    return 87;
-  };
+  // Screen reader announcement
+  useEffect(() => {
+    if (resultRef.current) {
+      resultRef.current.textContent = `Your BMI is ${bmi.value.toFixed(1)}, category: ${bmi.category}`;
+    }
+  }, [bmi]);
 
   return (
-    <div className="pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto w-full">
-      <div className="mb-10">
-        <div className="flex items-center gap-2 text-primary-fixed mb-2">
-          <Sparkles className="w-4 h-4" />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Health</span>
-        </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight leading-none mb-4">BMI Calculator</h2>
-        <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed">
-          Calculate your Body Mass Index to determine your weight category. Our free BMI calculator helps you understand your body weight status.
-        </p>
-        <div className="flex gap-2 mt-4">
-          <span className="text-xs px-2 py-1 bg-white/5 text-neutral-400 rounded">BMI</span>
-          <span className="text-xs px-2 py-1 bg-white/5 text-neutral-400 rounded">Weight</span>
-          <span className="text-xs px-2 py-1 bg-white/5 text-neutral-400 rounded">Health</span>
-        </div>
-      </div>
+    <div className="w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-surface-container-low p-8 rounded-2xl border border-white/5 shadow-2xl">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-primary-fixed/10 flex items-center justify-center">
+              <Scale className="w-5 h-5 text-primary-fixed" />
+            </div>
+            <h2 className="text-xl font-bold text-white">Body Metrics</h2>
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-surface-container-low p-8 rounded-xl border border-white/5 shadow-2xl">
+          <div className="space-y-8">
+            <div className="flex p-1 bg-surface-container-highest rounded-xl w-fit">
+              <button
+                onClick={() => setUnit('metric')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${unit === 'metric' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'text-neutral-500 hover:text-white'}`}
+              >
+                Metric
+              </button>
+              <button
+                onClick={() => setUnit('imperial')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${unit === 'imperial' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'text-neutral-500 hover:text-white'}`}
+              >
+                Imperial
+              </button>
+            </div>
+
             <div className="space-y-6">
-              <div className="flex gap-2 mb-6">
-                <button
-                  onClick={() => setUnit('metric')}
-                  className={`flex-1 py-3 rounded-lg text-sm font-bold transition-all ${
-                    unit === 'metric' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400 hover:text-white'
-                  }`}
-                >
-                  Metric (kg/cm)
-                </button>
-                <button
-                  onClick={() => setUnit('imperial')}
-                  className={`flex-1 py-3 rounded-lg text-sm font-bold transition-all ${
-                    unit === 'imperial' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400 hover:text-white'
-                  }`}
-                >
-                  Imperial (lbs/in)
-                </button>
-              </div>
-
               <div>
-                <label htmlFor="bmi-weight" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
-                  Weight ({unit === 'metric' ? 'kg' : 'lbs'})
-                </label>
+                <div className="flex justify-between mb-3">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
+                  <span className="text-white font-bold mono">{weight} {unit === 'metric' ? 'kg' : 'lbs'}</span>
+                </div>
                 <input
-                  id="bmi-weight"
-                  type="number"
+                  type="range"
+                  min={unit === 'metric' ? "30" : "60"}
+                  max={unit === 'metric' ? "200" : "450"}
                   value={weight}
                   onChange={(e) => setWeight(Number(e.target.value))}
-                  onKeyDown={(e) => e.key === 'Enter' && setWeight(Number(e.target.value))}
-                  aria-label={`Weight in ${unit === 'metric' ? 'kilograms' : 'pounds'}`}
-                  aria-describedby="bmi-weight-desc"
-                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
+                  className="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary-fixed"
                 />
-                <span id="bmi-weight-desc" className="sr-only">Enter your weight</span>
               </div>
 
               <div>
-                <label htmlFor="bmi-height" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">
-                  Height ({unit === 'metric' ? 'cm' : 'inches'})
-                </label>
+                <div className="flex justify-between mb-3">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold">Height ({unit === 'metric' ? 'cm' : 'in'})</label>
+                  <span className="text-white font-bold mono">{height} {unit === 'metric' ? 'cm' : 'in'}</span>
+                </div>
                 <input
-                  id="bmi-height"
-                  type="number"
+                  type="range"
+                  min={unit === 'metric' ? "100" : "40"}
+                  max={unit === 'metric' ? "250" : "100"}
                   value={height}
                   onChange={(e) => setHeight(Number(e.target.value))}
-                  onKeyDown={(e) => e.key === 'Enter' && setHeight(Number(e.target.value))}
-                  aria-label={`Height in ${unit === 'metric' ? 'centimeters' : 'inches'}`}
-                  aria-describedby="bmi-height-desc"
-                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
+                  className="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary-fixed"
                 />
-                <span id="bmi-height-desc" className="sr-only">Enter your height</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="lg:col-span-7 space-y-6">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-br from-surface-container-high to-surface-container-low p-8 rounded-xl border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <Scale className="w-32 h-32" />
+        <div className="bg-surface-container-low p-8 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 transition-colors" style={{ backgroundColor: bmi.color }}></div>
+          
+          <div className="mb-6 relative">
+            <div className="w-40 h-40 rounded-full border-8 border-white/5 flex flex-col items-center justify-center relative z-10">
+              <span className="text-5xl font-black text-white mono mb-1">{bmi.value.toFixed(1)}</span>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">BMI Index</span>
             </div>
-            <span className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4" id="bmi-result-label">Your BMI</span>
-            <div aria-live="polite" aria-atomic="true" className="sr-only" ref={resultRef}></div>
-            <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono" aria-labelledby="bmi-result-label">{bmi.value.toFixed(1)}</span>
-            </div>
-            <div className="flex items-center gap-3" role="status" aria-live="polite">
-              <span
-                className="inline-block px-4 py-2 rounded-full text-lg font-bold"
-                style={{ backgroundColor: `${bmi.color}20`, color: bmi.color }}
-                role="text"
-                aria-label={`BMI Category: ${bmi.category}`}
-              >
-                {bmi.category}
-              </span>
-            </div>
-          </motion.div>
-
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-4">BMI Scale</label>
-            <div className="relative h-8 rounded-full overflow-hidden bg-surface-container-highest">
-              <div className="absolute inset-0 flex">
-                {categories.map((cat, i) => (
-                  <div key={i} className="flex-1 flex items-center justify-center text-[10px] font-bold text-white/70" style={{ backgroundColor: cat.color }}>
-                    {cat.label}
-                  </div>
-                ))}
-              </div>
-              <div 
-                className="absolute top-0 w-2 h-full bg-white transition-all duration-300"
-                style={{ left: `${getCategoryPosition(bmi.value)}%`, transform: 'translateX(-50%)' }}
-              />
-            </div>
-            <div className="flex justify-between mt-2 text-xs text-neutral-500">
-              <span>0</span>
-              <span>18.5</span>
-              <span>25</span>
-              <span>30</span>
-              <span>40+</span>
-            </div>
+            <motion.div 
+              animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute inset-0 rounded-full blur-3xl -z-0"
+              style={{ backgroundColor: bmi.color }}
+            />
           </div>
 
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">About BMI Calculator</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-4">Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.</p>
-            <p className="text-neutral-400 text-sm leading-relaxed"><strong>Formula:</strong> BMI = weight(kg) / height(m)² or BMI = (weight(lbs) / height(in)²) × 703</p>
-            <p className="text-neutral-400 text-sm leading-relaxed mt-4"><strong>Note:</strong> BMI is a general indicator and doesn't account for muscle mass, bone density, or overall body composition.</p>
+          <div 
+            ref={resultRef}
+            className="px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-4 shadow-lg transition-all"
+            style={{ backgroundColor: `${bmi.color}20`, color: bmi.color, border: `1px solid ${bmi.color}40` }}
+          >
+            {bmi.category}
           </div>
+
+          <p className="text-neutral-400 text-sm max-w-[240px] leading-relaxed">
+            {bmi.category === 'Normal' ? 'Great job! You are in the healthy weight range.' : 
+             bmi.category === 'Underweight' ? 'Consider consulting a nutritionist for a balanced weight gain plan.' :
+             'Maintaining a healthy diet and regular exercise can help optimize your BMI.'}
+          </p>
         </div>
       </div>
     </div>
   );
 }
+export default BMICalculator;

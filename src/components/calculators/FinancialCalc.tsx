@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { TrendingUp, Percent, Calendar } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
-export function FinancialCalc() {
+export default function FinancialCalc() {
   const [amount, setAmount] = useState(100000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(5);
 
-  const emi = React.useMemo(() => {
+  const emi = useMemo(() => {
     const r = rate / 12 / 100;
     const n = tenure * 12;
     const emiVal = (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
@@ -32,10 +32,10 @@ export function FinancialCalc() {
           <label className={labelClass}>Loan Amount</label>
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-600 text-[10px]">$</span>
-            <input 
-              type="number" 
-              className={cn(inputClass, "pl-6")} 
-              value={amount} 
+            <input
+              type="number"
+              className={cn(inputClass, "pl-6")}
+              value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}
             />
           </div>
@@ -44,19 +44,19 @@ export function FinancialCalc() {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className={labelClass}>Rate (%)</label>
-            <input 
-              type="number" 
-              className={inputClass} 
-              value={rate} 
+            <input
+              type="number"
+              className={inputClass}
+              value={rate}
               onChange={(e) => setRate(Number(e.target.value))}
             />
           </div>
           <div>
             <label className={labelClass}>Tenure (Yrs)</label>
-            <input 
-              type="number" 
-              className={inputClass} 
-              value={tenure} 
+            <input
+              type="number"
+              className={inputClass}
+              value={tenure}
               onChange={(e) => setTenure(Number(e.target.value))}
             />
           </div>

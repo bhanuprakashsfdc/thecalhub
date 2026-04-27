@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, PiggyBank, TrendingUp } from 'lucide-react';
+import { Sparkles, PiggyBank } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
 export default function RetirementCalculator() {
   const [age, setAge] = useState(30);
@@ -158,7 +158,7 @@ export default function RetirementCalculator() {
                   <BarChart data={yearlyData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <XAxis dataKey="year" stroke="#666" fontSize={10} />
                     <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `$${(v/1000).toFixed(0)}k`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v: number) => [`$${v.toLocaleString()}`, '']} />
+                     <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`$${(v ?? 0).toLocaleString()}`, '']} />
                     <Bar dataKey="savings" fill="#D6ED79" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

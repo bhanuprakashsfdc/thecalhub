@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Wallet, TrendingUp } from 'lucide-react';
+import { Sparkles, Wallet } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function PersonalLoanCalculator() {

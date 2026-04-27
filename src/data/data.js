@@ -34,6 +34,7 @@ export const CALCULATORS = {
     { name: 'Loan Calculator', path: '/loan-calculator.html', description: 'General loan calculator', icon: 'financial' },
     { name: 'Retirement Calculator', path: '/retirement-calculator.html', description: 'Plan retirement savings', icon: 'financial' },
     { name: 'Investment Calculator', path: '/investment-calculator.html', description: 'Investment growth', icon: 'financial' },
+    { name: 'Financial Calculator', path: '/financial-calculator.html', description: 'Simple EMI calculator', icon: 'financial' },
     { name: 'BMI Calculator', path: '/bmi-calculator.html', description: 'Body mass index', icon: 'health' },
     { name: 'BMR Calculator', path: '/bmr-calculator.html', description: 'Basal metabolic rate', icon: 'health' },
     { name: 'Calorie Calculator', path: '/calorie-calculator.html', description: 'Daily calorie needs', icon: 'health' },
@@ -76,6 +77,7 @@ export const CALCULATORS = {
     { name: 'Loan Calculator', path: '/loan-calculator.html', description: 'General loan calculator' },
     { name: 'Retirement Calculator', path: '/retirement-calculator.html', description: 'Plan retirement savings' },
     { name: 'Investment Calculator', path: '/investment-calculator.html', description: 'Investment growth' },
+    { name: 'Financial Calculator', path: '/financial-calculator.html', description: 'Simple EMI calculator' },
   ],
   health: [
     { name: 'BMI Calculator', path: '/bmi-calculator.html', description: 'Body mass index' },
