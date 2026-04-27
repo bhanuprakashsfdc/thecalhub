@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Receipt, TrendingUp } from 'lucide-react';
+import { Sparkles, Receipt } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function TaxCalculator() {
@@ -9,7 +9,7 @@ export default function TaxCalculator() {
   const calculation = useMemo(() => {
     const inc = income;
     let tax = 0;
-    const brackets = [11600, 47150, 100525, 191950, 243725, 609350];
+
     
     if (inc <= 11600) tax = inc * 0.1;
     else if (inc <= 47150) tax = 1160 + (inc - 11600) * 0.12;

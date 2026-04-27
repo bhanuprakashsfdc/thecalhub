@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Car, TrendingUp } from 'lucide-react';
+import { Sparkles, Car } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function CarLoanCalculator() {

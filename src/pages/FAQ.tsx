@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqs = [
@@ -77,7 +77,7 @@ export default function FAQ() {
           <HelpCircle className="w-4 h-4" />
           <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Support</span>
         </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight leading-none mb-4">Frequently Asked Questions</h2>
+        <h2 className="text-4xl font-extrabold text-white tracking-tight leading-none mb-4">Calculator FAQs</h2>
         <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed">
           Find answers to common questions about using our calculators.
         </p>

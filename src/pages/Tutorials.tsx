@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Play, Video, Clock } from 'lucide-react';
 
 const tutorials = [

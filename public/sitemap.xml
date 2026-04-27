@@ -103,6 +103,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://thecalhub.com/emi-calculator.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thecalhub.com/bmi-calculator.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thecalhub.com/tdee-calculator.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thecalhub.com/pace-calculator.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thecalhub.com/ppf-calculator.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thecalhub.com/investment-calculator.html</loc>
     <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>

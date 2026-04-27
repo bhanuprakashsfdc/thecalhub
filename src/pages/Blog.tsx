@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BookOpen, Clock, TrendingUp, Scale, Calculator } from 'lucide-react';
 
 const articles = [

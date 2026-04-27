@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Building2, Banknote, TrendingUp } from 'lucide-react';
+import { Sparkles, Building2, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
@@ -146,7 +146,7 @@ export default function PPFCalculator() {
                   <BarChart data={yearlyData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <XAxis dataKey="year" stroke="#666" fontSize={10} />
                     <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `$${(v/100000).toFixed(1)}L`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v: number) => [`$${v.toLocaleString()}`, 'Value']} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`$${(v ?? 0).toLocaleString()}`, 'Value']} />
                     <Bar dataKey="value" fill="#D6ED79" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

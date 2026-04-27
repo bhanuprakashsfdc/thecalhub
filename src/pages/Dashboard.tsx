@@ -1,13 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Search, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Activity, Grid3X3, Clock, LayoutGrid } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Activity, Grid3X3, Clock, LayoutGrid, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
 import { TOOL_CATEGORIES, CALCULATORS, APP_NAME, APP_VERSION } from '@/src/data/data';
 import { cn } from '@/src/lib/utils';
-
-const ITEM_HEIGHT = 100;
-const ITEMS_PER_ROW = 4;
-const BUFFER_ROWS = 2;
 
 const categoryIcons: Record<string, React.ElementType> = {
   all: LayoutGrid,
@@ -179,14 +175,115 @@ export default function Dashboard() {
 
       <VirtualizedCalculatorGrid activeCategory={activeCategory} />
 
+      {/* SEO Content Section */}
+      <section className="mt-24 border-t border-white/5 pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-8 space-y-12">
+            <div className="prose prose-invert max-w-none">
+              <h2 className="text-3xl font-black text-white tracking-tighter mb-8 leading-tight">
+                The Ultimate Hub for <span className="text-primary-fixed">Precision Calculations</span> and Financial Planning
+              </h2>
+              <p className="text-neutral-400 text-lg leading-relaxed mb-6">
+                In today's fast-paced digital economy, precision isn't just a luxury—it's a necessity. Whether you're a first-time homebuyer navigating the complexities of 
+                <Link to="/mortgage-calculator.html" className="text-primary-fixed hover:underline mx-1">mortgage payments</Link>, 
+                a fitness enthusiast tracking your <Link to="/bmi-calculator.html" className="text-primary-fixed hover:underline mx-1">Body Mass Index (BMI)</Link>, 
+                or a professional base-converting in a <Link to="/programming-calculator.html" className="text-primary-fixed hover:underline mx-1">programming environment</Link>, 
+                TheCalHub provides a centralized suite of high-fidelity tools designed for accuracy, speed, and ease of use.
+              </p>
+              
+              <h3 className="text-xl font-bold text-white mb-4">Mastering Your Finances with Expert-Grade Tools</h3>
+              <p className="text-neutral-400 leading-relaxed mb-6">
+                Financial literacy begins with understanding the numbers. Our suite of financial calculators is built on industry-standard algorithms used by banking 
+                institutions worldwide. For instance, our <Link to="/emi-calculator.html" className="text-primary-fixed hover:underline mx-1">EMI Calculator</Link> 
+                utilizes the reducing balance method to give you a transparent look at your monthly commitments. When planning for the long term, the power of 
+                <Link to="/compound-interest-calculator.html" className="text-primary-fixed hover:underline mx-1">Compound Interest</Link> can be your greatest ally. 
+                By visualizing how your wealth grows exponentially, you can make informed decisions about <Link to="/sip-calculator.html" className="text-primary-fixed hover:underline mx-1">SIP investments</Link> 
+                and <Link to="/retirement-calculator.html" className="text-primary-fixed hover:underline mx-1">retirement planning</Link>.
+              </p>
+
+              <div className="bg-surface-container-high/50 border border-white/5 rounded-2xl p-8 my-10">
+                <h4 className="text-primary-fixed font-black uppercase tracking-widest text-xs mb-4">Why Choose TheCalHub?</h4>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <li className="flex items-center gap-3 text-neutral-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-fixed"></div>
+                    100% Free and Private
+                  </li>
+                  <li className="flex items-center gap-3 text-neutral-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-fixed"></div>
+                    Real-time Accuracy
+                  </li>
+                  <li className="flex items-center gap-3 text-neutral-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-fixed"></div>
+                    PWA Support for Offline Use
+                  </li>
+                  <li className="flex items-center gap-3 text-neutral-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-fixed"></div>
+                    No Data Collection
+                  </li>
+                </ul>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-4">Health and Fitness: Data-Driven Wellness</h3>
+              <p className="text-neutral-400 leading-relaxed mb-6">
+                Your health journey is unique, and data should reflect that. Beyond simple weight tracking, our <Link to="/tdee-calculator.html" className="text-primary-fixed hover:underline mx-1">TDEE Calculator</Link> 
+                factors in your activity levels to provide a precise caloric maintenance target. For athletes, our <Link to="/pace-calculator.html" className="text-primary-fixed hover:underline mx-1">Pace Calculator</Link> 
+                is an essential tool for race preparation, allowing you to break down split times and optimize your training blocks.
+              </p>
+
+              <h3 className="text-xl font-bold text-white mb-4">Academic and Professional Excellence</h3>
+              <p className="text-neutral-400 leading-relaxed mb-6">
+                From solving complex <Link to="/fraction-calculator.html" className="text-primary-fixed hover:underline mx-1">fraction equations</Link> to calculating 
+                <Link to="/concrete-calculator.html" className="text-primary-fixed hover:underline mx-1">construction materials</Link> for your next DIY project, 
+                TheCalHub bridges the gap between academic theory and practical application. Our tools are designed to be accessible yet powerful enough for 
+                engineers, students, and hobbyists alike.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-surface-container-low border border-white/5 rounded-2xl p-6">
+              <h4 className="text-white font-bold text-sm mb-6 uppercase tracking-widest">Trending Calculators</h4>
+              <div className="space-y-4">
+                {[
+                  { name: 'EMI Calculator', path: '/emi-calculator.html', cat: 'Finance' },
+                  { name: 'BMI Index', path: '/bmi-calculator.html', cat: 'Health' },
+                  { name: 'Compound Interest', path: '/compound-interest-calculator.html', cat: 'Finance' },
+                  { name: 'Scientific Calc', path: '/scientific-calculator.html', cat: 'Math' }
+                ].map((item) => (
+                  <Link 
+                    key={item.name} 
+                    to={item.path}
+                    className="flex items-center justify-between p-3 hover:bg-white/5 rounded-xl transition-all group"
+                  >
+                    <div>
+                      <p className="text-sm font-bold text-white group-hover:text-primary-fixed">{item.name}</p>
+                      <p className="text-[10px] text-neutral-500 uppercase font-mono">{item.cat}</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-primary-fixed" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-primary-fixed/5 border border-primary-fixed/10 rounded-2xl p-6">
+              <h4 className="text-primary-fixed font-bold text-sm mb-4 uppercase tracking-widest text-center">Join 50k+ Users</h4>
+              <p className="text-neutral-400 text-xs text-center leading-relaxed">
+                Experience the most powerful calculator suite on the web. Bookmark us or install our PWA for instant access anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-6">
-          <span className="text-[10px] font-mono text-neutral-600">© 2024 {APP_NAME}</span>
-          <span className="text-[10px] font-mono text-neutral-600">v{APP_VERSION}</span>
+          <p className="text-[10px] font-mono text-neutral-600">© 2024 {APP_NAME} — LinearBytes Inc.</p>
+          <p className="text-[10px] font-mono text-neutral-600">v{APP_VERSION}</p>
         </div>
-        <div className="flex items-center gap-4">
-          <a className="text-[10px] font-mono text-neutral-500 hover:text-white" href="#">Privacy</a>
-          <a className="text-[10px] font-mono text-neutral-500 hover:text-white" href="#">Terms</a>
+        <div className="flex items-center gap-8">
+          <Link className="text-[10px] font-mono text-neutral-500 hover:text-white uppercase tracking-widest" to="/support.html">About</Link>
+          <a className="text-[10px] font-mono text-neutral-500 hover:text-white uppercase tracking-widest" href="#">Privacy</a>
+          <a className="text-[10px] font-mono text-neutral-500 hover:text-white uppercase tracking-widest" href="#">Terms</a>
         </div>
       </footer>
     </div>
@@ -197,43 +294,15 @@ interface VirtualizedCalculatorGridProps {
   activeCategory: string;
 }
 
+interface CalculatorItem {
+  name: string;
+  path: string;
+  description: string;
+  icon?: string;
+}
+
 function VirtualizedCalculatorGrid({ activeCategory }: VirtualizedCalculatorGridProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollTop, setScrollTop] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(600);
-
-  const calculators = CALCULATORS[activeCategory as keyof typeof CALCULATORS] || [];
-  const totalItems = calculators.length;
-  const totalRows = Math.ceil(totalItems / ITEMS_PER_ROW);
-  const totalHeight = totalRows * ITEM_HEIGHT;
-
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    setScrollTop(e.currentTarget.scrollTop);
-  }, []);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      if (containerRef.current) {
-        setContainerHeight(window.innerHeight - containerRef.current.getBoundingClientRect().top - 100);
-      }
-    };
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
-
-  const startRow = Math.max(0, Math.floor(scrollTop / ITEM_HEIGHT) - BUFFER_ROWS);
-  const endRow = Math.min(totalRows, Math.ceil((scrollTop + containerHeight) / ITEM_HEIGHT) + BUFFER_ROWS);
-
-  const visibleItems = [];
-  for (let row = startRow; row < endRow; row++) {
-    for (let col = 0; col < ITEMS_PER_ROW; col++) {
-      const idx = row * ITEMS_PER_ROW + col;
-      if (idx < totalItems) {
-        visibleItems.push({ calc: calculators[idx], idx });
-      }
-    }
-  }
+  const calculators = (CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []) as CalculatorItem[];
 
   const getIcon = (iconType?: string) => {
     switch(iconType) {
@@ -253,70 +322,26 @@ function VirtualizedCalculatorGrid({ activeCategory }: VirtualizedCalculatorGrid
       key={activeCategory}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
     >
-      {totalItems <= 16 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {calculators.map((calc) => {
-            const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
-            return (
-              <Link
-                key={calc.name}
-                to={calc.path}
-                className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
-                  <Icon className="w-6 h-6 text-primary-fixed" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
-                  <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      ) : (
-        <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="overflow-x-hidden"
-          style={{ height: containerHeight }}
-        >
-          <div style={{ height: totalHeight, position: 'relative', maxWidth: '100%' }}>
-            {visibleItems.map(({ calc, idx }) => {
-              const row = Math.floor(idx / ITEMS_PER_ROW);
-              const col = idx % ITEMS_PER_ROW;
-              const left = col * (100 / ITEMS_PER_ROW);
-              const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
-              return (
-                <div
-                  key={calc.name}
-                  className="absolute"
-                  style={{
-                    top: row * ITEM_HEIGHT,
-                    left: `${left}%`,
-                    width: `${100 / ITEMS_PER_ROW}%`,
-                    padding: '0 8px',
-                  }}
-                >
-                  <Link
-                    to={calc.path}
-                    className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
-                      <Icon className="w-6 h-6 text-primary-fixed" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
-                      <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      {calculators.map((calc) => {
+        const Icon = calc.icon ? getIcon(calc.icon) : calculatorIcons[calc.name] || Bolt;
+        return (
+          <Link
+            key={calc.name}
+            to={calc.path}
+            className="group bg-surface-container-low p-5 rounded-xl border border-white/5 hover:border-primary-fixed/50 hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-4"
+          >
+            <div className="w-12 h-12 rounded-xl bg-primary-fixed/10 flex items-center justify-center mb-0 group-hover:bg-primary-fixed/20 transition-colors shrink-0">
+              <Icon className="w-6 h-6 text-primary-fixed" />
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-primary-fixed transition-colors">{calc.name}</h3>
+              <p className="text-[11px] text-neutral-500 line-clamp-1">{calc.description}</p>
+            </div>
+          </Link>
+        );
+      })}
     </motion.div>
   );
 }

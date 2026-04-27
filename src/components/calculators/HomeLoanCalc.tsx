@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Home, Banknote, TrendingUp } from 'lucide-react';
+import { Sparkles, Home, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
@@ -25,7 +25,6 @@ export default function HomeLoanCalc() {
   const yearlyData = useMemo(() => {
     const data = [];
     const r = rate / 12 / 100;
-    const n = time * 12;
     for (let i = 1; i <= time; i++) {
       const months = i * 12;
       let balance = principal;
@@ -156,7 +155,7 @@ export default function HomeLoanCalc() {
                   <BarChart data={yearlyData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <XAxis dataKey="year" stroke="#666" fontSize={10} />
                     <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `$${(v/100000).toFixed(1)}L`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v: number) => [`$${v.toLocaleString()}`, 'Balance']} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`$${Number(v).toLocaleString()}`, 'Balance']} />
                     <Bar dataKey="balance" fill="#D6ED79" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Terminal, Cpu, Binary } from 'lucide-react';
+import { useState } from 'react';
+import { Terminal } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 export default function ProgrammingCalc() {

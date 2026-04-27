@@ -1,5 +1,5 @@
-import React from 'react';
-import { TrendingUp, CreditCard, Calculator } from 'lucide-react';
+
+import { TrendingUp, CreditCard } from 'lucide-react';
 
 const financialCalculators = [
   { name: 'EMI Calculator', path: '/emi-calculator.html', description: 'Calculate monthly installments' },

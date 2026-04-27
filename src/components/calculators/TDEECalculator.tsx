@@ -1,14 +1,13 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
-import { Sparkles, Activity, Flame } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Flame } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function TDEECalculator() {
+export function TDEECalculator() {
   const [weight, setWeight] = useState(70);
   const [height, setHeight] = useState(170);
   const [age, setAge] = useState(30);
   const [gender, setGender] = useState<'male' | 'female'>('male');
   const [activityLevel, setActivityLevel] = useState(1.2);
-  const resultRef = useRef<HTMLDivElement>(null);
 
   const bmr = useMemo(() => {
     if (gender === 'male') {
@@ -20,113 +19,91 @@ export default function TDEECalculator() {
 
   const tdee = useMemo(() => Math.round(bmr * activityLevel), [bmr, activityLevel]);
 
-  // Screen reader announcement
-  useEffect(() => {
-    if (resultRef.current) {
-      resultRef.current.textContent = `Your Total Daily Energy Expenditure is ${tdee} calories per day`;
-    }
-  }, [tdee]);
-
   const activityLevels = [
-    { level: 'Sedentary', factor: 1.2, desc: 'Desk job, little exercise' },
-    { level: 'Lightly Active', factor: 1.375, desc: 'Light exercise 1-3 days/week' },
-    { level: 'Moderately Active', factor: 1.55, desc: 'Moderate exercise 3-5 days/week' },
+    { level: 'Sedentary', factor: 1.2, desc: 'Little or no exercise' },
+    { level: 'Light', factor: 1.375, desc: 'Light exercise 1-3 days/week' },
+    { level: 'Moderate', factor: 1.55, desc: 'Moderate exercise 3-5 days/week' },
     { level: 'Very Active', factor: 1.725, desc: 'Hard exercise 6-7 days/week' },
-    { level: 'Extremely Active', factor: 1.9, desc: 'Athlete, physical job' },
+    { level: 'Extra Active', factor: 1.9, desc: 'Very hard exercise' },
   ];
 
   const goals = [
-    { label: 'Extreme Weight Loss', cal: tdee - 1000 },
-    { label: 'Weight Loss', cal: tdee - 500 },
-    { label: 'Maintain', cal: tdee },
-    { label: 'Weight Gain', cal: tdee + 500 },
-    { label: 'Extreme Weight Gain', cal: tdee + 1000 },
+    { label: 'Weight Loss', cal: tdee - 500, color: 'red' },
+    { label: 'Maintain', cal: tdee, color: 'primary' },
+    { label: 'Weight Gain', cal: tdee + 500, color: 'green' },
   ];
 
   return (
-    <div className="pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto w-full">
-      <div className="mb-10">
-        <div className="flex items-center gap-2 text-primary-fixed mb-2">
-          <Sparkles className="w-4 h-4" />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Fitness</span>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="lg:col-span-5 space-y-6">
+        <div className="bg-surface-container-low p-8 rounded-xl border border-white/5 shadow-2xl">
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Gender</label>
+                <div className="flex gap-2">
+                  <button onClick={() => setGender('male')} className={`flex-1 py-3 rounded-lg text-sm font-bold transition-all ${gender === 'male' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'bg-surface-container-highest text-neutral-400 hover:text-white'}`}>Male</button>
+                  <button onClick={() => setGender('female')} className={`flex-1 py-3 rounded-lg text-sm font-bold transition-all ${gender === 'female' ? 'bg-primary-fixed text-on-primary-fixed shadow-lg' : 'bg-surface-container-highest text-neutral-400 hover:text-white'}`}>Female</button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Age</label>
+                <input type="number" value={age} onChange={(e) => setAge(Number(e.target.value))}
+                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed text-xl outline-none" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3"> Weight (kg)</label>
+              <input type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))}
+                className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed text-xl outline-none" />
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3"> Height (cm)</label>
+              <input type="number" value={height} onChange={(e) => setHeight(Number(e.target.value))}
+                className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed text-xl outline-none" />
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Activity Level</label>
+              <select value={activityLevel} onChange={(e) => setActivityLevel(Number(e.target.value))}
+                className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-lg outline-none focus:ring-1 focus:ring-primary-fixed transition-all appearance-none cursor-pointer">
+                {activityLevels.map(a => <option key={a.factor} value={a.factor}>{a.level} - {a.desc}</option>)}
+              </select>
+            </div>
+          </div>
         </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight leading-none mb-4">TDEE Calculator</h2>
-        <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed">Calculate your Total Daily Energy Expenditure based on activity level.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-surface-container-low p-8 rounded-xl border border-white/5 shadow-2xl">
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Gender</label>
-                  <div className="flex gap-2" role="radiogroup" aria-label="Gender selection">
-                    <button onClick={() => setGender('male')} role="radio" aria-checked={gender === 'male'} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'male' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Male</button>
-                    <button onClick={() => setGender('female')} role="radio" aria-checked={gender === 'female'} className={`flex-1 py-3 rounded-lg text-sm font-bold ${gender === 'female' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container-highest text-neutral-400'}`}>Female</button>
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="tdee-age" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Age</label>
-                  <input id="tdee-age" type="number" value={age} onChange={(e) => setAge(Number(e.target.value))}
-                    aria-label="Age in years"
-                    aria-describedby="tdee-age-desc"
-                    className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
-                  <span id="tdee-age-desc" className="sr-only">Enter your age in years</span>
-                </div>
-              </div>
-              <div>
-                <label htmlFor="tdee-weight" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Weight (kg)</label>
-                <input id="tdee-weight" type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))}
-                  aria-label="Weight in kilograms"
-                  aria-describedby="tdee-weight-desc"
-                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
-                <span id="tdee-weight-desc" className="sr-only">Enter your weight in kilograms</span>
-              </div>
-              <div>
-                <label htmlFor="tdee-height" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Height (cm)</label>
-                <input id="tdee-height" type="number" value={height} onChange={(e) => setHeight(Number(e.target.value))}
-                  aria-label="Height in centimeters"
-                  aria-describedby="tdee-height-desc"
-                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none" />
-                <span id="tdee-height-desc" className="sr-only">Enter your height in centimeters</span>
-              </div>
-              <div>
-                <label htmlFor="tdee-activity" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Activity Level</label>
-                <select id="tdee-activity" value={activityLevel} onChange={(e) => setActivityLevel(Number(e.target.value))}
-                  aria-label="Daily activity level"
-                  className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl outline-none">
-                  {activityLevels.map(a => <option key={a.factor} value={a.factor}>{a.level}</option>)}
-                </select>
-              </div>
-            </div>
+      <div className="lg:col-span-7 space-y-6">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+          className="bg-gradient-to-br from-surface-container-high to-surface-container-low p-8 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Flame className="w-32 h-32 text-primary-fixed" />
           </div>
-        </div>
-
-        <div className="lg:col-span-7 space-y-6">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-br from-surface-container-high to-surface-container-low p-8 rounded-xl border border-white/5 relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10"><Flame className="w-32 h-32" /></div>
-            <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Your TDEE</label>
-            <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">{tdee}</span>
-              <span className="text-neutral-400">calories/day</span>
-            </div>
-          </motion.div>
-
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">Daily Calorie Goals</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {goals.map((g, i) => (
-                <div key={i} className="p-4 bg-surface-container-highest rounded-lg flex justify-between items-center">
-                  <span className="text-neutral-400 text-sm">{g.label}</span>
-                  <span className="text-white font-bold mono">{g.cal} cal</span>
-                </div>
-              ))}
-            </div>
+          <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Daily Calorie Needs</label>
+          <div className="flex items-baseline gap-2 mb-8">
+            <span className="text-5xl font-black text-white mono">{tdee}</span>
+            <span className="text-neutral-400 font-bold uppercase tracking-widest text-xs">calories/day</span>
           </div>
-        </div>
+          <div className="grid grid-cols-3 gap-4">
+            {goals.map(g => (
+              <div key={g.label} className={`p-4 rounded-xl text-center border ${
+                g.color === 'primary' ? 'bg-primary-fixed/10 border-primary-fixed/20' : 
+                g.color === 'red' ? 'bg-red-500/10 border-red-500/20' : 
+                'bg-green-500/10 border-green-500/20'
+              }`}>
+                <div className={`text-[10px] font-black uppercase tracking-widest mb-1 ${
+                  g.color === 'primary' ? 'text-primary-fixed' : 
+                  g.color === 'red' ? 'text-red-400' : 
+                  'text-green-400'
+                }`}>{g.label}</div>
+                <div className="text-xl font-bold text-white mono">{g.cal}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 }
+
+export default TDEECalculator;
