@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { AlertTriangle, TrendingDown } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function LiquidationCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -9,6 +10,33 @@ export function LiquidationCalculator() {
   const [leverage, setLeverage] = useState(10);
   const [isLong, setIsLong] = useState(true);
   const [maintenanceMargin, setMaintenanceMargin] = useState(0.5);
+
+  const faqs = [
+    {
+      question: "What is liquidation in trading?",
+      answer: "Liquidation occurs when a trader's position is automatically closed by the exchange or broker because the position has lost too much money and can no longer meet margin requirements. When you trade with leverage, you borrow money from the broker to increase your position size. If the trade goes against you and your account equity falls below the maintenance margin requirement, the broker forcibly closes your position to prevent further losses. This is called liquidation or margin call. The trader loses the entire margin initially put up, and sometimes more depending on the shortfall."
+    },
+    {
+      question: "How is liquidation price calculated?",
+      answer: "For long positions: Liquidation Price = Entry Price × (1 - (1/Leverage) + Maintenance Margin). For short positions: Liquidation Price = Entry Price × (1 + (1/Leverage) - Maintenance Margin). The key is that leverage determines your required initial margin - at 10x leverage, you need 10% margin. The distance to liquidation shrinks as leverage increases. At 100x leverage, the price only needs to move 1% against you to get liquidated. This is why extremely high leverage is extremely dangerous - small price movements trigger liquidation."
+    },
+    {
+      question: "What is maintenance margin?",
+      answer: "Maintenance margin is the minimum account equity you must maintain to keep your position open after opening it. It's typically 50-100% of the initial margin requirement. In crypto, maintenance margin is often 0.5-1% of the position value. If your position loses money and account equity falls below the maintenance margin, you receive a margin call and position is liquidated. Different exchanges have different maintenance margin requirements - some have tiered systems where larger positions have higher maintenance requirements. Always check your exchange's maintenance margin before trading with leverage."
+    },
+    {
+      question: "Why is high leverage dangerous?",
+      answer: "Higher leverage means smaller price movements trigger liquidation. At 10x leverage, a 10% adverse move liquidates you; at 100x leverage, only 1% move liquidates you. Markets often swing 1-5% daily, so 100x leverage is extremely risky. Additionally, high leverage accelerates losses - at 100x, a 1% loss equals 100% loss of your margin. Many traders blow up accounts within days using high leverage. The table shows how quickly liquidation approaches with higher leverage. Consider using 2-5x maximum for most trades, with stops placed before liquidation levels."
+    },
+    {
+      question: "How can I avoid liquidation?",
+      answer: "Use lower leverage (2-5x is safer), place stop-loss orders below liquidation price, maintain extra buffer in your account beyond required margin, monitor positions actively especially in volatile markets, and avoid holding positions overnight during high volatility events. Calculate your liquidation price before entering any leveraged trade and ensure your stop-loss is at a level that allows some buffer. Many professional traders risk only 1-2% of capital per trade to survive the inevitable losing streaks. Never trade with money you can't afford to lose."
+    },
+    {
+      question: "What happens when a position is liquidated?",
+      answer: "When liquidated, your position is automatically closed at the current market price (often worse than expected due to slippage). Your initial margin is lost, and any remaining equity in your account may be used to cover losses. If losses exceed your account equity, you owe the broker money. In extreme cases with insufficient account balance, the position may be left to be liquidated at any price, potentially leaving you with negative balance. Some exchanges have auto-deleveraging systems where profitable traders' positions are reduced to cover losses of liquidated traders."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const marginRatio = 1 / leverage;
@@ -163,6 +191,21 @@ export function LiquidationCalculator() {
             </div>
             <p className="text-neutral-500 text-xs mt-2">Higher leverage = smaller margin = closer to liquidation</p>
           </div>
+
+          <AboutSection 
+            title="Liquidation Calculator"
+            description="The Liquidation Calculator is essential for any trader using leverage or margin trading. When you trade with leverage, you're borrowing money to amplify your position size, but this also amplifies your risk. This calculator shows exactly what price level will trigger automatic liquidation of your position, helping you understand your risk before entering any trade. Knowing your liquidation price helps you set appropriate stop-loss levels and determine position size. The visualization shows how close your liquidation is based on different leverage levels - a critical factor that many novice traders overlook. Understanding how leverage affects liquidation distance can save you from significant losses."
+            features={[
+              "Calculate exact liquidation price for leveraged positions",
+              "See distance to liquidation in both price and percentage",
+              "Understand margin requirements at different leverage levels",
+              "Compare long and short position liquidation prices",
+              "Plan proper position sizing and stop-loss placement"
+            ]}
+            formula="Long: LP = EP × (1 - 1/L + M), Short: LP = EP × (1 + 1/L - M)"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

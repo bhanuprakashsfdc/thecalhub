@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function PnLCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -11,21 +13,26 @@ export function PnLCalculator() {
   const [isLong, setIsLong] = useState(true);
   const [fees, setFees] = useState(0);
 
+  const faqs = [
+    { question: "How is profit and loss calculated in trading?", answer: "PnL = (Exit Price - Entry Price) × Quantity for long positions. For short positions, PnL = (Entry Price - Exit Price) × Quantity. Net PnL = Gross PnL - Trading Fees. Positive result is profit, negative is loss. Percentage return = (PnL / Initial Investment) × 100. This is the fundamental calculation that determines trading success." },
+    { question: "What is the difference between realized and unrealized PnL?", answer: "Unrealized PnL is profit/loss on open positions - not yet locked in, can change until position is closed. Realized PnL is locked in when you close the position - this is your actual profit or loss. Open positions show unrealized PnL, closed positions show realized PnL. Day traders focus on realized PnL while position traders track unrealized. Both are important for different purposes." },
+    { question: "How do fees affect my trading profitability?", answer: "Fees (commission, spread, brokerage) reduce net profits. If you make 1000 profit but pay 50 in fees, net profit is 950. High-frequency traders are most affected by fees - even 0.1% per trade adds up significantly over hundreds of trades. Always factor fees into your PnL calculations. With small profit targets, fees can consume most returns - use this calculator to see true profitability." },
+    { question: "What is a good win rate for profitable trading?", answer: "Win rate alone doesn't determine profitability - you need positive expectancy. With 1:2 risk/reward, you only need 34% win rate to break even. With 1:1 ratio, you need 50%. Many profitable traders have 40-50% win rates if their winners are bigger than losers. Focus on expectancy = (Win Rate × Avg Win) - (Loss Rate × Avg Loss). This must be positive regardless of win rate." },
+    { question: "Should I track percentage or absolute PnL?", answer: "Percentage PnL is more useful for comparing performance across different position sizes and account balances. 10% return on 10,000 and 10% return on 100,000 are both 10% - comparable. Absolute PnL varies by position size. Track both: absolute for tax/record-keeping, percentage for performance evaluation. Use percentage to compare with benchmarks and track compounding growth." },
+    { question: "How do I calculate breakeven price including fees?", answer: "Breakeven = Entry Price + (Total Fees / Quantity) for long positions. For short, breakeven = Entry Price - (Total Fees / Quantity). Example: Buy 100 shares at 100, pay 50 total fees. Breakeven = 100 + (50/100) = 100.50. Price must exceed 100.50 to profit after fees." }
+  ];
+
   const calculation = useMemo(() => {
     const direction = isLong ? 1 : -1;
     const priceDiff = (exitPrice - entryPrice) * direction;
     const grossPnL = priceDiff * quantity;
     const netPnL = grossPnL - fees;
     const pnlPercent = entryPrice > 0 ? (priceDiff / entryPrice) * 100 : 0;
-    const roi = grossPnL > 0 ? 'profit' : 'loss';
-    
-    return {
-      grossPnL: grossPnL.toFixed(2),
-      netPnL: netPnL.toFixed(2),
-      pnlPercent: pnlPercent.toFixed(2),
-      isProfit: grossPnL >= 0,
-      roi,
-    };
+    const pieData = [
+      { name: 'Exit Value', value: exitPrice * quantity, color: '#D6ED79' },
+      { name: 'Entry Value', value: entryPrice * quantity, color: '#BDC2FF' },
+    ];
+    return { grossPnL: grossPnL.toFixed(2), netPnL: netPnL.toFixed(2), pnlPercent: pnlPercent.toFixed(2), isProfit: grossPnL >= 0, pieData };
   }, [entryPrice, exitPrice, quantity, isLong, fees]);
 
   return (
@@ -152,13 +159,34 @@ export function PnLCalculator() {
                 {calculation.isProfit ? 'Profit' : 'Loss'}
               </p>
             </div>
-            <div className="w-full bg-neutral-800 rounded-full h-2 mt-3">
+<div className="w-full bg-neutral-800 rounded-full h-2 mt-3">
               <div 
-                className={`h-2 rounded-full transition-all ${calculation.isProfit ? 'bg-green-500' : 'bg-red-500'}`}
+                className={`h-2 rounded-full transition-all ${Number(calculation.pnlPercent) >= 0 ? 'bg-green-500' : 'bg-red-500'}`}
                 style={{ width: `${Math.min(Math.abs(Number(calculation.pnlPercent)), 100)}%` }}
               />
             </div>
           </div>
+
+          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5 flex flex-col items-center">
+            <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-4">Value Comparison</label>
+            <div className="relative w-40 h-40 mb-4">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart><Pie data={calculation.pieData} cx="50%" cy="50%" innerRadius={50} outerRadius={70} paddingAngle={5} dataKey="value" stroke="none">{calculation.pieData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.color} />))}</Pie></PieChart>
+              </ResponsiveContainer>
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Return</span>
+                <span className="text-xl font-black text-white mono">{Math.abs(Number(calculation.pnlPercent)).toFixed(1)}%</span>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-[#D6ED79]"></div><span className="text-xs text-neutral-400">Exit</span></div>
+              <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-[#BDC2FF]"></div><span className="text-xs text-neutral-400">Entry</span></div>
+            </div>
+          </div>
+
+          <AboutSection title="Profit & Loss (PnL) Calculator" description="The PnL Calculator is essential for traders to calculate their profit or loss from any trade. It shows both gross PnL (before fees) and net PnL (after fees), along with the percentage return on investment. Understanding your exact PnL helps you evaluate trade performance, plan your trading strategy, and determine if you're actually profitable after accounting for all costs. This calculator supports both long and short positions, making it versatile for any market direction." features={["Calculate exact profit or loss for any trade", "See both gross and net PnL after fees", "Understand percentage return on investment", "Compare long vs short position outcomes", "Make data-driven trading decisions"]} formula="PnL = (Exit Price - Entry Price) × Quantity" />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

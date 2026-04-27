@@ -3,6 +3,7 @@ import { Sparkles, PiggyBank } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export default function RetirementCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -12,6 +13,33 @@ export default function RetirementCalculator() {
   const [currentSavings, setCurrentSavings] = useState(10000);
   const [monthly, setMonthly] = useState(500);
   const [returnRate, setReturnRate] = useState(7);
+
+  const faqs = [
+    {
+      question: "How much should I save for retirement?",
+      answer: "The common rule is to save 10-15% of your income for retirement. But this depends on your current age, retirement goals, and existing savings. Start with whatever you can afford - even 5% makes a difference. Use the 50-30-20 rule: 50% needs, 30% wants, 20% savings (including retirement). If you're starting late, you may need to save more aggressively. Consider your expected lifestyle in retirement - a more luxurious retirement requires larger corpus."
+    },
+    {
+      question: "When should I start saving for retirement?",
+      answer: "As early as possible! The biggest advantage in retirement planning is time. Starting at 25 vs 35 can mean double the corpus at retirement with same contributions. This is due to compound interest working for longer. Even starting with small amounts in your 20s creates significant wealth over 40+ years. Don't wait until you're financially stable - start now with whatever you can. Even small, regular investments in your 20s can outperform larger investments started in your 30s or 40s."
+    },
+    {
+      question: "What is the retirement corpus I need?",
+      answer: "A common approach is the 25x rule: multiply your expected annual retirement expenses by 25 to get the corpus needed. For example, if you need 8 lakhs/year in retirement, you need 2 crore (8 × 25). This assumes a 4% withdrawal rate. Factor in inflation, healthcare costs, life expectancy (30+ years post-retirement), and lifestyle. Use this calculator with different scenarios to estimate your needs. Remember to account for inflation - 1 crore today won't be 1 crore in 30 years."
+    },
+    {
+      question: "Should I prioritize retirement or other financial goals?",
+      answer: "Ideally, contribute to retirement accounts first (especially if employer matches), then work on other goals. Retirement gets priority because you can't recover lost time - you can always earn more for other goals but can't make up for decades of missed compounding. However, build an emergency fund (3-6 months expenses) first. Avoid high-interest debt. For other goals with deadlines (child's education), balance accordingly. But retirement should get at least 10-15% consistently."
+    },
+    {
+      question: "How does inflation affect retirement planning?",
+      answer: "Inflation significantly reduces purchasing power over time - 1 lakh today will need ~3.8 lakhs in 20 years at 7% inflation. This means your retirement corpus must be much larger than current expenses. Use realistic inflation estimates (6-8%) in your planning. Consider inflation-adjusted investments like equity funds for long-term. The calculator uses nominal returns - consider that real returns (after inflation) will be lower. Always overestimate your retirement needs to be safe."
+    },
+    {
+      question: "What returns should I assume for retirement planning?",
+      answer: "Historically, equities have returned 10-12% long-term. Use 8-10% for conservative estimates (after inflation). Debt instruments give 6-8% but may not beat inflation. A balanced portfolio (60% equity, 40% debt) might give 9-10% nominal, or 5-6% real returns. Avoid being too conservative - overly safe investments may not grow enough. Also account for investment fees - even 1% annual cost significantly reduces corpus over decades. Review and adjust your portfolio annually."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const years = retireAge - age;
@@ -167,13 +195,22 @@ export default function RetirementCalculator() {
                 </ResponsiveContainer>
               </div>
             </div>
-          </div>
+</div>
 
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">About Retirement Calculator</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-4">This calculator projects your retirement savings based on your current age, retirement age, current savings, and monthly contributions.</p>
-            <p className="text-neutral-400 text-sm leading-relaxed"><strong>Tip:</strong> Starting early with consistent contributions can significantly grow your retirement fund due to compound interest.</p>
-          </div>
+          <AboutSection 
+            title="Retirement Calculator"
+            description="The Retirement Calculator is an essential tool for planning your financial future and ensuring you can maintain your desired lifestyle after you stop working. This powerful calculator helps you estimate how much you'll have saved by retirement based on your current age, planned retirement age, existing savings, monthly contributions, and expected rate of return. Understanding your projected retirement corpus helps you make informed decisions about how much you need to save today. The calculator demonstrates the powerful effect of compound interest over time, showing how starting early with regular contributions can create substantial wealth. Whether you're just starting your career or are approaching retirement, this calculator helps you understand if you're on track to meet your retirement goals or if you need to adjust your savings strategy."
+            features={[
+              "Calculate projected retirement savings with compound growth",
+              "See breakdown between contributions and interest earned",
+              "Visualize year-by-year savings growth trajectory",
+              "Understand impact of starting age on final corpus",
+              "Plan retirement timeline with realistic return assumptions"
+            ]}
+            formula="FV = PV(1+r)^n + PMT × [((1+r)^n - 1) / r]"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

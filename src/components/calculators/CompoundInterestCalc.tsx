@@ -3,6 +3,7 @@ import { TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function CompoundInterestCalc() {
   const { getCurrencySymbol } = useI18n();
@@ -11,6 +12,33 @@ export function CompoundInterestCalc() {
   const [rate, setRate] = useState(8.5);
   const [time, setTime] = useState(5);
   const [frequency, setFrequency] = useState<'monthly' | 'quarterly' | 'halfyearly' | 'yearly'>('yearly');
+
+  const faqs = [
+    {
+      question: "What is compound interest and why is it important?",
+      answer: "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, which only earns returns on the original amount, compound interest allows your money to grow exponentially over time. This is why it's often called 'interest on interest.' Albert Einstein reportedly called it the eighth wonder of the world. The key to maximizing compound interest is starting early and being consistent - time is your greatest ally when it comes to compound growth."
+    },
+    {
+      question: "How does compounding frequency affect returns?",
+      answer: "The more frequently interest compounds, the higher your returns. For example, 10% annual interest compounded monthly is actually 10.47% effective annual rate, while daily compounding gives 10.52%. This difference becomes significant over long periods. With monthly compounding on 1 lakh at 8% for 10 years, you'll earn 1.19 lakhs vs 1.16 lakhs with annual compounding - a small but meaningful difference. For maximizing returns, choose the highest compounding frequency available."
+    },
+    {
+      question: "What is the difference between simple and compound interest?",
+      answer: "Simple interest is calculated only on the principal amount: SI = P × r × t. Compound interest includes interest on accumulated interest: CI = P × (1 + r/n)^(nt) - P. For a 1 lakh investment at 10% for 5 years: simple interest gives 50,000 total (50% return), while compound interest gives 61,051 total (61% return). The gap widens dramatically with longer periods - over 30 years, simple interest gives 300% return while compound gives 1,644% return on the same principal."
+    },
+    {
+      question: "How can I use compound interest for long-term wealth building?",
+      answer: "Start investing as early as possible - even small amounts grow significantly over decades. Consistency matters more than timing: regular monthly investments in diversified assets harness compound growth effectively. Use tax-advantaged accounts like retirement funds to maximize compounding. Avoid withdrawing gains early as that breaks the compounding cycle. Reinvest all returns rather than spending them. The key is patience - the real magic happens in later years when growth becomes exponential."
+    },
+    {
+      question: "What rate of return should I assume for compound interest calculations?",
+      answer: "Historical equity market returns are 10-12% annually, but use conservative estimates (7-10%) for planning. Bank FDs give 6-8%, government bonds 7-8%, and equity mutual funds 10-15% historically. Real returns (after inflation) are typically 4-6% for equities. Always consider inflation - a 10% nominal return with 7% inflation means only 3% real growth. Factor in taxes on gains too. Use our calculator with different scenarios to understand the range of possible outcomes."
+    },
+    {
+      question: "Why does compound interest accelerate in later years?",
+      answer: "In early years, most growth comes from new contributions. But as your balance grows, the percentage gains become larger in absolute terms. For example, 10% of 10,000 is 1,000, but 10% of 1,00,000 is 10,000. This 'acceleration phase' typically kicks in after 10-15 years. A 5 lakh investment at 10% grows to 13 lakhs in 10 years but reaches 34 lakhs in 20 years - more than double the 10-year value despite equal time periods. This exponential curve is why starting early is crucial."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const nMap = { monthly: 12, quarterly: 4, halfyearly: 2, yearly: 1 };
@@ -158,6 +186,21 @@ export function CompoundInterestCalc() {
               </ResponsiveContainer>
             </div>
           </div>
+
+          <AboutSection 
+            title="Compound Interest Calculator"
+            description="The Compound Interest Calculator is a powerful financial tool that helps you understand how your money grows over time when interest is earned on both the initial principal and accumulated interest. Unlike simple interest calculations, compound interest creates exponential growth, making it one of the most important concepts in finance and wealth building. This calculator allows you to input your principal amount, interest rate, time period, and compounding frequency to see exactly how your investment will grow. The power of compound interest is often called the eighth wonder of the world because of its ability to transform small, regular investments into substantial wealth over time. By understanding compound interest, you can make better decisions about savings, investments, and loans. Whether you're planning for retirement, saving for a down payment, or evaluating different investment options, this calculator provides the insights you need to plan your financial future effectively."
+            features={[
+              "Calculate compound interest with various compounding frequencies",
+              "Compare principal vs interest earned over time",
+              "Visualize wealth growth year by year",
+              "Understand the impact of different interest rates",
+              "Plan long-term savings and investment goals"
+            ]}
+            formula="A = P(1 + r/n)^(nt)"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

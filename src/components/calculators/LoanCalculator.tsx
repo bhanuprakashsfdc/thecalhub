@@ -3,6 +3,7 @@ import { Sparkles, CreditCard } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export default function LoanCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -10,6 +11,33 @@ export default function LoanCalculator() {
   const [amount, setAmount] = useState(50000);
   const [rate, setRate] = useState(10);
   const [years, setYears] = useState(5);
+
+  const faqs = [
+    {
+      question: "How is loan EMI calculated?",
+      answer: "EMI (Equated Monthly Installment) is calculated using the formula: EMI = P × r × (1+r)^n / [(1+r)^n - 1], where P is principal loan amount, r is monthly interest rate (annual rate/12/100), and n is total number of monthly installments. This formula ensures each EMI includes both principal and interest in an amortizing pattern where early payments are mostly interest and later payments are mostly principal. For example, a 5 lakh loan at 10% for 5 years has EMI of 10,624 and total interest of 1.37 lakh over the loan period."
+    },
+    {
+      question: "What factors affect my loan eligibility?",
+      answer: "Loan eligibility depends on several factors: credit score (750+ preferred), income stability, existing debt obligations, age (younger borrowers get longer tenures), employment type (salaried vs self-employed), and property value for secured loans. Banks typically allow EMI up to 40-50% of gross income. A credit score below 700 may result in higher interest rates or rejection. Use this calculator to understand how different loan amounts affect your EMI and plan accordingly before applying."
+    },
+    {
+      question: "Should I choose shorter or longer loan tenure?",
+      answer: "Shorter tenure means higher EMI but lower total interest - a 5 lakh loan at 10% for 3 years costs 79,600 interest vs 1.37 lakh for 5 years. Longer tenure reduces monthly burden but significantly increases total interest paid. Consider your cash flow - if you can afford higher EMI without strain, go shorter. However, don't stretch tenure just to reduce EMI if it means paying excessive interest. The ideal tenure balances affordable EMI with minimal total cost."
+    },
+    {
+      question: "Can I prepay my loan? What are the charges?",
+      answer: "Most banks allow prepayment after 6-12 months with charges ranging from 2-4% of outstanding principal for floating rate loans (now mostly penalty-free per RBI rules). Fixed rate loans typically charge 2-3% penalty. Prepayment in early years saves maximum interest since most interest is paid early in the tenure. Use this calculator to see how extra payments reduce your total interest. Even small additional payments monthly can save significant interest over the loan period."
+    },
+    {
+      question: "What is the difference between fixed and floating interest rates?",
+      answer: "Fixed rates remain constant throughout the loan tenure, giving predictable EMIs regardless of market changes - currently around 8.5-9.5%. Floating rates are linked to a benchmark (MCLR, repo rate) and change when rates change - currently starting from 8.5% but can go lower or higher. Fixed is 1-2% more expensive but offers stability; floating is cheaper but EMIs fluctuate. Choose fixed if you want budget certainty and can afford the higher rate, choose floating if you expect rates to fall."
+    },
+    {
+      question: "How does interest rate affect total loan cost?",
+      answer: "Even small rate differences significantly impact total cost. A 10 lakh loan at 9% for 20 years costs 10.9 lakh interest, while at 11% it costs 14 lakh - a 2% difference costs 3.1 lakh more! Always negotiate for better rates, especially if you have good credit. Even 0.5% reduction saves lakhs over long tenure. Compare rates from multiple lenders using this calculator. Remember that the lowest EMI might not mean lowest total cost - always check total interest paid."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const r = rate / 100 / 12;
@@ -145,11 +173,20 @@ export default function LoanCalculator() {
             </div>
           </div>
 
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">About Loan Calculator</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-4">A loan is a sum of money borrowed from a lender that is repaid with interest over a specified period.</p>
-            <p className="text-neutral-400 text-sm leading-relaxed"><strong>Formula:</strong> EMI = [P × r × (1+r)^n] / [(1+r)^n - 1]</p>
-          </div>
+          <AboutSection 
+            title="Loan Calculator"
+            description="The Loan Calculator is a comprehensive financial tool that helps you understand your loan repayments in detail. Whether you're planning to take a home loan, car loan, personal loan, or any other type of credit, this calculator provides accurate EMI calculations along with a complete breakdown of principal versus interest. Understanding your loan commitments is crucial for financial planning - knowing exactly how much you'll pay each month helps you budget effectively and avoid payment defaults. This calculator allows you to adjust loan amount, interest rate, and tenure to find the optimal combination that fits your budget while minimizing total interest paid."
+            features={[
+              "Calculate exact monthly EMI for any loan amount",
+              "See complete breakdown between principal and total interest",
+              "Visualize year-by-year loan balance reduction",
+              "Compare different tenure options and their costs",
+              "Plan prepayment strategy to save interest"
+            ]}
+            formula="EMI = [P × r × (1+r)^n] / [(1+r)^n - 1]"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

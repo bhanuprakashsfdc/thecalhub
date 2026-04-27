@@ -3,6 +3,7 @@ import { Lock } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function FDCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -10,6 +11,33 @@ export function FDCalculator() {
   const [principal, setPrincipal] = useState(100000);
   const [rate, setRate] = useState(6.5);
   const [time, setTime] = useState(5);
+
+  const faqs = [
+    {
+      question: "What is a Fixed Deposit and how does it work?",
+      answer: "A Fixed Deposit (FD) is a financial instrument offered by banks and post offices where you deposit a lump sum for a fixed tenure at a predetermined interest rate. Unlike savings accounts, your money is locked for the chosen period, and you receive guaranteed returns. The interest is typically compounded quarterly, meaning you earn interest on your interest. FDs are considered one of the safest investment options because they're insured up to 5 lakhs per depositor per bank and offer guaranteed returns regardless of market fluctuations."
+    },
+    {
+      question: "How is FD interest calculated?",
+      answer: "FD interest uses compound interest formula: A = P(1 + r/n)^(nt), where A is maturity amount, P is principal, r is annual rate, n is compounding frequency (usually 4 for quarterly), and t is time in years. Most FDs compound quarterly, so a 1 lakh FD at 7% for 1 year gives maturity of 1,07,186. You can choose simple interest (paid monthly/quarterly) or compound interest (paid at maturity). Cumulative FDs compound interest half-yearly or quarterly, while non-cumulative FDs pay interest out regularly."
+    },
+    {
+      question: "What happens if I withdraw my FD early?",
+      answer: "Breaking an FD before maturity incurs a penalty of typically 0.5-1% on the applicable interest rate. You also receive lower interest - often 1-2% less than the contracted rate. For example, if you have a 7% FD and break it after 6 months, you might get only 5-6% interest plus lose the penalty. Additionally, some banks charge a processing fee. However, some banks offer partial withdrawal facilities where you can withdraw up to 50% of the balance without breaking the entire FD. Always check the premature withdrawal terms before investing."
+    },
+    {
+      question: "Should I choose short-term or long-term FD?",
+      answer: "Short-term FDs (1-2 years) offer flexibility and are better if you expect interest rates to rise - you can reinvest at higher rates. Long-term FDs (3-5 years) lock in current rates, useful when rates are expected to fall. Currently, shorter tenures (1-2 years) often offer similar or better rates than longer ones due to inverted yield curve. Consider your liquidity needs - shorter terms reduce lock-in. Senior citizens get 0.5% extra rate, which can add up significantly over longer periods."
+    },
+    {
+      question: "What is the minimum and maximum deposit for FD?",
+      answer: "Most banks allow FDs starting from 1,000 with no upper limit. Some premium FDs require minimum 5-10 lakh for higher rates. The ideal deposit amount depends on your needs - don't put all eggs in one basket as DICGC insurance covers only 5 lakhs per bank per depositor. If you have larger amounts, consider spreading across multiple banks or using multiple FDs in the same bank under different account numbers to maximize insurance coverage. NRIs can open NRO and NRE FDs with 1 lakh minimum."
+    },
+    {
+      question: "How do tax implications work on FD returns?",
+      answer: "FD interest is taxed at your income tax slab rate, and banks deduct TDS at 10% if interest exceeds 40,000 annually (50,000 for senior citizens). If your total income is below taxable limit, you can avoid TDS by submitting Form 15G/15H. The interest is added to your total income, so high earners pay more. For 5-year FDs under Section 80C, you can claim deduction up to 1.5 lakh on interest, but the lock-in is longer and rates typically lower. Plan your FD investments considering tax impact."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const maturity = principal * Math.pow(1 + rate / 100 / 4, 4 * time);
@@ -116,6 +144,21 @@ export function FDCalculator() {
               </ResponsiveContainer>
             </div>
           </div>
+
+          <AboutSection 
+            title="Fixed Deposit Calculator"
+            description="The Fixed Deposit (FD) Calculator is a reliable financial planning tool that helps you calculate the maturity value of your fixed deposit investments. Fixed Deposits are one of the most popular and safest investment options in India, offering guaranteed returns with minimal risk. This calculator uses the compound interest formula to show exactly how your money will grow over the chosen tenure. Whether you're planning for short-term goals like a vacation or long-term objectives like retirement, understanding your FD returns helps you make informed investment decisions. The calculator allows you to adjust principal amount, interest rate, and tenure to see different scenarios and plan your savings effectively. Fixed Deposits remain a preferred choice for risk-averse investors because they offer capital protection, guaranteed returns, and flexible tenure options."
+            features={[
+              "Calculate FD maturity amount with quarterly compounding",
+              "Compare interest earned vs principal over time",
+              "Visualize growth trajectory with yearly breakdown",
+              "Plan for specific financial goals with estimated returns",
+              "Compare different tenure options and their returns"
+            ]}
+            formula="A = P(1 + r/n)^(nt)"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

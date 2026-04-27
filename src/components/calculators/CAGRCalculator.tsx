@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
+import { DonutChart, FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function CAGRCalculator() {
   const { getCurrencySymbol } = useI18n();
@@ -21,6 +22,38 @@ export function CAGRCalculator() {
       multiplier: (finalValue / initialValue).toFixed(2),
     };
   }, [initialValue, finalValue, years]);
+
+  const pieData = [
+    { name: 'Initial Investment', value: initialValue, color: '#D6ED79' },
+    { name: 'Growth', value: finalValue - initialValue, color: '#BDC2FF' },
+  ];
+
+  const faqs = [
+    {
+      question: "What is CAGR and why is it important?",
+      answer: "CAGR (Compound Annual Growth Rate) is the mean annual growth rate of an investment over a specified period of time longer than one year. It represents the steady rate of return that would bring the initial investment to its final value. Unlike simple averages, CAGR accounts for the compounding effect, giving you a more accurate picture of investment performance over time."
+    },
+    {
+      question: "How is CAGR different from simple return?",
+      answer: "Simple return only calculates the percentage difference between initial and final values without considering the time period or compounding. CAGR smooths out the volatility and gives you the equivalent annual growth rate that would produce the same final result. For example, a 100% return over 10 years is very different from 100% over 1 year, and CAGR captures this difference."
+    },
+    {
+      question: "Can CAGR be negative?",
+      answer: "Yes, CAGR can be negative when the final value is less than the initial investment. A negative CAGR indicates declining value over the time period. However, it's important to note that CAGR assumes a steady decline or growth, which may not reflect actual market volatility."
+    },
+    {
+      question: "What is a good CAGR for investments?",
+      answer: "A 'good' CAGR depends on the type of investment and time period. Historically, the stock market has returned around 7-10% annually after inflation. A CAGR above 15% is considered strong for equities, while 5-8% might be more realistic for bonds. Always compare CAGR against appropriate benchmarks and consider inflation."
+    },
+    {
+      question: "How do I use CAGR to compare investments?",
+      answer: "Use CAGR to compare investments with different time horizons by normalizing the returns to annual figures. However, ensure you're comparing investments with similar risk profiles and in the same asset class. Also consider that past performance doesn't guarantee future results."
+    },
+    {
+      question: "What are the limitations of CAGR?",
+      answer: "CAGR assumes steady growth which rarely happens in reality - investments typically have ups and downs. It also hides the volatility and risk behind the numbers. Additionally, CAGR can give misleading results for investments with irregular cash flows or those that went to zero and recovered."
+    }
+  ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -81,6 +114,32 @@ export function CAGRCalculator() {
             </div>
           </div>
         </div>
+
+        <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
+          <h4 className="text-white font-bold mb-4">Investment Breakdown</h4>
+          <div className="flex justify-center mb-4">
+            <DonutChart 
+              data={pieData} 
+              centerText={`${Number(calculation.multiplier).toFixed(1)}x`}
+            />
+          </div>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#D6ED79]"></div>
+                <span className="text-neutral-400 text-sm">Initial Investment</span>
+              </div>
+              <span className="text-white font-mono">{symbol}{initialValue.toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#BDC2FF]"></div>
+                <span className="text-neutral-400 text-sm">Growth</span>
+              </div>
+              <span className="text-green-400 font-mono">+{symbol}{(finalValue - initialValue).toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="lg:col-span-7 space-y-6">
@@ -133,6 +192,21 @@ export function CAGRCalculator() {
             </div>
           </div>
         </div>
+
+        <AboutSection 
+          title="CAGR Calculator"
+          description="The Compound Annual Growth Rate (CAGR) calculator measures the mean annual growth rate of an investment over a specified time period greater than one year. It smooths out the volatility of periodic returns to show what the constant annual rate would have been over the investment period. This is one of the most widely used metrics for comparing investment performance across different time horizons."
+          features={[
+            "Calculates the smoothed annual growth rate",
+            "Shows total return percentage over the period",
+            "Displays investment multiplier (how many times the investment grew)",
+            "Allows quick comparison between different investments",
+            "Provides visual breakdown of initial investment vs growth"
+          ]}
+          formula="CAGR = (Final Value / Initial Value)^(1/Years) - 1"
+        />
+
+        <FAQSection faqs={faqs} />
       </div>
     </div>
   );
