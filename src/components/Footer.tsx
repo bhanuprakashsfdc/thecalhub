@@ -1,5 +1,14 @@
 import { Calculator, Twitter, Linkedin, Github, Youtube, ChevronRight, Instagram } from 'lucide-react';
 import { APP_NAME } from '@/src/data/data';
+import { SEO_DATA } from '@/src/data/seo-data';
+
+function getRandomCalculators(count: number = 5) {
+  const allKeys = Object.keys(SEO_DATA);
+  const shuffled = allKeys.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+const randomCalcs = getRandomCalculators(5);
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -107,10 +116,21 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex flex-col justify-end">
-                <a href="#" className="group inline-flex items-center gap-3 text-white font-black text-lg hover:text-primary-fixed transition-all tracking-tight">
-                  All Comparisons 
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                <div className="space-y-4">
+                  {randomCalcs.map((key) => {
+                    const item = SEO_DATA[key];
+                    return (
+                      <a 
+                        key={key}
+                        href={`/${key.replace(/_/g, '-')}.html`}
+                        className="group flex items-center gap-2 text-neutral-400 hover:text-primary-fixed transition-colors text-sm"
+                      >
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-primary-fixed/50" />
+                        <span className="font-medium">{item.subtitle}</span>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
