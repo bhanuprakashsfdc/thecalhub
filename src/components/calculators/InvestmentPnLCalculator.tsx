@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, Calendar, Percent } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function InvestmentPnLCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [buyDate, setBuyDate] = useState('');
   const [buyPrice, setBuyPrice] = useState(100);
   const [quantity, setQuantity] = useState(100);
@@ -139,7 +142,7 @@ export function InvestmentPnLCalculator() {
                   <div>
                     <p className="text-neutral-400 text-sm">Total Profit/Loss</p>
                     <p className={`text-3xl font-bold mono ${calculation.isProfit ? 'text-green-400' : 'text-red-400'}`}>
-                      {calculation.isProfit ? '+' : '-'}${Math.abs(Number(calculation.profit)).toLocaleString()}
+                      {calculation.isProfit ? '+' : '-'}{symbol}{Math.abs(Number(calculation.profit)).toLocaleString()}
                     </p>
                   </div>
                 </div>
@@ -149,13 +152,13 @@ export function InvestmentPnLCalculator() {
                 <div className="bg-surface-container-highest p-6 rounded-xl">
                   <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Total Investment</p>
                   <p className="text-2xl font-bold mono text-white">
-                    ${Number(calculation.buyValue).toLocaleString()}
+                    {symbol}{Number(calculation.buyValue).toLocaleString()}
                   </p>
                 </div>
                 <div className="bg-surface-container-highest p-6 rounded-xl">
                   <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Total Value</p>
                   <p className="text-2xl font-bold mono text-white">
-                    ${Number(calculation.sellValue).toLocaleString()}
+                    {symbol}{Number(calculation.sellValue).toLocaleString()}
                   </p>
                 </div>
               </div>

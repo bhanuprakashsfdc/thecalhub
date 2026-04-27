@@ -2,8 +2,11 @@ import { useState, useMemo } from 'react';
 import { Sparkles, Building2, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import { useI18n } from '../../lib/i18n';
 
 export default function PPFCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [contribution, setContribution] = useState(100000);
   const [rate, setRate] = useState(7.1);
   const [time, setTime] = useState(15);
@@ -54,7 +57,7 @@ export default function PPFCalculator() {
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Annual Contribution</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                   <input
                     type="number"
                     value={contribution}
@@ -103,16 +106,16 @@ export default function PPFCalculator() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">PPF Maturity Value</label>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">${calculation.maturity.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{calculation.maturity.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Contributions</label>
-                <p className="text-2xl font-bold text-white mono">${calculation.totalContributions.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{calculation.totalContributions.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Interest Earned</label>
-                <p className="text-2xl font-bold text-primary-fixed mono">${calculation.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{calculation.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
               </div>
             </div>
           </motion.div>
@@ -145,8 +148,8 @@ export default function PPFCalculator() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={yearlyData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <XAxis dataKey="year" stroke="#666" fontSize={10} />
-                    <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `$${(v/100000).toFixed(1)}L`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`$${(v ?? 0).toLocaleString()}`, 'Value']} />
+                    <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `${symbol}${((v/100000).toFixed(1))}L`} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`${symbol}${(v ?? 0).toLocaleString()}`, 'Value']} />
                     <Bar dataKey="value" fill="#D6ED79" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

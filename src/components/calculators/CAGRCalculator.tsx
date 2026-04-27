@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function CAGRCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [initialValue, setInitialValue] = useState(10000);
   const [finalValue, setFinalValue] = useState(15000);
   const [years, setYears] = useState(5);
@@ -27,7 +30,7 @@ export function CAGRCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Initial Value</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -40,7 +43,7 @@ export function CAGRCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Final Value</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -116,11 +119,11 @@ export function CAGRCalculator() {
             <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Growth Projection</p>
             <div className="flex justify-between items-center mb-2">
               <span className="text-neutral-400">Initial</span>
-              <span className="text-white mono">${initialValue.toLocaleString()}</span>
+              <span className="text-white mono">{symbol}{initialValue.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-neutral-400">{years} years later</span>
-              <span className="text-white mono">${finalValue.toLocaleString()}</span>
+              <span className="text-white mono">{symbol}{finalValue.toLocaleString()}</span>
             </div>
             <div className="w-full bg-neutral-800 rounded-full h-2 mt-3">
               <div 

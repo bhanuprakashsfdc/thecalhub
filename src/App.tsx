@@ -5,7 +5,11 @@ import { Sparkles, Grid3X3, Percent, Clock, Calendar, Scale } from 'lucide-react
 import { TopBar } from './components/layout/TopBar';
 import Footer from './components/Footer';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { I18nProvider } from './lib/i18n';
 import Dashboard from './pages/Dashboard';
+import NotepadPage from './pages/NotepadPage';
+import PomodoroTimer from './pages/PomodoroTimer';
+import ClockPage from './pages/ClockPage';
 import About from './pages/About';
 import { CALCULATORS } from './data/data';
 import FinancialPage from './pages/FinancialPage';
@@ -390,75 +394,18 @@ function HealthPage() {
 }
 
 function AppContent() {
-  const location = useLocation();
-  
-  const getTitle = () => {
-    const titles: Record<string, string> = {
-      '/': 'Dashboard',
-      '/index.html': 'Dashboard',
-      '/all.html': 'All Calculators',
-      '/standard.html': 'Standard Calculator',
-      '/financial.html': 'Financial Calculators',
-      '/support.html': 'About & Disclaimer',
-      '/fraction-calculator.html': 'Fraction Calculator',
-      '/percent-calculator.html': 'Percent Calculator',
-      '/percentage-calculator.html': 'Percentage Calculator',
-      '/bmi-calculator.html': 'BMI Calculator',
-      '/bmr-calculator.html': 'BMR Calculator',
-      '/calorie-calculator.html': 'Calorie Calculator',
-      '/gst-calculator.html': 'GST Calculator',
-      '/tip-calculator.html': 'Tip Calculator',
-      '/pace-calculator.html': 'Pace Calculator',
-      '/tdee-calculator.html': 'TDEE Calculator',
-      '/age-calculator.html': 'Age Calculator',
-      '/date-calculator.html': 'Date Calculator',
-      '/compound-interest-calculator.html': 'Compound Interest Calculator',
-      '/simple-interest-calculator.html': 'Simple Interest Calculator',
-      '/fd-calculator.html': 'FD Calculator',
-      '/rd-calculator.html': 'RD Calculator',
-      '/sip-calculator.html': 'SIP Calculator',
-      '/nps-calculator.html': 'NPS Calculator',
-      '/ppf-calculator.html': 'PPF Calculator',
-      '/home-loan-calculator.html': 'Home Loan Calculator',
-      '/car-loan-calculator.html': 'Car Loan Calculator',
-      '/personal-loan-calculator.html': 'Personal Loan Calculator',
-      '/mortgage-calculator.html': 'Mortgage Calculator',
-      '/loan-calculator.html': 'Loan Calculator',
-      '/tax-calculator.html': 'Tax Calculator',
-      '/retirement-calculator.html': 'Retirement Calculator',
-      '/investment-calculator.html': 'Investment Calculator',
-      '/scientific-calculator.html': 'Scientific Calculator',
-      '/programming-calculator.html': 'Programming Calculator',
-      '/math.html': 'Math Calculators',
-      '/matrix-calculator.html': 'Matrix Calculator',
-      '/statistical-calculator.html': 'Statistical Calculator',
-      '/unit-conversion-calculator.html': 'Unit Conversion Calculator',
-      '/equation-solver.html': 'Equation Solver',
-      '/graphing-calculator.html': 'Graphing Calculator',
-      '/scientific-constants.html': 'Scientific Constants',
-      '/time-complexity-calculator.html': 'Time Complexity Calculator',
-      '/big-o-analyzer.html': 'Big-O Notation Analyzer',
-      '/binary-hex-decimal-converter.html': 'Binary/Hex/Decimal Converter',
-      '/bitwise-calculator.html': 'Bitwise Operation Calculator',
-      '/regex-tester.html': 'Regex Tester',
-      '/json-formatter.html': 'JSON Formatter',
-      '/hash-generator.html': 'Hash Generator',
-      '/base64-encoder.html': 'Base64 Encoder/Decoder',
-      '/code-beautifier.html': 'Code Beautifier',
-      '/memory-size-calculator.html': 'Memory Size Calculator',
-    };
-    return titles[location.pathname] || 'Dashboard';
-  };
-
   return (
     <div className="min-h-screen bg-surface text-on-surface w-full max-w-full overflow-x-hidden flex flex-col">
         <SEO />
-        <TopBar title={getTitle()} />
+        <TopBar />
         <main className="pt-14 flex-1">
           <ErrorBoundary>
             <Suspense fallback={<CalculatorLoader />}>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/notepad.html" element={<NotepadPage />} />
+                <Route path="/pomodoro-timer.html" element={<PomodoroTimer />} />
+                <Route path="/clock.html" element={<ClockPage />} />
                 <Route path="/index.html" element={<Dashboard />} />
                 <Route path="/all.html" element={<Dashboard />} />
                 <Route path="/standard.html" element={<CalculatorWrapper component={StandardCalc} path="/standard.html" />} />
@@ -614,7 +561,9 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
-      <AppContent />
+      <I18nProvider>
+        <AppContent />
+      </I18nProvider>
     </Router>
   );
 }

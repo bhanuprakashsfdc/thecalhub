@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Sparkles, Receipt } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../lib/i18n';
 
 export default function TaxCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [income, setIncome] = useState(50000);
   const [status, setStatus] = useState('single');
 
@@ -82,7 +85,7 @@ export default function TaxCalculator() {
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Annual Income</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                   <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))}
                     className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none" />
                 </div>
@@ -107,7 +110,7 @@ export default function TaxCalculator() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Estimated Tax</label>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">${Math.round(calculation.tax).toLocaleString()}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{Math.round(calculation.tax).toLocaleString()}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -116,7 +119,7 @@ export default function TaxCalculator() {
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Take Home Pay</label>
-                <p className="text-2xl font-bold text-primary-fixed mono">${Math.round(calculation.takeHome).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{Math.round(calculation.takeHome).toLocaleString()}</p>
               </div>
             </div>
           </motion.div>
@@ -130,7 +133,7 @@ export default function TaxCalculator() {
                     <span className="text-sm text-white font-medium">{bracket.label}</span>
                     <span className="text-xs text-neutral-500 ml-2">({bracket.rate}%)</span>
                   </div>
-                  <span className="text-white mono">${Math.round(bracket.tax).toLocaleString()}</span>
+                  <span className="text-white mono">{symbol}{Math.round(bracket.tax).toLocaleString()}</span>
                 </div>
               ))}
             </div>

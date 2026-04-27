@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, DollarSign } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function DCACalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [initialInvestment, setInitialInvestment] = useState(1000);
   const [monthlyInvestment, setMonthlyInvestment] = useState(500);
   const [years, setYears] = useState(5);
@@ -60,7 +63,7 @@ export function DCACalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Initial Investment</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -73,7 +76,7 @@ export function DCACalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Monthly Investment</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -136,7 +139,7 @@ export function DCACalculator() {
               <TrendingUp className="w-8 h-8 text-green-400" />
               <div>
                 <p className="text-neutral-400 text-sm">Total Value</p>
-                <p className="text-3xl font-bold text-white mono">${Number(calculation.totalValue).toLocaleString()}</p>
+                <p className="text-3xl font-bold text-white mono">{symbol}{Number(calculation.totalValue).toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -144,11 +147,11 @@ export function DCACalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Total Invested</p>
-              <p className="text-2xl font-bold text-white mono">${Number(calculation.totalInvested).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Number(calculation.totalInvested).toLocaleString()}</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Total Return</p>
-              <p className="text-2xl font-bold text-green-400 mono">+${Number(calculation.totalReturn).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-400 mono">+{symbol}{Number(calculation.totalReturn).toLocaleString()}</p>
               <p className="text-neutral-500 text-sm">({calculation.returnPercent}%)</p>
             </div>
           </div>
@@ -165,7 +168,7 @@ export function DCACalculator() {
                       style={{ width: `${(Number(item.value) / Number(calculation.totalValue)) * 100}%` }}
                     />
                   </div>
-                  <span className="text-white text-sm mono w-24 text-right">${Number(item.value).toLocaleString()}</span>
+                  <span className="text-white text-sm mono w-24 text-right">{symbol}{Number(item.value).toLocaleString()}</span>
                 </div>
               ))}
             </div>

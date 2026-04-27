@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Hammer } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 function FlooringCalc() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [length, setLength] = useState(10);
   const [width, setWidth] = useState(10);
   const pricePerSqFt = 8;
@@ -18,7 +21,7 @@ function FlooringCalc() {
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-surface-container-highest p-4 rounded-xl"><p className="text-neutral-500 text-xs">Area</p><p className="text-2xl font-bold text-white mono">{area} sq ft</p></div>
-        <div className="bg-surface-container-highest p-4 rounded-xl"><p className="text-neutral-500 text-xs">Cost @ $8/sqft</p><p className="text-2xl font-bold text-white mono">${cost}</p></div>
+        <div className="bg-surface-container-highest p-4 rounded-xl"><p className="text-neutral-500 text-xs">Cost @ {symbol}8/sqft</p><p className="text-2xl font-bold text-white mono">{symbol}{cost}</p></div>
       </div>
     </div>
   );

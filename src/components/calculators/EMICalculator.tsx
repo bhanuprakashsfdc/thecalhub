@@ -2,8 +2,11 @@ import { useState, useMemo } from 'react';
 import { Banknote } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { cn } from '../../lib/utils';
+import { useI18n } from '../../lib/i18n';
 
 export function EMICalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [loanAmount, setLoanAmount] = useState(250000);
   const [interestRate, setInterestRate] = useState(7.5);
   const [tenure, setTenure] = useState(15);
@@ -44,7 +47,7 @@ export function EMICalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Loan Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -97,17 +100,17 @@ export function EMICalculator() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-2">Monthly EMI</label>
             <div className="flex items-baseline gap-2 mb-8">
-              <span className="text-5xl font-black text-white mono">${calculation.emi.split('.')[0]}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{calculation.emi.split('.')[0]}</span>
               <span className="text-neutral-500 mono text-xl">.{calculation.emi.split('.')[1]}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Interest</label>
-                <p className="text-2xl font-bold text-white mono">${calculation.totalInterest}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{calculation.totalInterest}</p>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Payment</label>
-                <p className="text-2xl font-bold text-white mono">${calculation.totalPayment}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{calculation.totalPayment}</p>
               </div>
             </div>
           </div>

@@ -2,8 +2,11 @@ import { useState, useMemo } from 'react';
 import { TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { useI18n } from '../../lib/i18n';
 
 export function SIPCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
   const [expectedReturn, setExpectedReturn] = useState(12);
   const [time, setTime] = useState(5);
@@ -41,7 +44,7 @@ export function SIPCalculator() {
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Monthly Investment</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   type="number"
                   value={monthlyInvestment}
@@ -90,16 +93,16 @@ export function SIPCalculator() {
           </div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">SIP Returns</label>
           <div className="flex items-baseline gap-2 mb-6">
-            <span className="text-5xl font-black text-white mono">${calculation.maturity.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+            <span className="text-5xl font-black text-white mono">{symbol}{calculation.maturity.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Amount Invested</label>
-              <p className="text-2xl font-bold text-white mono">${calculation.invested.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.invested.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
             </div>
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Interest Earned</label>
-              <p className="text-2xl font-bold text-primary-fixed mono">${calculation.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+              <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{calculation.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
             </div>
           </div>
         </motion.div>

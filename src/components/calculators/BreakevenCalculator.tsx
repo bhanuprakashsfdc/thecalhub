@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { GitCommit } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function BreakevenCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [entryPrice, setEntryPrice] = useState(100);
   const [isLong, setIsLong] = useState(true);
   const [numberOfTrades, setNumberOfTrades] = useState(1);
@@ -77,7 +80,7 @@ export function BreakevenCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Total Fees</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -102,7 +105,7 @@ export function BreakevenCalculator() {
               <GitCommit className="w-8 h-8 text-primary-fixed" />
               <div>
                 <p className="text-primary-fixed text-xs uppercase tracking-wider mb-1">Breakeven Price</p>
-                <p className="text-3xl font-bold text-white mono">${calculation.breakeven}</p>
+                <p className="text-3xl font-bold text-white mono">{symbol}{calculation.breakeven}</p>
               </div>
             </div>
           </div>
@@ -111,13 +114,13 @@ export function BreakevenCalculator() {
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Price Move Needed</p>
               <p className="text-2xl font-bold text-white mono">
-                {isLong ? '+' : '-'}${calculation.moveNeeded}
+                {isLong ? '+' : '-'}{symbol}{calculation.moveNeeded}
               </p>
               <p className="text-neutral-500 text-sm">({calculation.breakevenPercent}%)</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Fee Per Trade</p>
-              <p className="text-2xl font-bold text-white mono">${calculation.feesPerTrade}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.feesPerTrade}</p>
             </div>
           </div>
 
@@ -126,11 +129,11 @@ export function BreakevenCalculator() {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-neutral-400">Entry</span>
-                <span className="text-white mono">${entryPrice}</span>
+                <span className="text-white mono">{symbol}{entryPrice}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-primary-fixed">Breakeven</span>
-                <span className="text-primary-fixed mono">${calculation.breakeven}</span>
+                <span className="text-primary-fixed mono">{symbol}{calculation.breakeven}</span>
               </div>
             </div>
           </div>

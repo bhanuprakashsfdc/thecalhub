@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { CreditCard } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../lib/i18n';
 
 export function TipCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [bill, setBill] = useState(50);
   const [tipPercent, setTipPercent] = useState(15);
   const [people, setPeople] = useState(1);
@@ -24,7 +27,7 @@ export function TipCalculator() {
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Bill Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input type="number" value={bill} onChange={(e) => setBill(Number(e.target.value))}
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none" />
               </div>
@@ -64,16 +67,16 @@ export function TipCalculator() {
           </div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Per Person</label>
           <div className="flex items-baseline gap-2 mb-8">
-            <span className="text-5xl font-black text-white mono">${calculation.perPerson.toFixed(2)}</span>
+            <span className="text-5xl font-black text-white mono">{symbol}{calculation.perPerson.toFixed(2)}</span>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1"> Tip Amount</label>
-              <p className="text-2xl font-bold text-white mono">${calculation.tipAmount.toFixed(2)}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.tipAmount.toFixed(2)}</p>
             </div>
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total</label>
-              <p className="text-2xl font-bold text-primary-fixed mono">${calculation.total.toFixed(2)}</p>
+              <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{calculation.total.toFixed(2)}</p>
             </div>
           </div>
         </motion.div>

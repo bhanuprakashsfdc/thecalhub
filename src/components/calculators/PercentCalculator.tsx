@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Sparkles, Percent } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../lib/i18n';
 
 export default function PercentCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [value, setValue] = useState(100);
   const [percentage, setPercentage] = useState(15);
   const [mode, setMode] = useState<'percent-of' | 'what-percent' | 'percent-change'>('percent-of');
@@ -114,7 +117,7 @@ export default function PercentCalculator() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Result</label>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">{mode === 'what-percent' || mode === 'percent-change' ? `${result.result.toFixed(2)}%` : `$${result.result.toFixed(2)}`}</span>
+              <span className="text-5xl font-black text-white mono">{mode === 'what-percent' || mode === 'percent-change' ? `${result.result.toFixed(2)}%` : `${symbol}${result.result.toFixed(2)}`}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>

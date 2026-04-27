@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, AlertTriangle } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function PositionSizeCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [accountSize, setAccountSize] = useState(10000);
   const [riskPercent, setRiskPercent] = useState(2);
   const [entryPrice, setEntryPrice] = useState(100);
@@ -37,7 +40,7 @@ export function PositionSizeCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Account Size</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -144,15 +147,15 @@ export function PositionSizeCalculator() {
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Position Value</p>
-              <p className="text-2xl font-bold text-white mono">${Number(calculation.positionValue).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Number(calculation.positionValue).toLocaleString()}</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Required Margin</p>
-              <p className="text-2xl font-bold text-white mono">${Number(calculation.requiredMargin).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Number(calculation.requiredMargin).toLocaleString()}</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Risk Amount</p>
-              <p className="text-2xl font-bold text-white mono">${Number(calculation.riskAmount).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Number(calculation.riskAmount).toLocaleString()}</p>
             </div>
           </div>
 

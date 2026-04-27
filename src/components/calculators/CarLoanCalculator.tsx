@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Sparkles, Car } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../lib/i18n';
 
 export default function CarLoanCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [amount, setAmount] = useState(500000);
   const [rate, setRate] = useState(9.5);
   const [years, setYears] = useState(5);
@@ -35,7 +38,7 @@ export default function CarLoanCalculator() {
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Loan Amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                   <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))}
                     className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono text-xl outline-none" />
                 </div>
@@ -62,16 +65,16 @@ export default function CarLoanCalculator() {
             <div className="absolute top-0 right-0 p-4 opacity-10"><Car className="w-32 h-32" /></div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Monthly EMI</label>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">${calculation.emi.toFixed(2)}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{calculation.emi.toFixed(2)}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Interest</label>
-                <p className="text-2xl font-bold text-white mono">${Math.round(calculation.interest).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{Math.round(calculation.interest).toLocaleString()}</p>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Payment</label>
-                <p className="text-2xl font-bold text-primary-fixed mono">${Math.round(calculation.total).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{Math.round(calculation.total).toLocaleString()}</p>
               </div>
             </div>
           </motion.div>

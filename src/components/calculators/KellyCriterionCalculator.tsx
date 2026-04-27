@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Percent, AlertTriangle } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function KellyCriterionCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [winRate, setWinRate] = useState(50);
   const [winLossRatio, setWinLossRatio] = useState(2);
   const [accountSize, setAccountSize] = useState(10000);
@@ -92,7 +95,7 @@ export function KellyCriterionCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Account Size</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -144,7 +147,7 @@ export function KellyCriterionCalculator() {
 
           <div className="bg-surface-container-highest p-6 rounded-xl mb-6">
             <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Recommended Position Size</p>
-            <p className="text-3xl font-bold text-white mono">${Number(calculation.positionSize).toLocaleString()}</p>
+            <p className="text-3xl font-bold text-white mono">{symbol}{Number(calculation.positionSize).toLocaleString()}</p>
             <p className="text-neutral-400 text-sm mt-2">{calculation.recommendation}</p>
           </div>
 

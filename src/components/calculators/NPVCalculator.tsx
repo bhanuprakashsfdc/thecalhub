@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { DollarSign } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function NPVCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [rate, setRate] = useState(10);
   const [cashflows, setCashflows] = useState("-1000, 300, 400, 500, 600");
   
@@ -20,7 +23,7 @@ export function NPVCalculator() {
       </div></div>
       <div className="lg:col-span-7"><div className="bg-surface-container-low p-8 rounded-xl border border-white/5 shadow-2xl">
         <div className="flex items-center gap-2 text-primary-fixed mb-6"><DollarSign className="w-4 h-4" /><span className="text-[10px] uppercase tracking-[0.2em] font-bold">Net Present Value</span></div>
-        <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">${calculate()}</p></div>
+        <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">{symbol}{calculate()}</p></div>
       </div></div>
     </div>
   );

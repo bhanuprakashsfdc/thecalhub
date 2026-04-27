@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { AlertTriangle, TrendingDown } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function LiquidationCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [entryPrice, setEntryPrice] = useState(100);
   const [leverage, setLeverage] = useState(10);
   const [isLong, setIsLong] = useState(true);
@@ -122,7 +125,7 @@ export function LiquidationCalculator() {
               <TrendingDown className="w-8 h-8 text-red-400" />
               <div>
                 <p className="text-red-400 text-xs uppercase tracking-wider mb-1">Liquidation Price</p>
-                <p className="text-3xl font-bold text-white mono">${calculation.liquidationPrice}</p>
+                <p className="text-3xl font-bold text-white mono">{symbol}{calculation.liquidationPrice}</p>
               </div>
             </div>
           </div>
@@ -130,7 +133,7 @@ export function LiquidationCalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Distance to Liquidation</p>
-              <p className="text-2xl font-bold text-white mono">${calculation.distancePoints}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.distancePoints}</p>
               <p className="text-neutral-500 text-sm">({calculation.liquidationPercent}%)</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
@@ -145,11 +148,11 @@ export function LiquidationCalculator() {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-neutral-400">Entry</span>
-                <span className="text-white mono">${entryPrice}</span>
+                <span className="text-white mono">{symbol}{entryPrice}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-red-400">Liquidation</span>
-                <span className="text-red-400 mono">${calculation.liquidationPrice}</span>
+                <span className="text-red-400 mono">{symbol}{calculation.liquidationPrice}</span>
               </div>
             </div>
             <div className="w-full bg-neutral-800 rounded-full h-2 mt-3">

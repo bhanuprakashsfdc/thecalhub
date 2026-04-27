@@ -2,8 +2,11 @@ import { useState, useMemo } from 'react';
 import { Lock } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { useI18n } from '../../lib/i18n';
 
 export function FDCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [principal, setPrincipal] = useState(100000);
   const [rate, setRate] = useState(6.5);
   const [time, setTime] = useState(5);
@@ -36,7 +39,7 @@ export function FDCalculator() {
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Principal Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))}
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none" />
               </div>
@@ -68,16 +71,16 @@ export function FDCalculator() {
           </div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Maturity Value</label>
           <div className="flex items-baseline gap-2 mb-6">
-            <span className="text-5xl font-black text-white mono">${Math.round(calculation.maturity).toLocaleString()}</span>
+            <span className="text-5xl font-black text-white mono">{symbol}{Math.round(calculation.maturity).toLocaleString()}</span>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Interest Earned</label>
-              <p className="text-2xl font-bold text-white mono">${Math.round(calculation.interest).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Math.round(calculation.interest).toLocaleString()}</p>
             </div>
             <div>
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Principal</label>
-              <p className="text-2xl font-bold text-primary-fixed mono">${principal.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{principal.toLocaleString()}</p>
             </div>
           </div>
         </motion.div>

@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Palette } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function PaintCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [wallLength, setWallLength] = useState(20);
   const [wallHeight, setWallHeight] = useState(8);
   const [numWalls, setNumWalls] = useState(4);
@@ -60,7 +63,7 @@ export default function PaintCalculator() {
           <input type="number" value={coatCount} onChange={(e) => setCoatCount(Number(e.target.value))} className={inputClass} />
         </div>
         <div>
-          <label className={labelClass}>Price per gallon ($)</label>
+          <label className={labelClass}>Price per gallon ({symbol})</label>
           <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className={inputClass} />
         </div>
 
@@ -81,7 +84,7 @@ export default function PaintCalculator() {
             </div>
             <div className="border-t border-white/10 pt-3 mt-3 flex justify-between">
               <span className="text-neutral-400">Estimated Cost</span>
-              <span className="text-primary-fixed font-mono text-xl">${result.cost}</span>
+              <span className="text-primary-fixed font-mono text-xl">{symbol}{result.cost}</span>
             </div>
           </div>
         </div>

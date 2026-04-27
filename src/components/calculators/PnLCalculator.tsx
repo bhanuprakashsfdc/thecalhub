@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function PnLCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [entryPrice, setEntryPrice] = useState(100);
   const [exitPrice, setExitPrice] = useState(110);
   const [quantity, setQuantity] = useState(100);
@@ -91,7 +94,7 @@ export function PnLCalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Trading Fees</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -121,7 +124,7 @@ export function PnLCalculator() {
               <div>
                 <p className="text-neutral-400 text-sm">Net P&L</p>
                 <p className={`text-3xl font-bold mono ${calculation.isProfit ? 'text-green-400' : 'text-red-400'}`}>
-                  {calculation.isProfit ? '+' : '-'}${Math.abs(Number(calculation.netPnL)).toLocaleString()}
+                  {calculation.isProfit ? '+' : '-'}{symbol}{Math.abs(Number(calculation.netPnL)).toLocaleString()}
                 </p>
               </div>
             </div>
@@ -131,7 +134,7 @@ export function PnLCalculator() {
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Gross P&L</p>
               <p className={`text-2xl font-bold mono ${calculation.isProfit ? 'text-green-400' : 'text-red-400'}`}>
-                {calculation.isProfit ? '+' : '-'}${Math.abs(Number(calculation.grossPnL)).toLocaleString()}
+                {calculation.isProfit ? '+' : '-'}{symbol}{Math.abs(Number(calculation.grossPnL)).toLocaleString()}
               </p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">

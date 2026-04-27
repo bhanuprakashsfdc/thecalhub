@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp, TrendingDown } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function RiskRewardCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [entryPrice, setEntryPrice] = useState(100);
   const [stopLoss, setStopLoss] = useState(90);
   const [takeProfit, setTakeProfit] = useState(120);
@@ -102,7 +105,7 @@ export function RiskRewardCalculator() {
                 <TrendingDown className="w-4 h-4 text-red-400" />
                 <p className="text-red-400 text-xs uppercase tracking-wider">Risk</p>
               </div>
-              <p className="text-2xl font-bold text-white mono">${calculation.risk}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.risk}</p>
               <p className="text-neutral-500 text-sm">({calculation.riskPercent}%)</p>
             </div>
             <div className="bg-green-500/10 border border-green-500/20 p-6 rounded-xl">
@@ -110,7 +113,7 @@ export function RiskRewardCalculator() {
                 <TrendingUp className="w-4 h-4 text-green-400" />
                 <p className="text-green-400 text-xs uppercase tracking-wider">Reward</p>
               </div>
-              <p className="text-2xl font-bold text-white mono">${calculation.reward}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{calculation.reward}</p>
               <p className="text-neutral-500 text-sm">({calculation.rewardPercent}%)</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">

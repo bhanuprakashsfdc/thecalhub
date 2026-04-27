@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { TrendingDown, AlertTriangle } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export function StopLossCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [entryPrice, setEntryPrice] = useState(100);
   const [riskPercent, setRiskPercent] = useState(2);
   const [isLong, setIsLong] = useState(true);
@@ -91,7 +94,7 @@ export function StopLossCalculator() {
               <TrendingDown className="w-8 h-8 text-red-400" />
               <div>
                 <p className="text-red-400 text-xs uppercase tracking-wider mb-1">Stop Loss Price</p>
-                <p className="text-3xl font-bold text-white mono">${calculation.stopLoss}</p>
+                <p className="text-3xl font-bold text-white mono">{symbol}{calculation.stopLoss}</p>
               </div>
             </div>
           </div>
@@ -99,7 +102,7 @@ export function StopLossCalculator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Risk Amount</p>
-              <p className="text-2xl font-bold text-white mono">${Number(calculation.riskAmount).toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white mono">{symbol}{Number(calculation.riskAmount).toLocaleString()}</p>
             </div>
             <div className="bg-surface-container-highest p-6 rounded-xl">
               <p className="text-neutral-500 text-xs uppercase tracking-wider mb-2">Stop Loss %</p>
@@ -114,11 +117,11 @@ export function StopLossCalculator() {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-neutral-400">Entry</span>
-                <span className="text-white mono">${entryPrice}</span>
+                <span className="text-white mono">{symbol}{entryPrice}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-red-400">Stop Loss</span>
-                <span className="text-red-400 mono">${calculation.stopLoss}</span>
+                <span className="text-red-400 mono">{symbol}{calculation.stopLoss}</span>
               </div>
             </div>
           </div>
