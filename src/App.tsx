@@ -143,6 +143,7 @@ const ScientificNotationCalculator = lazy(() => import('./components/calculators
 const DrawdownCalculator = lazy(() => import('./components/calculators/DrawdownCalculator'));
 const LogarithmCalculator = lazy(() => import('./components/calculators/LogarithmCalculator'));
 const ExponentialCalculator = lazy(() => import('./components/calculators/ExponentialCalculator'));
+const InvestmentPnLCalculator = lazy(() => import('./components/calculators/InvestmentPnLCalculator'));
 
 // Loading fallback component for Suspense
 function CalculatorLoader() {
@@ -202,6 +203,7 @@ const calculatorSeo: Record<string, { title: string; description: string; keywor
   '/pnl-calculator.html': { title: 'P&L Calculator', description: 'Calculate profit and loss.', category: 'trading' },
   '/stop-loss-calculator.html': { title: 'Stop Loss Calculator', description: 'Calculate stop loss levels.', category: 'trading' },
   '/breakeven-calculator.html': { title: 'Breakeven Calculator', description: 'Calculate breakeven point.', category: 'trading' },
+  '/investment-pnl-calculator.html': { title: 'Investment P&L Calculator', description: 'Calculate profit/loss and CAGR for investments.', category: 'trading' },
   '/kelly-criterion-calculator.html': { title: 'Kelly Criterion Calculator', description: 'Calculate optimal position using Kelly criterion.', category: 'trading' },
   '/risk-of-ruin-calculator.html': { title: 'Risk of Ruin Calculator', description: 'Calculate probability of ruin.', category: 'trading' },
   '/cagr-calculator.html': { title: 'CAGR Calculator', description: 'Calculate compound annual growth rate.', category: 'trading' },
@@ -505,6 +507,7 @@ function AppContent() {
                 <Route path="/pnl-calculator.html" element={<CalculatorWrapper component={PnLCalculator} path="/pnl-calculator.html" />} />
                 <Route path="/stop-loss-calculator.html" element={<CalculatorWrapper component={StopLossCalculator} path="/stop-loss-calculator.html" />} />
                 <Route path="/breakeven-calculator.html" element={<CalculatorWrapper component={BreakevenCalculator} path="/breakeven-calculator.html" />} />
+                <Route path="/investment-pnl-calculator.html" element={<CalculatorWrapper component={InvestmentPnLCalculator} path="/investment-pnl-calculator.html" />} />
                 <Route path="/kelly-criterion-calculator.html" element={<CalculatorWrapper component={KellyCriterionCalculator} path="/kelly-criterion-calculator.html" />} />
                 <Route path="/risk-of-ruin-calculator.html" element={<CalculatorWrapper component={RiskOfRuinCalculator} path="/risk-of-ruin-calculator.html" />} />
                 <Route path="/cagr-calculator.html" element={<CalculatorWrapper component={CAGRCalculator} path="/cagr-calculator.html" />} />

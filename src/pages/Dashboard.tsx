@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Search, Bolt, CornerDownLeft, Calculator, CreditCard, FlaskConical, Terminal, Heart, TrendingUp, Scale, Activity, Grid3X3, Clock, LayoutGrid, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Link } from 'react-router-dom';
-import { TOOL_CATEGORIES, CALCULATORS, APP_NAME, APP_VERSION } from '@/src/data/data';
+import { TOOL_CATEGORIES, CALCULATORS, CALCULATORS_ALL, APP_NAME, APP_VERSION } from '@/src/data/data';
+
+const TOTAL_CALCULATORS = CALCULATORS_ALL.length;
 import { cn } from '@/src/lib/utils';
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -99,7 +101,7 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-6 text-center"
         >
-          All <span className="text-primary-fixed">Calculators</span> in one place
+          {TOTAL_CALCULATORS}+ <span className="text-primary-fixed">Calculators</span> in one place
         </motion.h2>
         <div className="w-full max-w-2xl relative group" ref={searchRef}>
           <div className={cn(
@@ -302,7 +304,9 @@ interface CalculatorItem {
 }
 
 function VirtualizedCalculatorGrid({ activeCategory }: VirtualizedCalculatorGridProps) {
-  const calculators = (CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []) as CalculatorItem[];
+  const calculators = activeCategory === 'all' 
+    ? CALCULATORS_ALL as CalculatorItem[]
+    : (CALCULATORS[activeCategory as keyof typeof CALCULATORS] || []) as CalculatorItem[];
 
   const getIcon = (iconType?: string) => {
     switch(iconType) {
