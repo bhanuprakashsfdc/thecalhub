@@ -2,11 +2,42 @@ import { useState, useMemo } from 'react';
 import { Banknote } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { cn } from '../../lib/utils';
+import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export function EMICalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [loanAmount, setLoanAmount] = useState(250000);
   const [interestRate, setInterestRate] = useState(7.5);
   const [tenure, setTenure] = useState(15);
+
+  const faqs = [
+    {
+      question: "What is EMI and how is it calculated?",
+      answer: "EMI (Equated Monthly Installment) is the fixed payment you make to a lender each month to repay your loan. The EMI formula is: EMI = P × r × (1 + r)^n / ((1 + r)^n - 1), where P is the principal loan amount, r is monthly interest rate, and n is number of monthly installments. Each EMI payment includes both principal and interest, with the proportion changing over time - early payments are mostly interest, while later payments are mostly principal."
+    },
+    {
+      question: "How does loan tenure affect my EMI?",
+      answer: "Longer tenure means lower monthly EMI but higher total interest paid. For example, a 20 lakh loan at 8% for 20 years gives EMI of 16,288 with total interest of 19.1 lakhs. The same loan for 10 years gives EMI of 24,328 but total interest of only 9.2 lakhs. So while shorter tenure reduces interest cost significantly, it increases monthly burden. Choose a tenure that balances affordable EMI with minimal total interest."
+    },
+    {
+      question: "Should I prepay my loan early?",
+      answer: "Prepaying a loan can save significant interest, especially in early years when interest component is highest. However, check for prepayment charges (typically 1-2% of outstanding amount). Also consider if you have better investment opportunities that give returns higher than your loan interest rate. If your loan interest is higher than potential investment returns, prepaying makes sense. Use our calculator to see how much interest you can save by paying extra each month."
+    },
+    {
+      question: "What is the difference between fixed and floating interest rates?",
+      answer: "Fixed interest rates remain constant throughout the loan tenure, giving you predictable EMIs regardless of market changes. Floating rates are linked to a benchmark (like MCLR or repo rate) and change periodically, causing your EMI to fluctuate. Fixed rates are typically 1-2% higher than floating rates but provide stability. Choose fixed if you want budget certainty, choose floating if you expect rates to fall and can handle EMI variations."
+    },
+    {
+      question: "How does interest rate affect total loan cost?",
+      answer: "Even small differences in interest rates significantly impact total cost. For a 20 lakh, 20-year loan: at 7% EMI is 15,562 and total interest is 17.3 lakhs. At 8% EMI rises to 16,653 and total interest becomes 20 lakh - a 1% increase costs you 2.7 lakhs more! Always compare rates from multiple lenders and consider negotiating for better rates, especially if you have good credit score."
+    },
+    {
+      question: "Can I change my EMI or tenure after taking a loan?",
+      answer: "Most lenders allow loan restructuring - you can increase EMI, reduce tenure, or even switch between fixed/floating rates. Some banks charge a small fee (500-1000) for tenure changes. You can also consider balance transfer to another bank for lower rates, though this involves processing fees. Before making changes, use this calculator to compare old vs new terms to ensure it's beneficial."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const p = loanAmount;
@@ -44,7 +75,7 @@ export function EMICalculator() {
             <div className="group">
               <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Loan Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                 <input
                   className="w-full bg-surface-container-highest border-none rounded-lg py-4 pl-10 pr-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-xl outline-none"
                   type="number"
@@ -97,17 +128,17 @@ export function EMICalculator() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-2">Monthly EMI</label>
             <div className="flex items-baseline gap-2 mb-8">
-              <span className="text-5xl font-black text-white mono">${calculation.emi.split('.')[0]}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{calculation.emi.split('.')[0]}</span>
               <span className="text-neutral-500 mono text-xl">.{calculation.emi.split('.')[1]}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Interest</label>
-                <p className="text-2xl font-bold text-white mono">${calculation.totalInterest}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{calculation.totalInterest}</p>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Payment</label>
-                <p className="text-2xl font-bold text-white mono">${calculation.totalPayment}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{calculation.totalPayment}</p>
               </div>
             </div>
           </div>
@@ -150,6 +181,21 @@ export function EMICalculator() {
               </ResponsiveContainer>
             </div>
           </div>
+
+          <AboutSection 
+            title="EMI Calculator"
+            description="The EMI (Equated Monthly Installment) Calculator is an essential financial tool that helps you calculate the monthly payments required to repay a loan. Whether you're planning to take a home loan, car loan, personal loan, or any other type of credit, understanding your EMI obligations is crucial for effective financial planning. This calculator uses the standard amortization formula to provide accurate monthly payment calculations, helping you understand exactly how much you'll pay each month and how your payments break down between principal and interest. Using this EMI calculator before taking a loan allows you to plan your budget effectively, compare different loan options, and make informed decisions about borrowing. You can adjust variables like loan amount, interest rate, and tenure to see how they affect your monthly payments, enabling you to choose a loan structure that fits your financial situation. Many people underestimate the total cost of borrowing, but by using this calculator, you can see the complete picture including the total interest you'll pay over the loan tenure."
+            features={[
+              "Calculate exact monthly EMI for any loan amount",
+              "See breakdown between principal and interest portions",
+              "Compare different tenure options and their costs",
+              "Visualize amortization schedule over loan period",
+              "Plan your budget with accurate monthly commitments"
+            ]}
+            formula="EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)"
+          />
+
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

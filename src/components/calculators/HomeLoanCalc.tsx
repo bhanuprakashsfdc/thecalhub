@@ -1,12 +1,43 @@
 import { useState, useMemo } from 'react';
-import { Sparkles, Home, TrendingUp } from 'lucide-react';
+import { Sparkles, Home } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import { useI18n } from '../../lib/i18n';
+import { FAQSection, AboutSection } from '../../components/common/DonutChart';
 
 export default function HomeLoanCalc() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [principal, setPrincipal] = useState(5000000);
   const [rate, setRate] = useState(8.5);
   const [time, setTime] = useState(20);
+
+  const faqs = [
+    {
+      question: "What is a home loan and how does it work?",
+      answer: "A home loan is a secured loan specifically for purchasing residential property - a house, flat, or plot. The property itself serves as collateral, which is why home loans have lower interest rates than personal loans. You borrow 70-80% of the property value and repay over 15-30 years through monthly EMIs. The EMI includes both principal and interest in an amortization pattern where early payments are mostly interest and later payments are mostly principal. Interest rates can be fixed (same throughout) or linked to MCLR/repo rate (floating)."
+    },
+    {
+      question: "What determines my home loan interest rate?",
+      answer: "Home loan rates depend on: credit score (750+ gets 8-7.5%, below 650 may not qualify), income stability, property location and type (new property gets better rates), loan amount and tenure, and your relationship with the bank. Cibil score is crucial - even a small reduction can increase your rate by 0.5-1%. Women co-owners often get 0.05% lower rates. Current home loan rates range from 6.5% to 9% depending on profile. Compare rates across banks - even 0.25% difference on 50 lakh saves 7+ lakhs over 20 years."
+    },
+    {
+      question: "How much home loan can I get based on my salary?",
+      answer: "Banks typically allow EMI up to 40-50% of monthly income. With 1 lakh salary, your max EMI is 40-50k, which at 8.5% for 20 years gives loan of 45-55 lakh. You can also get approximately 60-80 times your monthly gross salary as loan. However, existing EMIs reduce eligibility. Use this calculator with your salary to estimate eligibility. Salaried individuals need 2-3 years in current job, while self-employed need 3-5 years of stable business with good ITR. Your Cibil report is checked for any past defaults."
+    },
+    {
+      question: "Should I opt forBuilder tie-up loans or go directly to bank?",
+      answer: "Builder tie-up loans offer convenience (single window process) and sometimes special rates, but you can't negotiate. Going directly to banks gives room for negotiation - you can get 0.25-0.5% better rates by comparing multiple banks. Builder tie-ups may also have hidden costs or be limited to specific projects. However, for under-construction properties, builder tie-ups can be faster as the bank already has project approval. Always compare the final rate including processing fee, not just the advertised rate."
+    },
+    {
+      question: "What is the minimum down payment for a home loan?",
+      answer: "You need to pay 10-25% of property value as down payment. Most banks finance 75-80%, so minimum down payment is 20-25%. Some schemes allow 10-15% for affordable housing. The down payment must come from your savings - cannot be financed. Additional costs include: registration stamp duty (5-8% in most states), GST on under-construction property (5% for affordable, 12% otherwise), and registration/legal charges (1-2%). Budget an additional 5-10% of property value for these costs."
+    },
+    {
+      question: "Can I transfer my home loan to another bank?",
+      answer: "Yes, you can balance transfer your home loan to get lower interest rates. Processing fee is 0.5-1% of outstanding amount. Transfer makes sense if the new rate is at least 0.5% lower and you have more than 5 years left - in early years, most payment is interest so transferring saves more. However, check if current bank offers rate reduction instead - some match competitor offers to retain customers. Also consider that resetting the clock means early years are again interest-heavy. Calculate if transfer actually saves money after processing fees."
+    }
+  ];
 
   const calculation = useMemo(() => {
     const r = rate / 12 / 100;
@@ -63,7 +94,7 @@ export default function HomeLoanCalc() {
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Loan Amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono">{symbol}</span>
                   <input
                     type="number"
                     value={principal}
@@ -112,16 +143,16 @@ export default function HomeLoanCalc() {
             </div>
             <label className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4">Monthly EMI</label>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-5xl font-black text-white mono">${Math.round(calculation.emi).toLocaleString()}</span>
+              <span className="text-5xl font-black text-white mono">{symbol}{Math.round(calculation.emi).toLocaleString()}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Interest</label>
-                <p className="text-2xl font-bold text-white mono">${Math.round(calculation.totalInterest).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-white mono">{symbol}{Math.round(calculation.totalInterest).toLocaleString()}</p>
               </div>
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Total Payment</label>
-                <p className="text-2xl font-bold text-primary-fixed mono">${Math.round(calculation.totalPayment).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-primary-fixed mono">{symbol}{Math.round(calculation.totalPayment).toLocaleString()}</p>
               </div>
             </div>
           </motion.div>
@@ -154,8 +185,8 @@ export default function HomeLoanCalc() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={yearlyData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <XAxis dataKey="year" stroke="#666" fontSize={10} />
-                    <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `$${(v/100000).toFixed(1)}L`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`$${Number(v).toLocaleString()}`, 'Balance']} />
+                    <YAxis stroke="#666" fontSize={10} tickFormatter={(v) => `${symbol}${((v/100000).toFixed(1))}L`} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333' }} formatter={(v) => [`${symbol}${Number(v).toLocaleString()}`, 'Balance']} />
                     <Bar dataKey="balance" fill="#D6ED79" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -163,27 +194,20 @@ export default function HomeLoanCalc() {
             </div>
           </div>
 
-          <div className="bg-surface-container-low p-6 rounded-xl border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">About Home Loan EMI</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-4">
-              EMI (Equated Monthly Installment) is the fixed payment you make to repay your home loan. It includes both principal and interest components.
-            </p>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              <strong>Pro Tip:</strong> Consider making part-prepayments to reduce your total interest burden and shorten your loan tenure.
-            </p>
-          </div>
+          <AboutSection 
+            title="Home Loan EMI Calculator"
+            description="The Home Loan EMI Calculator is an essential tool for anyone planning to purchase a home through financing. A home loan is typically the largest financial commitment in a person's life, and understanding your EMI obligations is crucial for long-term financial planning. This calculator provides accurate monthly payment calculations along with a complete breakdown of principal versus interest over the loan tenure. The visualization helps you understand how much of your total payment goes toward interest versus principal - often surprising for first-time buyers. Seeing the year-by-year reduction in loan balance helps you plan for potential prepayments or refinancing decisions that could save significant interest."
+            features={[
+              "Calculate exact monthly home loan EMI",
+              "See complete breakdown between principal and total interest",
+              "Visualize year-by-year loan balance reduction trajectory",
+              "Compare different tenure options and their total costs",
+              "Plan for early repayment and interest savings strategies"
+            ]}
+            formula="EMI = [P × r × (1+r)^n] / [(1+r)^n - 1]"
+          />
 
-          <div className="bg-secondary-container/10 p-6 rounded-xl border border-secondary-container/20">
-            <div className="flex items-start gap-4">
-              <TrendingUp className="text-secondary w-5 h-5 mt-0.5" />
-              <div>
-                <h4 className="text-secondary font-bold text-sm mb-1">Pro Tip</h4>
-                <p className="text-neutral-400 text-xs leading-relaxed">
-                  A 20-year loan at 8.5% for ₹50 Lakhs costs ₹1.04 Cr total. Consider a 15-year loan to save ₹18 Lakhs in interest!
-                </p>
-              </div>
-            </div>
-          </div>
+          <FAQSection faqs={faqs} />
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { useI18n } from '../../lib/i18n';
 
 export function GSTCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [amount, setAmount] = useState(1000);
   const [rate, setRate] = useState(18);
   const [mode, setMode] = useState<'add' | 'remove'>('add');
@@ -22,7 +25,7 @@ export function GSTCalculator() {
   // Screen reader announcement for results
   useEffect(() => {
     if (resultRef.current) {
-      resultRef.current.textContent = `GST amount: $${calculation.result.toFixed(2)}, Total: $${calculation.total.toFixed(2)}`;
+      resultRef.current.textContent = `GST amount: ${symbol}${calculation.result.toFixed(2)}, Total: ${symbol}${calculation.total.toFixed(2)}`;
     }
   }, [calculation]);
 
@@ -41,7 +44,7 @@ export function GSTCalculator() {
             <div>
               <label htmlFor="gst-amount" className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono" aria-hidden="true">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-fixed-dim mono" aria-hidden="true">{symbol}</span>
                 <input id="gst-amount" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))}
                   aria-label="Amount to calculate GST on"
                   aria-describedby="gst-amount-desc"
@@ -72,12 +75,12 @@ export function GSTCalculator() {
           <span className="block text-[10px] uppercase tracking-[0.2em] text-primary-fixed font-bold mb-4" id="gst-result-label">{mode === 'add' ? 'GST Amount' : 'GST (Reverse)'}</span>
           <div aria-live="polite" aria-atomic="true" className="sr-only" ref={resultRef}></div>
           <div className="flex items-baseline gap-2 mb-6">
-            <span className="text-5xl font-black text-white mono" aria-labelledby="gst-result-label">${calculation.result.toFixed(2)}</span>
+            <span className="text-5xl font-black text-white mono" aria-labelledby="gst-result-label">{symbol}{calculation.result.toFixed(2)}</span>
           </div>
           <div className="grid grid-cols-2 gap-4" role="status" aria-live="polite">
             <div>
               <span className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">{mode === 'add' ? 'Total with GST' : 'Base Amount'}</span>
-              <p className="text-2xl font-bold text-white mono">${mode === 'add' ? calculation.total.toFixed(2) : calculation.original.toFixed(2)}</p>
+              <p className="text-2xl font-bold text-white mono">{mode === 'add' ? symbol + calculation.total.toFixed(2) : symbol + calculation.original.toFixed(2)}</p>
             </div>
             <div>
               <span className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">GST Rate</span>

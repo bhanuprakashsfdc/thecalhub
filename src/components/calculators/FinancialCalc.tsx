@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import { useI18n } from '../../lib/i18n';
 
 export default function FinancialCalc() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [amount, setAmount] = useState(100000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(5);
@@ -31,7 +34,7 @@ export default function FinancialCalc() {
         <div>
           <label className={labelClass}>Loan Amount</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-600 text-[10px]">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-600 text-[10px]">{symbol}</span>
             <input
               type="number"
               className={cn(inputClass, "pl-6")}
@@ -66,16 +69,16 @@ export default function FinancialCalc() {
       <div className="mt-auto pt-4 border-t border-white/5 space-y-3">
         <div className="flex justify-between items-end">
           <span className="text-xs text-neutral-400">Monthly EMI</span>
-          <span className="text-xl font-bold text-primary-fixed font-mono">${emi.toLocaleString()}</span>
+          <span className="text-xl font-bold text-primary-fixed font-mono">{symbol}{emi.toLocaleString()}</span>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-black/20 p-2 rounded border border-white/5">
             <span className="text-[9px] text-neutral-600 block mb-1">Total Interest</span>
-            <span className="text-xs font-mono text-white">${totalInterest.toLocaleString()}</span>
+            <span className="text-xs font-mono text-white">{symbol}{totalInterest.toLocaleString()}</span>
           </div>
           <div className="bg-black/20 p-2 rounded border border-white/5">
             <span className="text-[9px] text-neutral-600 block mb-1">Total Payable</span>
-            <span className="text-xs font-mono text-white">${totalPayable.toLocaleString()}</span>
+            <span className="text-xs font-mono text-white">{symbol}{totalPayable.toLocaleString()}</span>
           </div>
         </div>
       </div>

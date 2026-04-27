@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Trees } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function WoodCalculator() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
   const [length, setLength] = useState(8);
   const [width, setWidth] = useState(10);
   const [boardThickness, setBoardThickness] = useState(1);
@@ -42,7 +45,7 @@ export default function WoodCalculator() {
           <input type="number" value={boardThickness} onChange={(e) => setBoardThickness(Number(e.target.value))} className={inputClass} />
         </div>
         <div>
-          <label className={labelClass}>Price per board foot ($)</label>
+          <label className={labelClass}>Price per board foot ({symbol})</label>
           <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className={inputClass} />
         </div>
 
@@ -59,7 +62,7 @@ export default function WoodCalculator() {
             </div>
             <div className="border-t border-white/10 pt-3 mt-3 flex justify-between">
               <span className="text-neutral-400">Estimated Cost</span>
-              <span className="text-primary-fixed font-mono text-xl">${result.cost}</span>
+              <span className="text-primary-fixed font-mono text-xl">{symbol}{result.cost}</span>
             </div>
           </div>
         </div>

@@ -1,0 +1,29 @@
+import { useState } from 'react';
+import { Hammer } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
+
+function FlooringCalc() {
+  const { getCurrencySymbol } = useI18n();
+  const symbol = getCurrencySymbol();
+  const [length, setLength] = useState(10);
+  const [width, setWidth] = useState(10);
+  const pricePerSqFt = 8;
+  
+  const area = length * width;
+  const cost = area * pricePerSqFt;
+  
+  return (
+    <div className="bg-surface-container-low p-8 rounded-xl border border-white/5">
+      <div className="flex items-center gap-2 text-primary-fixed mb-6"><Hammer className="w-4 h-4" /><span className="text-[10px] uppercase tracking-[0.2em] font-bold">Flooring Calculator</span></div>
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="group"><label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Length (ft)</label><input className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl" type="number" value={length} onChange={(e) => setLength(Number(e.target.value))} /></div>
+        <div className="group"><label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Width (ft)</label><input className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl" type="number" value={width} onChange={(e) => setWidth(Number(e.target.value))} /></div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-surface-container-highest p-4 rounded-xl"><p className="text-neutral-500 text-xs">Area</p><p className="text-2xl font-bold text-white mono">{area} sq ft</p></div>
+        <div className="bg-surface-container-highest p-4 rounded-xl"><p className="text-neutral-500 text-xs">Cost @ {symbol}8/sqft</p><p className="text-2xl font-bold text-white mono">{symbol}{cost}</p></div>
+      </div>
+    </div>
+  );
+}
+export default FlooringCalc;
