@@ -1,0 +1,3 @@
+our goal is complete all cacultor with our any issuees you has been hired as CEO you need to all team and agents /subgents and skills are required to complete these projecct scan these project and make sure we need to receive 1 million users every day and need to also get google adsense apporval quickly 
+
+make sure you creeate md file with all tasks need to do one it is done make suere you update files by all agensts /sub agents
