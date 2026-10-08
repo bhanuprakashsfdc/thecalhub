@@ -9,9 +9,12 @@ export default function StairCalculator() {
 
   const result = useMemo(() => {
     const risePerStep = (totalRise / numSteps).toFixed(4);
-    const runPerStep = run / numSteps;
+    const runPerStep = run;
     const totalRun = run * (numSteps - 1);
-    const concrete = ((totalRun * width * (totalRise / 12)) / 27).toFixed(2);
+    const runFt = totalRun / 12;
+    const widthFt = width / 12;
+    const riseFt = totalRise / 12;
+    const concrete = ((runFt * widthFt * riseFt) / 27).toFixed(2);
     return { risePerStep, runPerStep: runPerStep.toFixed(2), totalRun: totalRun.toFixed(2), concrete };
   }, [totalRise, run, numSteps, width]);
 
@@ -35,7 +38,7 @@ export default function StairCalculator() {
           <input type="number" value={totalRise} onChange={(e) => setTotalRise(Number(e.target.value))} className={inputClass} />
         </div>
         <div>
-          <label className={labelClass}>Total Run (inches)</label>
+          <label className={labelClass}>Tread Depth (inches)</label>
           <input type="number" value={run} onChange={(e) => setRun(Number(e.target.value))} className={inputClass} />
         </div>
         <div>

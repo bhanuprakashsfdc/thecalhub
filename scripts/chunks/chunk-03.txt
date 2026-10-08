@@ -1,0 +1,99 @@
+801	Tablet Dosage Calculator	/tablet-dosage-calculator.html	health	BUILD	Pharmacy Calculators
+800	Heart Age Calculator	/heart-age-calculator.html	health	BUILD	Medical & Healthcare Calculators
+799	Blood Pressure Calculator	/blood-pressure-calculator.html	health	BUILD	Medical & Healthcare Calculators
+798	Cholesterol Ratio Calculator	/cholesterol-ratio-calculator.html	health	BUILD	Medical & Healthcare Calculators
+797	Liver Function Calculator	/liver-function-calculator.html	health	BUILD	Medical & Healthcare Calculators
+796	Kidney Function Calculator	/kidney-function-calculator.html	health	BUILD	Medical & Healthcare Calculators
+795	GFR Calculator	/gfr-calculator.html	health	BUILD	Medical & Healthcare Calculators
+794	Creatinine Clearance Calculator	/creatinine-clearance-calculator.html	health	BUILD	Medical & Healthcare Calculators
+793	Body Surface Area Medical Calculator	/body-surface-area-medical-calculator.html	health	BUILD	Medical & Healthcare Calculators
+792	IV Drip Rate Calculator	/iv-drip-rate-calculator.html	health	BUILD	Medical & Healthcare Calculators
+791	IV Flow Rate Calculator	/iv-flow-rate-calculator.html	health	BUILD	Medical & Healthcare Calculators
+790	Dosage Calculator	/dosage-calculator.html	health	BUILD	Medical & Healthcare Calculators
+789	E-Waste Calculator	/e-waste-calculator.html	scientific	BUILD	Environmental Calculators
+788	Pollution Calculator	/pollution-calculator.html	scientific	BUILD	Environmental Calculators
+787	Air Quality Calculator	/air-quality-calculator.html	scientific	BUILD	Environmental Calculators
+786	Composting Calculator	/composting-calculator.html	scientific	BUILD	Environmental Calculators
+785	Recycling Calculator	/recycling-calculator.html	scientific	BUILD	Environmental Calculators
+784	Water Usage Calculator	/water-usage-calculator.html	scientific	BUILD	Environmental Calculators
+783	Energy Efficiency Calculator	/energy-efficiency-calculator.html	scientific	BUILD	Environmental Calculators
+782	CO2 Emissions Calculator	/co2-emissions-calculator.html	scientific	BUILD	Environmental Calculators
+781	Carbon Footprint Calculator	/carbon-footprint-calculator.html	scientific	BUILD	Environmental Calculators
+780	Chemical Potential Calculator	/chemical-potential-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+779	Gibbs Free Energy Calculator	/gibbs-free-energy-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+778	Entropy Chemical Calculator	/entropy-chemical-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+777	Enthalpy Calculator	/enthalpy-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+776	Heat of Combustion Calculator	/heat-of-combustion-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+775	Heat of Formation Calculator	/heat-of-formation-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+774	Heat of Reaction Calculator	/heat-of-reaction-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+773	Activation Energy Calculator	/activation-energy-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+772	Equilibrium Constant Calculator	/equilibrium-constant-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+771	Reaction Rate Calculator	/reaction-rate-calculator.html	scientific	BUILD	Chemical Engineering Calculators
+770	Storm Water Calculator	/storm-water-calculator.html	construction	BUILD	Civil Engineering Calculators
+769	Culvert Design Calculator	/culvert-design-calculator.html	construction	BUILD	Civil Engineering Calculators
+768	Pavement Design Calculator	/pavement-design-calculator.html	construction	BUILD	Civil Engineering Calculators
+767	Intersection Design Calculator	/intersection-design-calculator.html	construction	BUILD	Civil Engineering Calculators
+766	Turning Radius Calculator	/turning-radius-calculator.html	construction	BUILD	Civil Engineering Calculators
+765	Stopping Distance Calculator	/stopping-distance-calculator.html	construction	BUILD	Civil Engineering Calculators
+764	Sight Distance Calculator	/sight-distance-calculator.html	construction	BUILD	Civil Engineering Calculators
+763	Superelevation Calculator	/superelevation-calculator.html	construction	BUILD	Civil Engineering Calculators
+762	Curve Radius Calculator	/curve-radius-calculator.html	construction	BUILD	Civil Engineering Calculators
+761	Road Grade Calculator	/road-grade-calculator.html	construction	BUILD	Civil Engineering Calculators
+760	Entropy Calculator	/entropy-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+759	Heat Capacity Calculator	/heat-capacity-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+758	Thermal Conductivity Calculator	/thermal-conductivity-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+757	Heat Transfer Calculator	/heat-transfer-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+756	Thermal Expansion Calculator	/thermal-expansion-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+755	Bulk Modulus Calculator	/bulk-modulus-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+754	Shear Modulus Calculator	/shear-modulus-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+753	Poisson's Ratio Calculator	/poisson-s-ratio-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+752	Young's Modulus Calculator	/young-s-modulus-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+751	Stress-Strain Calculator	/stress-strain-calculator.html	scientific	BUILD	Mechanical Engineering Calculators
+750	Kirchhoff's Law Calculator	/kirchhoff-s-law-calculator.html	scientific	BUILD	Engineering Calculators
+749	Wheatstone Bridge Calculator	/wheatstone-bridge-calculator.html	scientific	BUILD	Engineering Calculators
+748	Voltage Divider Calculator	/voltage-divider-calculator.html	scientific	BUILD	Engineering Calculators
+747	Current Divider Calculator	/current-divider-calculator.html	scientific	BUILD	Engineering Calculators
+746	Voltage Drop Calculator	/voltage-drop-calculator.html	scientific	BUILD	Engineering Calculators
+745	Power Electrical Calculator	/power-electrical-calculator.html	scientific	BUILD	Engineering Calculators
+744	Ohm's Law Calculator	/ohm-s-law-calculator.html	scientific	BUILD	Engineering Calculators
+743	Electrical Inductance Calculator	/electrical-inductance-calculator.html	scientific	BUILD	Engineering Calculators
+742	Electrical Capacitance Calculator	/electrical-capacitance-calculator.html	scientific	BUILD	Engineering Calculators
+741	Electrical Resistance Calculator	/electrical-resistance-calculator.html	scientific	BUILD	Engineering Calculators
+740	Bessel Function Calculator	/bessel-function-calculator.html	standard	BUILD	Advanced Scientific Calculators
+739	Hyperbolic Function Calculator	/hyperbolic-function-calculator.html	standard	BUILD	Advanced Scientific Calculators
+738	Octonion Calculator	/octonion-calculator.html	standard	BUILD	Advanced Scientific Calculators
+737	Quaternion Calculator	/quaternion-calculator.html	standard	BUILD	Advanced Scientific Calculators
+736	Complex Number Calculator	/complex-number-calculator.html	standard	TESTONLY	Advanced Scientific Calculators
+735	Big Integer Calculator	/big-integer-calculator.html	standard	BUILD	Advanced Scientific Calculators
+734	Cryptography Calculator	/cryptography-calculator.html	standard	BUILD	Advanced Scientific Calculators
+733	Modular Arithmetic Calculator	/modular-arithmetic-calculator.html	standard	BUILD	Advanced Scientific Calculators
+732	Number Theory Calculator	/number-theory-calculator.html	standard	BUILD	Advanced Scientific Calculators
+731	Z-Transform Calculator	/z-transform-calculator.html	standard	BUILD	Advanced Scientific Calculators
+730	Laplace Transform Calculator	/laplace-transform-calculator.html	standard	BUILD	Advanced Scientific Calculators
+729	Fourier Transform Calculator	/fourier-transform-calculator.html	standard	BUILD	Advanced Scientific Calculators
+728	Euler's Identity Calculator	/euler-s-identity-calculator.html	standard	BUILD	Additional Calculators
+727	Pi Calculator	/pi-calculator.html	standard	BUILD	Additional Calculators
+726	Euler's Number Calculator	/euler-s-number-calculator.html	standard	BUILD	Additional Calculators
+725	Golden Ratio Calculator	/golden-ratio-calculator.html	standard	BUILD	Additional Calculators
+724	Fibonacci Calculator	/fibonacci-calculator.html	standard	BUILD	Additional Calculators
+723	Prime Number Calculator	/prime-number-calculator.html	standard	TESTONLY	Additional Calculators
+722	RSA Key Generator Calculator	/rsa-key-generator-calculator.html	standard	BUILD	Additional Calculators
+721	Password Generator Calculator	/password-generator-calculator.html	standard	BUILD	Additional Calculators
+720	Random Number Generator Calculator	/random-number-generator-calculator.html	standard	BUILD	Additional Calculators
+719	UUID Generator Calculator	/uuid-generator-calculator.html	standard	BUILD	Additional Calculators
+718	Hash Generator Calculator	/hash-generator-calculator.html	standard	BUILD	Additional Calculators
+717	Credit Card Number Generator Calculator	/credit-card-number-generator-calculator.html	standard	BUILD	Additional Calculators
+716	ISBN Calculator	/isbn-calculator.html	standard	BUILD	Additional Calculators
+715	Conversion Calculator	/conversion-calculator.html	standard	BUILD	General Purpose Calculators
+714	Rate of Change Calculator	/rate-of-change-calculator.html	standard	BUILD	General Purpose Calculators
+713	Growth Rate Calculator	/growth-rate-calculator.html	standard	BUILD	General Purpose Calculators
+711	Moving Average Calculator	/moving-average-calculator.html	standard	BUILD	General Purpose Calculators
+710	Weighted Average Calculator	/weighted-average-calculator.html	standard	BUILD	General Purpose Calculators
+709	Average Calculator	/average-calculator.html	standard	TESTONLY	General Purpose Calculators
+708	Difference Calculator	/difference-calculator.html	standard	BUILD	General Purpose Calculators
+707	Percent Decrease Calculator	/percent-decrease-calculator.html	standard	BUILD	General Purpose Calculators
+706	Percent Increase Calculator	/percent-increase-calculator.html	standard	BUILD	General Purpose Calculators
+705	Percentage Change Calculator	/percentage-change-calculator.html	standard	BUILD	General Purpose Calculators
+704	Bill Splitter Calculator	/bill-splitter-calculator.html	standard	BUILD	General Purpose Calculators
+703	Split Bill Calculator	/split-bill-calculator.html	standard	BUILD	General Purpose Calculators
+702	Gratuity Calculator	/gratuity-calculator.html	standard	BUILD	General Purpose Calculators
