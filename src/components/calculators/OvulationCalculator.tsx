@@ -15,7 +15,7 @@ export function OvulationCalculator() {
       <div className="lg:col-span-7"><div className="bg-surface-container-low p-8 rounded-xl border border-white/5">
         <div className="flex items-center gap-2 text-primary-fixed mb-6"><Calendar className="w-4 h-4" /><span className="text-[10px] uppercase tracking-[0.2em] font-bold">Ovulation Date</span></div>
         <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">{ovulationDate.toLocaleDateString()}</p></div>
-        <div className="mt-6 bg-surface-container-highest p-6 rounded-xl"><p className="text-neutral-500 text-xs">Fertile window: {ovulationDate.toLocaleDateString()} - {new Date(ovulationDate.getTime() + 5*86400000).toLocaleDateString()}</p></div>
+        <div className="mt-6 bg-surface-container-highest p-6 rounded-xl"><p className="text-neutral-500 text-xs">Fertile window: {new Date(ovulationDate.getTime() - 5*86400000).toLocaleDateString()} - {ovulationDate.toLocaleDateString()}</p></div>
       </div></div>
     </div>
   );

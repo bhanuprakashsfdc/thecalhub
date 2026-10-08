@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { CreditCard } from 'lucide-react';
+import { motion } from 'motion/react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { useI18n } from '../../lib/i18n';
 import { FAQSection, AboutSection } from '../../components/common/DonutChart';

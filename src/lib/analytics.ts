@@ -1,6 +1,3 @@
-// Google Analytics 4 integration
-// Replace GA_MEASUREMENT_ID with your actual GA4 measurement ID
-
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -8,25 +5,48 @@ declare global {
   }
 }
 
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 measurement ID
+const GA_MEASUREMENT_ID: string | undefined = import.meta.env.VITE_GA_ID
+  ? String(import.meta.env.VITE_GA_ID)
+  : undefined;
+
+function hasValidMeasurementId(id: string): boolean {
+  return /^G-[A-Z0-9]{4,}$/.test(id);
+}
+
+function injectGtagScript(id: string): void {
+  if (typeof document === 'undefined') return;
+  if (document.querySelector('script[data-ga-measurement-id]')) return;
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+  script.setAttribute('data-ga-measurement-id', id);
+  document.head.appendChild(script);
+}
 
 /**
- * Initialize Google Analytics 4
+ * Initialize Google Analytics 4.
+ * No-op unless a real VITE_GA_ID (G-XXXXXXXXXX) is configured at build time.
  */
 export function initAnalytics(): void {
-  // Check if already initialized
-  if (typeof window !== 'undefined' && !window.gtag) {
-    window.dataLayer = window.dataLayer || [];
+  if (typeof window === 'undefined' || window.gtag) return;
+  if (!GA_MEASUREMENT_ID || !hasValidMeasurementId(GA_MEASUREMENT_ID)) return;
 
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    };
+  window.dataLayer = window.dataLayer || [];
 
-    window.gtag('js', new Date());
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      send_page_view: true,
-    });
-  }
+  window.gtag = function gtag(...args: unknown[]) {
+    window.dataLayer!.push(args);
+  };
+
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID, {
+    send_page_view: true,
+  });
+
+  injectGtagScript(GA_MEASUREMENT_ID);
+}
+
+export function isAnalyticsEnabled(): boolean {
+  return Boolean(GA_MEASUREMENT_ID && hasValidMeasurementId(GA_MEASUREMENT_ID));
 }
 
 /**
@@ -64,6 +84,7 @@ export function trackEvent(eventName: string, params?: Record<string, unknown>):
 
 export default {
   initAnalytics,
+  isAnalyticsEnabled,
   trackPageView,
   trackCalculatorUsage,
   trackEvent,

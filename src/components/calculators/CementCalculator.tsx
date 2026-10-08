@@ -5,9 +5,10 @@ function CementCalc() {
   const [area, setArea] = useState(100);
   const [thickness, setThickness] = useState(0.15);
   
-  const cementBags = (area * thickness * 7) / 0.035;
-  const sand = area * thickness * 0.33;
-  const aggregate = area * thickness * 0.55;
+  const dryVolume = area * thickness * 1.54;
+  const cementBags = (dryVolume / 7) / 0.035;
+  const sand = (dryVolume * 2) / 7;
+  const aggregate = (dryVolume * 4) / 7;
   
   return (
     <div className="bg-surface-container-low p-8 rounded-xl border border-white/5">

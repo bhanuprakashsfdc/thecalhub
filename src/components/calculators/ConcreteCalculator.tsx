@@ -12,9 +12,10 @@ export default function ConcreteCalculator() {
 
   const result = useMemo(() => {
     const cubicFeet = (length * width * depth) / 12;
+    const cubicYards = cubicFeet / 27;
     const bags60lb = Math.ceil(cubicFeet / 0.45);
     const bags80lb = Math.ceil(cubicFeet / 0.6);
-    const cost = (cubicFeet * price).toFixed(2);
+    const cost = (cubicYards * price).toFixed(2);
     return { cubicFeet: cubicFeet.toFixed(2), bags60lb, bags80lb, cost };
   }, [length, width, depth, price]);
 

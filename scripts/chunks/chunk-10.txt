@@ -1,0 +1,97 @@
+101	Basic Calculator	/basic-calculator.html	standard	BUILD	Math & Statistics Calculators
+100	Chronological Age Calculator	/chronological-age-calculator.html	health	BUILD	Health & Fitness Calculators
+99	Biological Age Calculator	/biological-age-calculator.html	health	BUILD	Health & Fitness Calculators
+98	Metabolic Age Calculator	/metabolic-age-calculator.html	health	BUILD	Health & Fitness Calculators
+97	Fitness Level Calculator	/fitness-level-calculator.html	health	BUILD	Health & Fitness Calculators
+96	Workout Intensity Calculator	/workout-intensity-calculator.html	health	BUILD	Health & Fitness Calculators
+95	Rest Period Calculator	/rest-period-calculator.html	health	BUILD	Health & Fitness Calculators
+94	Exercise Volume Calculator	/exercise-volume-calculator.html	health	BUILD	Health & Fitness Calculators
+93	Muscle Force Calculator	/muscle-force-calculator.html	health	BUILD	Health & Fitness Calculators
+92	Deadlift Calculator	/deadlift-calculator.html	health	BUILD	Health & Fitness Calculators
+91	Squat Calculator	/squat-calculator.html	health	BUILD	Health & Fitness Calculators
+90	Bench Press Calculator	/bench-press-calculator.html	health	BUILD	Health & Fitness Calculators
+89	Strength Training Calculator	/strength-training-calculator.html	health	BUILD	Health & Fitness Calculators
+88	One Rep Max Calculator	/one-rep-max-calculator.html	health	TESTONLY	Health & Fitness Calculators
+87	VO2 Max Calculator	/vo2-max-calculator.html	health	TESTONLY	Health & Fitness Calculators
+86	Max Heart Rate Calculator	/max-heart-rate-calculator.html	health	BUILD	Health & Fitness Calculators
+85	Target Heart Rate Calculator	/target-heart-rate-calculator.html	health	BUILD	Health & Fitness Calculators
+84	Heart Rate Zone Calculator	/heart-rate-zone-calculator.html	health	BUILD	Health & Fitness Calculators
+83	Swimming Calories Calculator	/swimming-calories-calculator.html	health	BUILD	Health & Fitness Calculators
+82	Cycling Calories Calculator	/cycling-calories-calculator.html	health	BUILD	Health & Fitness Calculators
+81	Running Calories Calculator	/running-calories-calculator.html	health	BUILD	Health & Fitness Calculators
+80	Walking Calories Calculator	/walking-calories-calculator.html	health	BUILD	Health & Fitness Calculators
+79	Exercise Calories Calculator	/exercise-calories-calculator.html	health	BUILD	Health & Fitness Calculators
+78	Growth Calculator	/growth-calculator.html	health	BUILD	Health & Fitness Calculators
+77	Child Height Predictor Calculator	/child-height-predictor-calculator.html	health	BUILD	Health & Fitness Calculators
+76	Baby Growth Calculator	/baby-growth-calculator.html	health	BUILD	Health & Fitness Calculators
+75	Conception Calculator	/conception-calculator.html	health	BUILD	Health & Fitness Calculators
+74	Fertility Calculator	/fertility-calculator.html	health	BUILD	Health & Fitness Calculators
+72	Due Date Calculator	/due-date-calculator.html	health	BUILD	Health & Fitness Calculators
+71	Pregnancy Weight Gain Calculator	/pregnancy-weight-gain-calculator.html	health	BUILD	Health & Fitness Calculators
+70	Healthy Weight Calculator	/healthy-weight-calculator.html	health	BUILD	Health & Fitness Calculators
+68	Waist-to-Height Ratio Calculator	/waist-to-height-ratio-calculator.html	health	BUILD	Health & Fitness Calculators
+67	Waist-to-Hip Ratio Calculator	/waist-to-hip-ratio-calculator.html	health	BUILD	Health & Fitness Calculators
+66	Body Surface Area Calculator	/body-surface-area-calculator.html	health	BUILD	Health & Fitness Calculators
+65	Lean Body Mass Calculator	/lean-body-mass-calculator.html	health	BUILD	Health & Fitness Calculators
+64	Body Fat Calculator	/body-fat-calculator.html	health	TESTONLY	Health & Fitness Calculators
+63	Calorie Deficit Calculator	/calorie-deficit-calculator.html	health	BUILD	Health & Fitness Calculators
+62	Weight Gain Calculator	/weight-gain-calculator.html	health	BUILD	Health & Fitness Calculators
+61	Weight Loss Calculator	/weight-loss-calculator.html	health	BUILD	Health & Fitness Calculators
+60	Water Intake Calculator	/water-intake-calculator.html	health	TESTONLY	Health & Fitness Calculators
+59	Fiber Calculator	/fiber-calculator.html	health	BUILD	Health & Fitness Calculators
+58	Fat Calculator	/fat-calculator.html	health	BUILD	Health & Fitness Calculators
+57	Carb Calculator	/carb-calculator.html	health	BUILD	Health & Fitness Calculators
+56	Protein Calculator	/protein-calculator.html	health	BUILD	Health & Fitness Calculators
+55	Macro Calculator	/macro-calculator.html	health	TESTONLY	Health & Fitness Calculators
+53	TDEE Calculator	/tdee-calculator.html	health	TESTONLY	Health & Fitness Calculators
+52	BMR Calculator	/bmr-calculator.html	health	TESTONLY	Health & Fitness Calculators
+51	BMI Calculator	/bmi-calculator.html	health	TESTONLY	Health & Fitness Calculators
+49	Yield Calculator	/yield-calculator.html	financial	BUILD	Financial Calculators
+48	Bond Calculator	/bond-calculator.html	financial	BUILD	Financial Calculators
+47	Dividend Calculator	/dividend-calculator.html	financial	BUILD	Financial Calculators
+46	Capital Gains Calculator	/capital-gains-calculator.html	financial	BUILD	Financial Calculators
+45	Stock Options Calculator	/stock-options-calculator.html	financial	BUILD	Financial Calculators
+44	Commission Calculator	/commission-calculator.html	financial	BUILD	Financial Calculators
+43	Bonus Calculator	/bonus-calculator.html	financial	BUILD	Financial Calculators
+42	Overtime Calculator	/overtime-calculator.html	financial	BUILD	Financial Calculators
+41	Hourly Wage Calculator	/hourly-wage-calculator.html	financial	BUILD	Financial Calculators
+40	Salary Calculator	/salary-calculator.html	financial	BUILD	Financial Calculators
+39	Payroll Calculator	/payroll-calculator.html	financial	BUILD	Financial Calculators
+38	Income Tax Calculator	/income-tax-calculator.html	financial	BUILD	Financial Calculators
+37	GST Calculator	/gst-calculator.html	financial	TESTONLY	Financial Calculators
+36	VAT Calculator	/vat-calculator.html	financial	BUILD	Financial Calculators
+35	Sales Tax Calculator	/sales-tax-calculator.html	financial	BUILD	Financial Calculators
+34	Margin Calculator	/margin-calculator.html	financial	BUILD	Financial Calculators
+33	Markup Calculator	/markup-calculator.html	financial	BUILD	Financial Calculators
+32	Profit Calculator	/profit-calculator.html	financial	BUILD	Financial Calculators
+31	Break-Even Calculator	/break-even-calculator.html	financial	BUILD	Financial Calculators
+30	Rent vs Buy Calculator	/rent-vs-buy-calculator.html	financial	BUILD	Financial Calculators
+29	Home Affordability Calculator	/home-affordability-calculator.html	financial	BUILD	Financial Calculators
+28	Loan Affordability Calculator	/loan-affordability-calculator.html	financial	BUILD	Financial Calculators
+27	Monthly Payment Calculator	/monthly-payment-calculator.html	financial	BUILD	Financial Calculators
+26	Payment Calculator	/payment-calculator.html	financial	BUILD	Financial Calculators
+25	Interest Calculator	/interest-calculator.html	financial	BUILD	Financial Calculators
+24	Amortization Calculator	/amortization-calculator.html	financial	BUILD	Financial Calculators
+23	Return on Investment Calculator	/return-on-investment-calculator.html	financial	BUILD	Financial Calculators
+22	Net Present Value Calculator	/net-present-value-calculator.html	financial	BUILD	Financial Calculators
+21	Future Value Calculator	/future-value-calculator.html	financial	BUILD	Financial Calculators
+20	Present Value Calculator	/present-value-calculator.html	financial	BUILD	Financial Calculators
+19	Annuity Calculator	/annuity-calculator.html	financial	BUILD	Financial Calculators
+18	Simple Interest Calculator	/simple-interest-calculator.html	financial	TESTONLY	Financial Calculators
+17	Compound Interest Calculator	/compound-interest-calculator.html	financial	TESTONLY	Financial Calculators
+16	Roth IRA Calculator	/roth-ira-calculator.html	financial	BUILD	Financial Calculators
+15	401k Calculator	/401k-calculator.html	financial	BUILD	Financial Calculators
+14	IRA Calculator	/ira-calculator.html	financial	BUILD	Financial Calculators
+13	Money Market Calculator	/money-market-calculator.html	financial	BUILD	Financial Calculators
+12	Certificate of Deposit Calculator	/certificate-of-deposit-calculator.html	financial	BUILD	Financial Calculators
+11	Savings Calculator	/savings-calculator.html	financial	BUILD	Financial Calculators
+10	Investment Calculator	/investment-calculator.html	financial	TESTONLY	Financial Calculators
+9	Debt Consolidation Calculator	/debt-consolidation-calculator.html	financial	BUILD	Financial Calculators
+8	Debt Payoff Calculator	/debt-payoff-calculator.html	financial	BUILD	Financial Calculators
+7	Credit Card Payoff Calculator	/credit-card-payoff-calculator.html	financial	BUILD	Financial Calculators
+6	Home Equity Loan Calculator	/home-equity-loan-calculator.html	financial	BUILD	Financial Calculators
+5	Business Loan Calculator	/business-loan-calculator.html	financial	BUILD	Financial Calculators
+4	Personal Loan Calculator	/personal-loan-calculator.html	financial	TESTONLY	Financial Calculators
+3	Auto Loan Calculator	/auto-loan-calculator.html	financial	BUILD	Financial Calculators
+2	Loan Calculator	/loan-calculator.html	financial	TESTONLY	Financial Calculators
+1	Mortgage Calculator	/mortgage-calculator.html	financial	TESTONLY	Financial Calculators

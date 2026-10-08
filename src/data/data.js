@@ -1,4 +1,5 @@
 import { Calculator, CreditCard, FlaskConical, Terminal, Heart, Scale, Clock, Activity, LayoutGrid, Hammer, TrendingUp } from 'lucide-react';
+import { REGISTRY } from './registry';
 
 export const APP_NAME = "TheCalHub";
 export const APP_VERSION = "1.0.0";
@@ -44,6 +45,11 @@ export const CALCULATORS = {
     { id: 'simple-interest', name: 'Simple Interest Calculator', path: '/simple-interest-calculator.html', description: 'Calculate simple interest', keywords: ['simple interest', 'principal', 'interest'] },
     { id: 'sip', name: 'SIP Calculator', path: '/sip-calculator.html', description: 'Systematic investment plan', keywords: ['sip', 'mutual fund', 'investment', 'monthly'] },
     { id: 'tax', name: 'Tax Calculator', path: '/tax-calculator.html', description: 'Income tax estimation', keywords: ['tax', 'income tax', 'tax return', 'irs'] },
+    { id: 'investment', name: 'Investment Calculator', path: '/investment-calculator.html', description: 'Calculate your investment growth over time', keywords: ['investment', 'growth', 'portfolio', 'return'] },
+    { id: 'mortgage', name: 'Mortgage Calculator', path: '/mortgage-calculator.html', description: 'Calculate mortgage payments', keywords: ['mortgage', 'house', 'home', 'payment'] },
+    { id: 'personal-loan', name: 'Personal Loan Calculator', path: '/personal-loan-calculator.html', description: 'Calculate personal loan payments', keywords: ['personal loan', 'emi', 'unsecured', 'borrow'] },
+    { id: 'gst', name: 'GST Calculator', path: '/gst-calculator.html', description: 'Add or remove GST', keywords: ['gst', 'tax', 'goods and services', 'invoice'] },
+    { id: 'tip', name: 'Tip Calculator', path: '/tip-calculator.html', description: 'Calculate tips and split the bill', keywords: ['tip', 'gratuity', 'bill', 'split'] },
   ],
   health: [
     { id: 'bmr', name: 'BMR Calculator', path: '/bmr-calculator.html', description: 'Basal metabolic rate', keywords: ['bmr', 'metabolism', 'calories', 'basal'] },
@@ -66,23 +72,21 @@ export const CALCULATORS = {
     { id: 'scientific-constants', name: 'Scientific Constants', path: '/scientific-constants.html', description: 'Physical constants', keywords: ['constants', 'physics', 'avogadro', 'speed of light'] },
     { id: 'scientific-notation', name: 'Scientific Notation Calculator', path: '/scientific-notation-calculator.html', description: 'Scientific notation', keywords: ['scientific notation', 'powers of 10', 'exponent'] },
     { id: 'trigonometry', name: 'Trigonometry Calculator', path: '/trigonometry-calculator.html', description: 'Trigonometric calculations', keywords: ['trig', 'sin', 'cos', 'tan', 'angle'] },
-    { id: 'unit-converter', name: 'Unit Converter', path: '/unit-converter.html', description: 'Convert between units', keywords: ['convert', 'units', 'conversion', 'measurement'] },
+    { id: 'unit-converter', name: 'Unit Converter', path: '/unit-conversion-calculator.html', description: 'Convert between units', keywords: ['convert', 'units', 'conversion', 'measurement'] },
     { id: 'vector', name: 'Vector Calculator', path: '/vector-calculator.html', description: 'Vector operations', keywords: ['vector', 'magnitude', 'dot product', 'cross product'] },
+    { id: 'scientific', name: 'Scientific Calculator', path: '/scientific-calculator.html', description: 'Advanced scientific calculations', keywords: ['scientific', 'trig', 'log', 'engineering'] },
   ],
   programming: [
     { id: 'base64', name: 'Base64 Encoder', path: '/base64-encoder.html', description: 'Base64 encode/decode', keywords: ['base64', 'encode', 'decode', 'encoding'] },
-    { id: 'binary', name: 'Binary Converter', path: '/binary-converter.html', description: 'Binary conversion', keywords: ['binary', 'bin', 'convert', 'base 2'] },
+    { id: 'binary', name: 'Binary Converter', path: '/binary-hex-decimal-converter.html', description: 'Binary conversion', keywords: ['binary', 'bin', 'convert', 'base 2'] },
     { id: 'bitwise', name: 'Bitwise Calculator', path: '/bitwise-calculator.html', description: 'Bitwise operations', keywords: ['bitwise', 'and', 'or', 'xor', 'bit'] },
-    { id: 'color-converter', name: 'Color Converter', path: '/color-converter.html', description: 'Color code converter', keywords: ['color', 'hex', 'rgb', 'hexadecimal', 'conversion'] },
     { id: 'hash', name: 'Hash Generator', path: '/hash-generator.html', description: 'Generate hashes', keywords: ['hash', 'md5', 'sha', 'checksum'] },
-    { id: 'hex', name: 'Hex Converter', path: '/hex-converter.html', description: 'Hexadecimal conversion', keywords: ['hex', 'hexadecimal', 'base 16', 'convert'] },
+    { id: 'hex', name: 'Hex Converter', path: '/binary-hex-decimal-converter.html', description: 'Hexadecimal conversion', keywords: ['hex', 'hexadecimal', 'base 16', 'convert'] },
     { id: 'json-formatter', name: 'JSON Formatter', path: '/json-formatter.html', description: 'Format and validate JSON', keywords: ['json', 'format', 'validate', 'pretty print'] },
     { id: 'regex-tester', name: 'Regex Tester', path: '/regex-tester.html', description: 'Test regular expressions', keywords: ['regex', 'regular expression', 'pattern', 'match'] },
-    { id: 'timestamp', name: 'Timestamp Converter', path: '/timestamp-converter.html', description: 'Unix timestamp converter', keywords: ['timestamp', 'unix', 'epoch', 'convert'] },
-    { id: 'uuid', name: 'UUID Generator', path: '/uuid-generator.html', description: 'Generate UUIDs', keywords: ['uuid', 'guid', 'unique', 'identifier'] },
   ],
   math: [
-    { id: 'algebra-solver', name: 'Algebra Solver', path: '/algebra-solver.html', description: 'Solve algebraic equations', keywords: ['algebra', 'equation', 'solve', 'linear'] },
+    { id: 'algebra-solver', name: 'Algebra Solver', path: '/equation-solver.html', description: 'Solve algebraic equations', keywords: ['algebra', 'equation', 'solve', 'linear'] },
     { id: 'combination', name: 'Combination Calculator', path: '/combination-calculator.html', description: 'Calculate combinations', keywords: ['combination', 'ncr', 'choose', 'binomial'] },
     { id: 'equation-solver', name: 'Equation Solver', path: '/equation-solver.html', description: 'Solve equations', keywords: ['equation', 'solve', 'roots', 'variable'] },
     { id: 'factorial', name: 'Factorial Calculator', path: '/factorial-calculator.html', description: 'Calculate factorials', keywords: ['factorial', 'n!', 'permutation'] },
@@ -109,14 +113,15 @@ export const CALCULATORS = {
   dateTime: [
     { id: 'age', name: 'Age Calculator', path: '/age-calculator.html', description: 'Calculate age', keywords: ['age', 'birthday', 'years', 'how old'] },
     { id: 'business-days', name: 'Business Days Calculator', path: '/business-days-calculator.html', description: 'Business days between', keywords: ['business days', 'workdays', 'working days'] },
-    { id: 'countdown', name: 'Countdown Timer', path: '/countdown-timer.html', description: 'Event countdown', keywords: ['countdown', 'timer', 'event', 'count down'] },
+    { id: 'countdown', name: 'Countdown Timer', path: '/workout-timer.html', description: 'Event countdown', keywords: ['countdown', 'timer', 'event', 'count down'] },
     { id: 'date-add', name: 'Date Add/Subtract Calculator', path: '/date-add-subtract-calculator.html', description: 'Add/subtract days', keywords: ['date', 'add', 'subtract', 'days'] },
     { id: 'date-diff', name: 'Date Difference Calculator', path: '/date-difference-calculator.html', description: 'Days between dates', keywords: ['date difference', 'days between', 'difference'] },
     { id: 'leap-year', name: 'Leap Year Calculator', path: '/leap-year-calculator.html', description: 'Check leap years', keywords: ['leap year', 'feb 29', 'divisible'] },
     { id: 'time-duration', name: 'Time Duration Calculator', path: '/time-duration-calculator.html', description: 'Time duration', keywords: ['duration', 'time', 'hours', 'minutes'] },
     { id: 'time-zone', name: 'Time Zone Converter', path: '/time-zone-converter.html', description: 'Time zone conversion', keywords: ['timezone', 'time zone', 'convert', 'utc'] },
     { id: 'week-number', name: 'Week Number Calculator', path: '/week-number-calculator.html', description: 'Week number lookup', keywords: ['week number', 'iso week', 'week of year'] },
-    { id: 'workdays', name: 'Workdays Calculator', path: '/workdays-calculator.html', description: 'Business days', keywords: ['workdays', 'business days', 'working'] },
+    { id: 'workdays', name: 'Workdays Calculator', path: '/business-days-calculator.html', description: 'Business days', keywords: ['workdays', 'business days', 'working'] },
+    { id: 'date', name: 'Date Calculator', path: '/date-calculator.html', description: 'Calculate difference between dates', keywords: ['date', 'difference', 'days between', 'calendar'] },
   ],
   construction: [
     { id: 'area', name: 'Area Calculator', path: '/area-calculator.html', description: 'Calculate area', keywords: ['area', 'square', 'measure', 'size'] },
@@ -129,13 +134,14 @@ export const CALCULATORS = {
     { id: 'steel-weight', name: 'Steel Weight Calculator', path: '/steel-weight-calculator.html', description: 'Steel weight', keywords: ['steel', 'weight', 'metal', 'beam'] },
     { id: 'tile', name: 'Tile Calculator', path: '/tile-calculator.html', description: 'Calculate tiles', keywords: ['tile', 'tiles', 'quantity', 'ceramic'] },
     { id: 'volume', name: 'Volume Calculator', path: '/volume-calculator.html', description: 'Calculate volume', keywords: ['volume', 'cubic', 'capacity', 'space'] },
+    { id: 'gravel', name: 'Gravel Calculator', path: '/gravel-calculator.html', description: 'Calculate gravel volume and tonnage', keywords: ['gravel', 'crushed stone', 'landscape', 'tons'] },
   ],
   trading: [
     { id: 'breakeven', name: 'Breakeven Calculator', path: '/breakeven-calculator.html', description: 'Breakeven point', keywords: ['breakeven', 'break even', 'profit', 'loss'] },
     { id: 'drawdown', name: 'Drawdown Calculator', path: '/drawdown-calculator.html', description: 'Drawdown calculation', keywords: ['drawdown', 'loss', 'risk', 'equity'] },
     { id: 'investment-pnl', name: 'Investment P&L Calculator', path: '/investment-pnl-calculator.html', description: 'Calculate profit/loss and CAGR', keywords: ['investment', 'profit', 'loss', 'cagr', 'return', 'buy', 'sell'] },
     { id: 'kelly-criterion', name: 'Kelly Criterion Calculator', path: '/kelly-criterion-calculator.html', description: 'Kelly position sizing', keywords: ['kelly', 'position sizing', 'betting', 'risk'] },
-    { id: 'margin', name: 'Margin Calculator', path: '/margin-calculator.html', description: 'Margin calculations', keywords: ['margin', 'leverage', 'margin call'] },
+    { id: 'margin', name: 'Margin Calculator', path: '/liquidation-calculator.html', description: 'Margin calculations', keywords: ['margin', 'leverage', 'margin call'] },
     { id: 'pnl', name: 'P&L Calculator', path: '/pnl-calculator.html', description: 'Profit and loss', keywords: ['profit', 'loss', 'pnl', 'gain'] },
     { id: 'position-size', name: 'Position Size Calculator', path: '/position-size-calculator.html', description: 'Calculate position size', keywords: ['position size', 'lot size', 'risk management'] },
     { id: 'risk-of-ruin', name: 'Risk of Ruin Calculator', path: '/risk-of-ruin-calculator.html', description: 'Probability of ruin', keywords: ['risk of ruin', 'ruin', 'probability'] },
@@ -143,6 +149,20 @@ export const CALCULATORS = {
     { id: 'stop-loss', name: 'Stop Loss Calculator', path: '/stop-loss-calculator.html', description: 'Stop loss levels', keywords: ['stop loss', 'stop', 'exit', 'risk'] },
   ],
 };
+
+// Registry calculators (built by the agent shards) are merged into the home
+// catalogue so every routed calculator is searchable and visible on the Dashboard.
+REGISTRY.forEach((def) => {
+  const bucket = CALCULATORS[def.category] || (CALCULATORS[def.category] = []);
+  if (bucket.some((calc) => calc.path === def.path)) return;
+  bucket.push({
+    id: def.id,
+    name: def.title,
+    path: def.path,
+    description: def.description,
+    keywords: def.keywords || [],
+  });
+});
 
 export const CALCULATORS_ALL = Object.values(CALCULATORS).flat();
 

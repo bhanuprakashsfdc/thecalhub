@@ -1,14 +1,23 @@
-
-import { Info, BarChart2, AlertTriangle } from 'lucide-react';
+import { Info, BarChart2, AlertTriangle, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { APP_NAME } from '@/src/data/data';
+import { PageSEO } from '@/src/components/layout/PageSEO';
 
 export default function About() {
   return (
     <main className="flex-1 pt-20 md:pt-0 overflow-y-auto bg-surface selection:bg-primary-container selection:text-on-primary-fixed">
+      <PageSEO
+        title="About"
+        description={`Learn how ${APP_NAME} builds and checks its 125+ free online calculators, the formulas we use, and the limits of every result we show.`}
+        keywords="about, calculator accuracy, methodology, disclaimer"
+        path="/about.html"
+      />
+
       <header className="px-6 md:px-16 pt-12 md:pt-24 pb-12 max-w-5xl mx-auto">
-        <span className="text-primary-fixed uppercase tracking-[0.3em] text-[10px] font-mono mb-4 block">System / Documentation</span>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-on-background mb-8 leading-[0.9]">Project Integrity & Legal Compliance.</h1>
+        <span className="text-primary-fixed uppercase tracking-[0.3em] text-[10px] font-mono mb-4 block">About / {APP_NAME}</span>
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-on-background mb-8 leading-[0.9]">Free calculators, explained in the open.</h1>
         <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-          Technical transparency for the DevCalc engine. Understanding the precision, limitations, and intended use of our computational workspace.
+          {APP_NAME} is a free, browser-based calculator hub for finance, health, mathematics, construction, trading, datetime and programming tasks. This page explains how we build our calculators, and the honest limits of the numbers they produce.
         </p>
       </header>
 
@@ -22,12 +31,12 @@ export default function About() {
               <li><a className="text-on-surface hover:text-primary-fixed transition-colors block py-1" href="#about">About the Project</a></li>
               <li><a className="text-on-surface hover:text-primary-fixed transition-colors block py-1" href="#methodology">Methodology</a></li>
               <li><a className="text-on-surface hover:text-primary-fixed transition-colors block py-1" href="#disclaimer">Legal Disclaimer</a></li>
-              <li><a className="text-on-surface hover:text-primary-fixed transition-colors block py-1" href="#licensing">Licensing</a></li>
+              <li><a className="text-on-surface hover:text-primary-fixed transition-colors block py-1" href="#contact">Contact & Policies</a></li>
             </ul>
           </div>
           <div className="p-6 bg-surface-container-low rounded-xl border border-white/5">
             <p className="text-xs font-mono text-neutral-500 mb-2">LAST UPDATED</p>
-            <p className="text-lg font-mono text-on-surface">2023.10.27</p>
+            <p className="text-lg font-mono text-on-surface">2026.10.07</p>
           </div>
         </div>
 
@@ -39,10 +48,13 @@ export default function About() {
             </div>
             <div className="space-y-6 text-on-surface-variant leading-relaxed text-lg">
               <p>
-                DevCalc was born from the necessity of a precision-driven workspace for technical professionals. While traditional calculators focus on general-purpose arithmetic, DevCalc is architected to handle the specific complexities of modern development workflows—from binary manipulation and floating-point analysis to complex financial forecasting.
+                {APP_NAME} started with a simple frustration: most calculator websites are slow, cluttered, and never explain how they reached their answer. We built a single hub where every tool — from an EMI schedule to a staircase riser calculator — loads instantly, works offline-friendly in your browser, and publishes the formula it uses.
               </p>
               <p>
-                Our philosophy is centered on <strong className="text-on-background">Computational Transparency</strong>. We believe that every user should understand not just the result, but the logic and constraints applied to reach it.
+                Our philosophy is <strong className="text-on-background">Computational Transparency</strong>. Every calculator shows not just the result, but the inputs, the assumptions, and the method behind it, so you can check whether the answer actually fits your situation.
+              </p>
+              <p>
+                Nothing you type into a calculator is sent to a server by default — the maths runs locally in your browser. There is no account, no paywall, and no data resale. The site is funded by advertising, which is disclosed in our <Link className="text-primary-fixed hover:underline" to="/privacy-policy.html">Privacy Policy</Link>.
               </p>
             </div>
           </article>
@@ -54,16 +66,24 @@ export default function About() {
             </div>
             <div className="space-y-6 text-on-surface-variant leading-relaxed">
               <p>
-                The core calculation engine utilizes high-precision arithmetic libraries ensuring that rounding errors are kept within a <span className="mono px-1 bg-surface-container-high rounded text-sm">1e-15</span> tolerance margin for standard operations.
+                Each calculator is built from a published formula (for example, the standard amortisation formula for EMI, or the WHO BMI formula) and is unit-tested against known reference values before release. Where a standard exists — ISO, IEEE, or an industry publication — we follow it.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-5 bg-surface-container-low rounded-lg border-l-2 border-primary-fixed">
                   <h5 className="text-on-background font-bold mb-2">Floating Point</h5>
-                  <p className="text-sm opacity-80">Strict adherence to IEEE 754 standards for all scientific and programming calculations.</p>
+                  <p className="text-sm opacity-80">Scientific and programming calculations follow IEEE 754 semantics with rounding applied only at presentation time.</p>
                 </div>
                 <div className="p-5 bg-surface-container-low rounded-lg border-l-2 border-primary-fixed">
                   <h5 className="text-on-background font-bold mb-2">Financial Kernels</h5>
-                  <p className="text-sm opacity-80">Utilizes bankers' rounding (half-to-even) for all currency-sensitive operations.</p>
+                  <p className="text-sm opacity-80">Currency-sensitive operations use explicit decimal rounding (half-up by default) so instalment totals reconcile.</p>
+                </div>
+                <div className="p-5 bg-surface-container-low rounded-lg border-l-2 border-primary-fixed">
+                  <h5 className="text-on-background font-bold mb-2">Reference Values</h5>
+                  <p className="text-sm opacity-80">Every tool ships with worked examples and common-value tables so you can sanity-check the output yourself.</p>
+                </div>
+                <div className="p-5 bg-surface-container-low rounded-lg border-l-2 border-primary-fixed">
+                  <h5 className="text-on-background font-bold mb-2">Assumptions Stated</h5>
+                  <p className="text-sm opacity-80">Rate frequency, compounding, and unit systems are shown next to the inputs — never hidden in fine print.</p>
                 </div>
               </div>
             </div>
@@ -78,14 +98,32 @@ export default function About() {
               </div>
               <div className="p-6 bg-surface-container-highest rounded-xl border border-white/5 space-y-4">
                 <p className="text-on-background font-bold text-lg leading-snug">
-                  THE RESULTS PROVIDED BY DEVCALC ARE FOR EDUCATIONAL AND INFORMATIONAL PURPOSES ONLY.
+                  THE RESULTS PROVIDED BY {APP_NAME.toUpperCase()} ARE FOR EDUCATIONAL AND INFORMATIONAL PURPOSES ONLY.
                 </p>
                 <div className="space-y-4 text-sm text-on-surface-variant leading-relaxed opacity-90 italic">
                   <p>
-                    DevCalc, its developers, and affiliates make no representations or warranties, express or implied, regarding the accuracy, completeness, or reliability of any calculation results. These tools are intended to assist in conceptual modeling and should not be used as the sole basis for critical financial, structural, medical, or life-safety decisions.
+                    {APP_NAME}, its operators, and affiliates make no representations or warranties, express or implied, regarding the accuracy, completeness, or reliability of any calculation results. These tools are intended to assist in conceptual modeling and should not be used as the sole basis for critical financial, structural, medical, or life-safety decisions.
+                  </p>
+                  <p>
+                    Nothing on this site is financial, medical, legal, or tax advice. Consult a qualified professional before acting on any result. See our full <Link className="text-primary-fixed hover:underline not-italic" to="/terms-of-service.html">Terms of Service</Link> for details.
                   </p>
                 </div>
               </div>
+            </div>
+          </article>
+
+          <article className="space-y-6" id="contact">
+            <div className="flex items-center gap-4 text-primary-fixed">
+              <Users className="w-6 h-6" />
+              <h2 className="text-2xl font-bold tracking-tight">Contact & Policies</h2>
+            </div>
+            <div className="space-y-4 text-on-surface-variant leading-relaxed">
+              <p>
+                Found a bug in a formula, or want a calculator we do not have yet? We read every message at <a className="text-primary-fixed hover:underline" href="mailto:support@thecalhub.com">support@thecalhub.com</a>, or use our <Link className="text-primary-fixed hover:underline" to="/contact.html">Contact page</Link>.
+              </p>
+              <p>
+                Legal pages: <Link className="text-primary-fixed hover:underline" to="/privacy-policy.html">Privacy Policy</Link> · <Link className="text-primary-fixed hover:underline" to="/terms-of-service.html">Terms of Service</Link>
+              </p>
             </div>
           </article>
         </div>
