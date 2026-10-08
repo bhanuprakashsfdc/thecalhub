@@ -12,7 +12,7 @@ export default function WoodCalculator() {
 
   const result = useMemo(() => {
     const sqft = length * width;
-    const boardFeet = (sqft * boardThickness / 12).toFixed(2);
+    const boardFeet = (sqft * boardThickness).toFixed(2);
     const cost = (Number(boardFeet) * price).toFixed(2);
     return { sqft: sqft.toString(), boardFeet, cost };
   }, [length, width, boardThickness, price]);

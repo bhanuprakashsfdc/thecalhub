@@ -1,0 +1,5 @@
+# https://thecalhub.com/robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://thecalhub.com/sitemap.xml

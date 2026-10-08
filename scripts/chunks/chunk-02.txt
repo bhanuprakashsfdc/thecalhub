@@ -1,0 +1,99 @@
+900	Pet Age Calculator	/pet-age-calculator.html	standard	BUILD	Pet & Animal Calculators
+899	Pet Weight Calculator	/pet-weight-calculator.html	standard	BUILD	Pet & Animal Calculators
+898	Pet Food Calculator	/pet-food-calculator.html	standard	BUILD	Pet & Animal Calculators
+897	Pet Calorie Calculator	/pet-calorie-calculator.html	standard	BUILD	Pet & Animal Calculators
+896	Sewing Calculator	/sewing-calculator.html	standard	BUILD	DIY & Craft Calculators
+895	Knitting Calculator	/knitting-calculator.html	standard	BUILD	DIY & Craft Calculators
+894	Crochet Calculator	/crochet-calculator.html	standard	BUILD	DIY & Craft Calculators
+893	Quilting Calculator	/quilting-calculator.html	standard	BUILD	DIY & Craft Calculators
+892	Embroidery Calculator	/embroidery-calculator.html	standard	BUILD	DIY & Craft Calculators
+891	Pattern Size Calculator	/pattern-size-calculator.html	standard	BUILD	DIY & Craft Calculators
+890	Fabric Calculator	/fabric-calculator.html	standard	BUILD	DIY & Craft Calculators
+889	Yarn Calculator	/yarn-calculator.html	standard	BUILD	DIY & Craft Calculators
+888	Labor Cost Calculator	/labor-cost-calculator.html	construction	BUILD	Home Improvement Calculators
+887	Tool Cost Calculator	/tool-cost-calculator.html	construction	BUILD	Home Improvement Calculators
+886	Fastener Calculator	/fastener-calculator.html	construction	BUILD	Home Improvement Calculators
+885	Sealant Calculator	/sealant-calculator.html	construction	BUILD	Home Improvement Calculators
+884	Adhesive Calculator	/adhesive-calculator.html	construction	BUILD	Home Improvement Calculators
+883	Grout Calculator	/grout-calculator.html	construction	BUILD	Home Improvement Calculators
+882	Caulk Calculator	/caulk-calculator.html	construction	BUILD	Home Improvement Calculators
+881	Primer Calculator	/primer-calculator.html	construction	BUILD	Home Improvement Calculators
+879	Decorations Calculator	/decorations-calculator.html	standard	BUILD	Party & Entertainment Calculators
+878	Ice Quantity Calculator	/ice-quantity-calculator.html	standard	BUILD	Party & Entertainment Calculators
+877	Drink Quantity Calculator	/drink-quantity-calculator.html	standard	BUILD	Party & Entertainment Calculators
+876	Food Quantity Calculator	/food-quantity-calculator.html	standard	BUILD	Party & Entertainment Calculators
+875	RSVP Calculator	/rsvp-calculator.html	standard	BUILD	Party & Entertainment Calculators
+875	Invitation Count Calculator	/invitation-count-calculator.html	standard	BUILD	Party & Entertainment Calculators
+874	Guest List Calculator	/guest-list-calculator.html	standard	BUILD	Party & Entertainment Calculators
+873	Party Budget Calculator	/party-budget-calculator.html	standard	BUILD	Party & Entertainment Calculators
+872	Dress Size Calculator	/dress-size-calculator.html	standard	BUILD	Wedding & Events Calculators
+871	Cake Size Calculator	/cake-size-calculator.html	standard	BUILD	Wedding & Events Calculators
+870	Catering Calculator	/catering-calculator.html	standard	BUILD	Wedding & Events Calculators
+869	Table Layout Calculator	/table-layout-calculator.html	standard	BUILD	Wedding & Events Calculators
+868	Seating Capacity Calculator	/seating-capacity-calculator.html	standard	BUILD	Wedding & Events Calculators
+867	Guest Count Calculator	/guest-count-calculator.html	standard	BUILD	Wedding & Events Calculators
+866	Wedding Cost Calculator	/wedding-cost-calculator.html	standard	BUILD	Wedding & Events Calculators
+865	Wedding Budget Calculator	/wedding-budget-calculator.html	standard	BUILD	Wedding & Events Calculators
+864	Alcohol Calculator	/alcohol-calculator.html	health	BUILD	Food & Nutrition Calculators
+863	Caffeine Calculator	/caffeine-calculator.html	health	BUILD	Food & Nutrition Calculators
+862	Fiber Intake Calculator	/fiber-intake-calculator.html	health	BUILD	Food & Nutrition Calculators
+861	Sugar Intake Calculator	/sugar-intake-calculator.html	health	BUILD	Food & Nutrition Calculators
+860	Sodium Intake Calculator	/sodium-intake-calculator.html	health	BUILD	Food & Nutrition Calculators
+859	Mineral Calculator	/mineral-calculator.html	health	BUILD	Food & Nutrition Calculators
+858	Vitamin Calculator	/vitamin-calculator.html	health	BUILD	Food & Nutrition Calculators
+857	Micronutrient Calculator	/micronutrient-calculator.html	health	BUILD	Food & Nutrition Calculators
+856	Macronutrient Calculator	/macronutrient-calculator.html	health	BUILD	Food & Nutrition Calculators
+855	Nutritional Calories Calculator	/nutritional-calories-calculator.html	health	BUILD	Food & Nutrition Calculators
+854	Evapotranspiration Calculator	/evapotranspiration-calculator.html	standard	BUILD	Agriculture Calculators
+853	Growth Degree Days Calculator	/growth-degree-days-calculator.html	standard	BUILD	Agriculture Calculators
+852	Harvest Date Calculator	/harvest-date-calculator.html	standard	BUILD	Agriculture Calculators
+851	Seeding Rate Calculator	/seeding-rate-calculator.html	standard	BUILD	Agriculture Calculators
+850	Plant Spacing Calculator	/plant-spacing-calculator.html	standard	BUILD	Agriculture Calculators
+849	Irrigation Calculator	/irrigation-calculator.html	standard	BUILD	Agriculture Calculators
+848	Fertilizer Calculator	/fertilizer-calculator.html	standard	BUILD	Agriculture Calculators
+847	Crop Yield Calculator	/crop-yield-calculator.html	standard	BUILD	Agriculture Calculators
+846	Area on Earth Calculator	/area-on-earth-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+845	Map Scale Calculator	/map-scale-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+844	Coordinate Distance Calculator	/coordinate-distance-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+843	Latitude Longitude Calculator	/latitude-longitude-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+842	Bearing Calculator	/bearing-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+841	Azimuth Calculator	/azimuth-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+840	Great Circle Distance Calculator	/great-circle-distance-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+839	Distance on Earth Calculator	/distance-on-earth-calculator.html	scientific	BUILD	Geography & Geometrics Calculators
+838	Margin of Error Social Calculator	/margin-of-error-social-calculator.html	scientific	BUILD	Social Science Calculators
+837	Survey Sample Calculator	/survey-sample-calculator.html	scientific	BUILD	Social Science Calculators
+836	Census Calculator	/census-calculator.html	scientific	BUILD	Social Science Calculators
+835	Demographics Calculator	/demographics-calculator.html	scientific	BUILD	Social Science Calculators
+834	Urbanization Calculator	/urbanization-calculator.html	scientific	BUILD	Social Science Calculators
+833	Migration Rate Calculator	/migration-rate-calculator.html	scientific	BUILD	Social Science Calculators
+832	Fertility Rate Social Calculator	/fertility-rate-social-calculator.html	scientific	BUILD	Social Science Calculators
+831	Death Rate Calculator	/death-rate-calculator.html	scientific	BUILD	Social Science Calculators
+830	Birth Rate Calculator	/birth-rate-calculator.html	scientific	BUILD	Social Science Calculators
+829	Population Growth Calculator	/population-growth-calculator.html	scientific	BUILD	Social Science Calculators
+828	IQ Estimate Calculator	/iq-estimate-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+827	Memory Test Calculator	/memory-test-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+826	Cognitive Function Calculator	/cognitive-function-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+825	Sleep Quality Calculator	/sleep-quality-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+824	Mood Tracker Calculator	/mood-tracker-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+823	Depression Score Calculator	/depression-score-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+822	Anxiety Score Calculator	/anxiety-score-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+821	Stress Level Calculator	/stress-level-calculator.html	health	BUILD	Psychology & Mental Health Calculators
+820	Fall Risk Calculator	/fall-risk-calculator.html	health	BUILD	Nursing Calculators
+819	Pressure Ulcer Risk Calculator	/pressure-ulcer-risk-calculator.html	health	BUILD	Nursing Calculators
+818	Wound Care Calculator	/wound-care-calculator.html	health	BUILD	Nursing Calculators
+817	Urine Output Calculator	/urine-output-calculator.html	health	BUILD	Nursing Calculators
+816	Input Output Calculator	/input-output-calculator.html	health	BUILD	Nursing Calculators
+815	Fluid Balance Calculator	/fluid-balance-calculator.html	health	BUILD	Nursing Calculators
+814	Caloric Needs Nursing Calculator	/caloric-needs-nursing-calculator.html	health	BUILD	Nursing Calculators
+813	Tube Feeding Calculator	/tube-feeding-calculator.html	health	BUILD	Nursing Calculators
+812	infusion Rate Calculator	/infusion-rate-calculator.html	health	BUILD	Nursing Calculators
+811	IV Pump Rate Calculator	/iv-pump-rate-calculator.html	health	BUILD	Nursing Calculators
+810	Compatibility Calculator	/compatibility-calculator.html	health	BUILD	Pharmacy Calculators
+809	Drug Interaction Calculator	/drug-interaction-calculator.html	health	BUILD	Pharmacy Calculators
+808	Drug Clearance Calculator	/drug-clearance-calculator.html	health	BUILD	Pharmacy Calculators
+807	Drug Half-Life Calculator	/drug-half-life-calculator.html	health	BUILD	Pharmacy Calculators
+806	Geriatric Dosage Calculator	/geriatric-dosage-calculator.html	health	BUILD	Pharmacy Calculators
+805	Pediatric Dosage Calculator	/pediatric-dosage-calculator.html	health	BUILD	Pharmacy Calculators
+804	BSA Dosage Calculator	/bsa-dosage-calculator.html	health	BUILD	Pharmacy Calculators
+803	Weight-Based Dosage Calculator	/weight-based-dosage-calculator.html	health	BUILD	Pharmacy Calculators
+802	Liquid Dosage Calculator	/liquid-dosage-calculator.html	health	BUILD	Pharmacy Calculators

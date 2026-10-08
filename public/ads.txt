@@ -1,0 +1,4 @@
+# TODO (owner): replace pub-XXXXXXXXXXXXXXXX with your real AdSense publisher ID
+# before submitting this site for review. Source of truth: docs/ADSENSE_CHECKLIST.md
+# ("Owner action" section). Never commit a guessed or copied publisher ID.
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

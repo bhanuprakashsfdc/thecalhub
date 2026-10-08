@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react';
 import { Mountain } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 
+const GRAVEL_TONS_PER_CUBIC_YARD = 1.4;
+
 export default function GravelCalculator() {
   const { getCurrencySymbol } = useI18n();
   const symbol = getCurrencySymbol();
@@ -13,10 +15,10 @@ export default function GravelCalculator() {
   const result = useMemo(() => {
     const sqft = length * width;
     const cubicFeet = (sqft * depth) / 12;
-    const cubicYards = (cubicFeet / 27).toFixed(2);
-    const tons = ((cubicFeet * 1.4) / 2000).toFixed(2);
-    const cost = (Number(cubicYards) * price).toFixed(2);
-    return { sqft: sqft.toString(), cubicFeet: cubicFeet.toFixed(2), cubicYards, tons, cost };
+    const cubicYards = cubicFeet / 27;
+    const tons = cubicYards * GRAVEL_TONS_PER_CUBIC_YARD;
+    const cost = cubicYards * price;
+    return { sqft: sqft.toString(), cubicFeet: cubicFeet.toFixed(2), cubicYards: cubicYards.toFixed(2), tons: tons.toFixed(2), cost: cost.toFixed(2) };
   }, [length, width, depth, price]);
 
   const inputClass = "w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-white mono focus:ring-1 focus:ring-primary-fixed transition-all text-lg outline-none";
@@ -70,6 +72,7 @@ export default function GravelCalculator() {
               <span className="text-neutral-400">Weight (tons)</span>
               <span className="text-white font-mono">{result.tons} tons</span>
             </div>
+            <p className="text-neutral-500 text-xs">Tonnage uses a bulk density of 1.4 tons per cubic yard (≈ 105 lb/ft³).</p>
             <div className="border-t border-white/10 pt-3 mt-3 flex justify-between">
               <span className="text-neutral-400">Estimated Cost</span>
               <span className="text-primary-fixed font-mono text-xl">{symbol}{result.cost}</span>

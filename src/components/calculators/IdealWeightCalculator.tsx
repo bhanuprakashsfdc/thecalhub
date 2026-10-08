@@ -6,7 +6,9 @@ export function IdealWeightCalculator() {
   const [gender, setGender] = useState('male');
 
   const baseWeight = gender === 'male' ? 50 : 45.5;
-  const ideal = baseWeight + 2.3 * ((height - 60) * 12 / 2.54 * 0.393701);
+  const inchesOverFiveFeet = Math.max(0, height - 60);
+  const idealKg = baseWeight + 2.3 * inchesOverFiveFeet;
+  const ideal = idealKg * 2.2046;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -16,7 +18,7 @@ export function IdealWeightCalculator() {
       </div></div>
       <div className="lg:col-span-7"><div className="bg-surface-container-low p-8 rounded-xl border border-white/5">
         <div className="flex items-center gap-2 text-primary-fixed mb-6"><Scale className="w-4 h-4" /><span className="text-[10px] uppercase tracking-[0.2em] font-bold">Ideal Weight</span></div>
-        <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">{ideal.toFixed(1)} lbs</p></div>
+        <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">{idealKg.toFixed(1)} kg</p><p className="text-neutral-400 mono mt-2">{ideal.toFixed(1)} lbs</p></div>
       </div></div>
     </div>
   );

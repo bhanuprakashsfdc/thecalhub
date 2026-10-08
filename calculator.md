@@ -564,94 +564,94 @@
 518. Henry's Law Calculator
 
 ## Astronomy & Space Calculators
-519. Orbital Velocity Calculator
-520. Escape Velocity Calculator
-521. Orbital Period Calculator
-522. Orbital Distance Calculator
-523. Gravity on Other Planets Calculator
-524. Weight on Other Planets Calculator
-525. Age on Other Planets Calculator
-526. Day Length on Other Planets Calculator
-527. Year Length on Other Planets Calculator
-528. Star Distance Calculator
-529. Star Brightness Calculator
-530. Star Temperature Calculator
+519. Orbital Velocity Calculator [DONE]
+520. Escape Velocity Calculator [DONE]
+521. Orbital Period Calculator [DONE]
+522. Orbital Distance Calculator [DONE]
+523. Gravity on Other Planets Calculator [DONE]
+524. Weight on Other Planets Calculator [DONE]
+525. Age on Other Planets Calculator [DONE]
+526. Day Length on Other Planets Calculator [DONE]
+527. Year Length on Other Planets Calculator [DONE]
+528. Star Distance Calculator [DONE]
+529. Star Brightness Calculator [DONE]
+530. Star Temperature Calculator [DONE]
 
 ## Music & Audio Calculators
-531. BPM Calculator
-532. Beat Duration Calculator
-533. Note Length Calculator
-534. Time Signature Calculator
-535. Tempo Calculator
-536. Metronome Calculator
-537. Frequency to Note Calculator
-538. Note to Frequency Calculator
-539. Pitch Calculator
-540. Interval Calculator
-541. Chord Calculator
-542. Scale Calculator
-543. Audio Volume Calculator
-544. Decibel Calculator
-545. Sound Level Calculator
-546. dB Calculator
+531. BPM Calculator [DONE]
+532. Beat Duration Calculator [DONE]
+533. Note Length Calculator [DONE]
+534. Time Signature Calculator [DONE]
+535. Tempo Calculator [DONE]
+536. Metronome Calculator [DONE]
+537. Frequency to Note Calculator [DONE]
+538. Note to Frequency Calculator [DONE]
+539. Pitch Calculator [DONE]
+540. Interval Calculator [DONE]
+541. Chord Calculator [DONE]
+542. Scale Calculator [DONE]
+543. Audio Volume Calculator [DONE]
+544. Decibel Calculator [DONE]
+545. Sound Level Calculator [DONE]
+546. dB Calculator [DONE]
 
 ## Photography Calculators
-547. Aperture Calculator
-548. Shutter Speed Calculator
-549. ISO Calculator
-550. Exposure Calculator
-551. Depth of Field Calculator
-552. Hyperfocal Distance Calculator
-553. Field of View Calculator
-554. Angle of View Calculator
-555. Focal Length Calculator
-556. Crop Factor Calculator
-557. Megapixel Calculator
-558. Image Size Calculator
-559. Print Size Calculator
-560. Aspect Ratio Calculator
+547. Aperture Calculator [DONE]
+548. Shutter Speed Calculator [DONE]
+549. ISO Calculator [DONE]
+550. Exposure Calculator [DONE]
+551. Depth of Field Calculator [DONE]
+552. Hyperfocal Distance Calculator [DONE]
+553. Field of View Calculator [DONE]
+554. Angle of View Calculator [DONE]
+555. Focal Length Calculator [DONE]
+556. Crop Factor Calculator [DONE]
+557. Megapixel Calculator [DONE]
+558. Image Size Calculator [DONE]
+559. Print Size Calculator [DONE]
+560. Aspect Ratio Calculator [DONE]
 
 ## Gaming Calculators
-561. RPG Stat Calculator
-562. Damage Calculator
-563. Heal Calculator
-564. EXP Calculator
-565. Level Up Calculator
-566. DPS Calculator
-567. Attack Speed Calculator
-568. Critical Hit Calculator
-569. Dodge Calculator
-570. Parry Calculator
+561. RPG Stat Calculator [DONE]
+562. Damage Calculator [DONE]
+563. Heal Calculator [DONE]
+564. EXP Calculator [DONE]
+565. Level Up Calculator [DONE]
+566. DPS Calculator [DONE]
+567. Attack Speed Calculator [DONE]
+568. Critical Hit Calculator [DONE]
+569. Dodge Calculator [DONE]
+570. Parry Calculator [DONE]
 571. Block Calculator
-572. Armor Calculator
-573. Resistance Calculator
-574. Magic Resistance Calculator
-575. Cooldown Calculator
-576. DPS Build Calculator
+572. Armor Calculator [DONE]
+573. Resistance Calculator [DONE]
+574. Magic Resistance Calculator [DONE]
+575. Cooldown Calculator [DONE]
+576. DPS Build Calculator [DONE]
 
 ## Sports Calculators
-577. Batting Average Calculator
-578. Slugging Percentage Calculator
-579. On-Base Percentage Calculator
-580. OPS Calculator
-581. ERA Calculator
-582. WHIP Calculator
-583. QBR Calculator
-584. passer Rating Calculator
-585. Yards Per Carry Calculator
-586. Yards Per Catch Calculator
-587. Field Goal Percentage Calculator
-588. Free Throw Percentage Calculator
-589. Three Point Percentage Calculator
-590. Player Efficiency Calculator
-591. Win Shares Calculator
-592. Value Over Replacement Calculator
+577. Batting Average Calculator [DONE]
+578. Slugging Percentage Calculator [DONE]
+579. On-Base Percentage Calculator [DONE]
+580. OPS Calculator [DONE]
+581. ERA Calculator [DONE]
+582. WHIP Calculator [DONE]
+583. QBR Calculator [DONE]
+584. passer Rating Calculator [DONE]
+585. Yards Per Carry Calculator [DONE]
+586. Yards Per Catch Calculator [DONE]
+587. Field Goal Percentage Calculator [DONE]
+588. Free Throw Percentage Calculator [DONE]
+589. Three Point Percentage Calculator [DONE]
+590. Player Efficiency Calculator [DONE]
+591. Win Shares Calculator [DONE]
+592. Value Over Replacement Calculator [DONE]
 
 ## Cooking & Kitchen Calculators
-593. Recipe Scaler Calculator
-594. Portion Calculator
-595. Serving Size Calculator
-596. Cooking Time Calculator
+593. Recipe Scaler Calculator [DONE]
+594. Portion Calculator [DONE]
+595. Serving Size Calculator [DONE]
+596. Cooking Time Calculator [DONE]
 597. Oven Temperature Calculator
 598. Baking Time Calculator
 599. Meat Cooking Calculator
@@ -690,6 +690,7 @@
 628. Category Budget Calculator
 629. Envelope Budget Calculator
 630. 50/30/20 Budget Calculator
+631. Runway Calculator [DONE]
 
 ## Credit & Debt Calculators
 631. Credit Score Calculator
@@ -705,78 +706,78 @@
 641. DTI Calculator
 
 ## Retirement Planning Calculators
-642. Retirement Savings Calculator
-643. Retirement Income Calculator
-644. Retirement Age Calculator
-645. Retirement Goal Calculator
-646. Social Security Calculator
-647. Pension Calculator
-648. 401k Withdrawal Calculator
-649. IRA Withdrawal Calculator
-650. Required Minimum Distribution Calculator
+642. Retirement Savings Calculator [DONE]
+643. Retirement Income Calculator [DONE]
+644. Retirement Age Calculator [DONE]
+645. Retirement Goal Calculator [DONE]
+646. Social Security Calculator [DONE]
+647. Pension Calculator [DONE]
+648. 401k Withdrawal Calculator [DONE]
+649. IRA Withdrawal Calculator [DONE]
+650. Required Minimum Distribution Calculator [DONE]
 
 ## Investment Calculators
-651. Stock Return Calculator
-652. Stock Price Calculator
-653. Dividend Yield Calculator
-654. Dividend Growth Calculator
-655. Stock Valuation Calculator
-656. PE Ratio Calculator
-657. EPS Growth Calculator
-658. Earnings Per Share Calculator
-659. Book Value Per Share Calculator
-660. Price to Book Calculator
-661. Price to Sales Calculator
-662. EV/EBITDA Calculator
-663. PEG Ratio Calculator
-664. Graham Number Calculator
-665. DCF Calculator
+651. Stock Return Calculator [DONE]
+652. Stock Price Calculator [DONE]
+653. Dividend Yield Calculator [DONE]
+654. Dividend Growth Calculator [DONE]
+655. Stock Valuation Calculator [DONE]
+656. PE Ratio Calculator [DONE]
+657. EPS Growth Calculator [DONE]
+658. Earnings Per Share Calculator [DONE]
+659. Book Value Per Share Calculator [DONE]
+660. Price to Book Calculator [DONE]
+661. Price to Sales Calculator [DONE]
+662. EV/EBITDA Calculator [DONE]
+663. PEG Ratio Calculator [DONE]
+664. Graham Number Calculator [DONE]
+665. DCF Calculator [DONE]
 
 ## Tax Calculators
 666. Sales Tax Calculator
-667. Use Tax Calculator
+667. Use Tax Calculator [DONE]
 668. Property Tax Calculator
-669. Capital Gains Tax Calculator
-670. Ordinary Income Tax Calculator
-671. Alternative Minimum Tax Calculator
-672. Tax Bracket Calculator
-673. Withholding Calculator
-674. Estimated Tax Calculator
-675. Tax Refund Calculator
-676. Tax Due Calculator
+669. Capital Gains Tax Calculator [DONE]
+670. Ordinary Income Tax Calculator [DONE]
+671. Alternative Minimum Tax Calculator [DONE]
+672. Tax Bracket Calculator [DONE]
+673. Withholding Calculator [DONE]
+674. Estimated Tax Calculator [DONE]
+675. Tax Refund Calculator [DONE]
+676. Tax Due Calculator [DONE]
 
 ## Loan Calculators
-677. Loan Approval Calculator
-678. Loan Qualification Calculator
-679. Loan Preapproval Calculator
-680. Loan Comparison Calculator
-681. Loan Refinance Savings Calculator
-682. Biweekly Savings Calculator
-683. Extra Payment Calculator
-684. Loan Payoff Calculator
-685. Balance Payoff Calculator
+677. Loan Approval Calculator [DONE]
+678. Loan Qualification Calculator [DONE]
+679. Loan Preapproval Calculator [DONE]
+680. Loan Comparison Calculator [DONE]
+681. Loan Refinance Savings Calculator [DONE]
+682. Biweekly Savings Calculator [DONE]
+683. Extra Payment Calculator [DONE]
+684. Loan Payoff Calculator [DONE]
+685. Balance Payoff Calculator [DONE]
 
 ## Mortgage Calculators
-686. Mortgage Prequalification Calculator
-687. Mortgage Qualification Calculator
-688. Mortgage Comparison Calculator
+686. Mortgage Prequalification Calculator [DONE]
+687. Mortgage Qualification Calculator [DONE]
+688. Mortgage Comparison Calculator [DONE]
 689. Mortgage Refinance Calculator
-690. Mortgage Break-Even Calculator
-691. Mortgage APR Calculator
-692. Mortgage Points Calculator
-693. Mortgage Insurance Calculator
-694. PMI Removal Calculator
+690. Mortgage Break-Even Calculator [DONE]
+691. Mortgage APR Calculator [DONE]
+692. Mortgage Points Calculator [DONE]
+693. Mortgage Insurance Calculator [DONE]
+694. PMI Removal Calculator [DONE]
 
 ## Banking Calculators
-695. Account Balance Calculator
-696. Interest Earned Calculator
-697. APY Calculator
+695. Account Balance Calculator [DONE]
+696. Interest Earned Calculator [DONE]
+697. APY Calculator [DONE]
 698. Certificate of Deposit Calculator
-699. Savings Bond Calculator
+699. Savings Bond Calculator [DONE]
 700. Money Market Calculator
 
 ## General Purpose Calculators
-701. Tip Calculator
+701. Tip Calculator [DONE]
 702. Gratuity Calculator
 703. Split Bill Calculator
 704. Bill Splitter Calculator
@@ -822,79 +823,79 @@
 740. Bessel Function Calculator
 
 ## Engineering Calculators
-741. Electrical Resistance Calculator
-742. Electrical Capacitance Calculator
-743. Electrical Inductance Calculator
+741. Electrical Resistance Calculator [DONE]
+742. Electrical Capacitance Calculator [DONE]
+743. Electrical Inductance Calculator [DONE]
 744. Ohm's Law Calculator
-745. Power Electrical Calculator
-746. Voltage Drop Calculator
-747. Current Divider Calculator
-748. Voltage Divider Calculator
-749. Wheatstone Bridge Calculator
+745. Power Electrical Calculator [DONE]
+746. Voltage Drop Calculator [DONE]
+747. Current Divider Calculator [DONE]
+748. Voltage Divider Calculator [DONE]
+749. Wheatstone Bridge Calculator [DONE]
 750. Kirchhoff's Law Calculator
 
 ## Mechanical Engineering Calculators
-751. Stress-Strain Calculator
-752. Young's Modulus Calculator
-753. Poisson's Ratio Calculator
-754. Shear Modulus Calculator
-755. Bulk Modulus Calculator
-756. Thermal Expansion Calculator
-757. Heat Transfer Calculator
-758. Thermal Conductivity Calculator
-759. Heat Capacity Calculator
-760. Entropy Calculator
+751. Stress-Strain Calculator [DONE]
+752. Young's Modulus Calculator [DONE]
+753. Poisson's Ratio Calculator [DONE]
+754. Shear Modulus Calculator [DONE]
+755. Bulk Modulus Calculator [DONE]
+756. Thermal Expansion Calculator [DONE]
+757. Heat Transfer Calculator [DONE]
+758. Thermal Conductivity Calculator [DONE]
+759. Heat Capacity Calculator [DONE]
+760. Entropy Calculator [DONE]
 
 ## Civil Engineering Calculators
-761. Road Grade Calculator
-762. Curve Radius Calculator
-763. Superelevation Calculator
-764. Sight Distance Calculator
-765. Stopping Distance Calculator
-766. Turning Radius Calculator
-767. Intersection Design Calculator
-768. Pavement Design Calculator
-769. Culvert Design Calculator
-770. Storm Water Calculator
+761. Road Grade Calculator [DONE]
+762. Curve Radius Calculator [DONE]
+763. Superelevation Calculator [DONE]
+764. Sight Distance Calculator [DONE]
+765. Stopping Distance Calculator [DONE]
+766. Turning Radius Calculator [DONE]
+767. Intersection Design Calculator [DONE]
+768. Pavement Design Calculator [DONE]
+769. Culvert Design Calculator [DONE]
+770. Storm Water Calculator [DONE]
 
 ## Chemical Engineering Calculators
-771. Reaction Rate Calculator
-772. Equilibrium Constant Calculator
-773. Activation Energy Calculator
-774. Heat of Reaction Calculator
-775. Heat of Formation Calculator
-776. Heat of Combustion Calculator
-777. Enthalpy Calculator
-778. Entropy Chemical Calculator
-779. Gibbs Free Energy Calculator
-780. Chemical Potential Calculator
+771. Reaction Rate Calculator [DONE]
+772. Equilibrium Constant Calculator [DONE]
+773. Activation Energy Calculator [DONE]
+774. Heat of Reaction Calculator [DONE]
+775. Heat of Formation Calculator [DONE]
+776. Heat of Combustion Calculator [DONE]
+777. Enthalpy Calculator [DONE]
+778. Entropy Chemical Calculator [DONE]
+779. Gibbs Free Energy Calculator [DONE]
+780. Chemical Potential Calculator [DONE]
 
 ## Environmental Calculators
-781. Carbon Footprint Calculator
-782. CO2 Emissions Calculator
-783. Energy Efficiency Calculator
-784. Water Usage Calculator
-785. Recycling Calculator
-786. Composting Calculator
-787. Air Quality Calculator
-788. Pollution Calculator
-789. E-Waste Calculator
+781. Carbon Footprint Calculator [DONE]
+782. CO2 Emissions Calculator [DONE]
+783. Energy Efficiency Calculator [DONE]
+784. Water Usage Calculator [DONE]
+785. Recycling Calculator [DONE]
+786. Composting Calculator [DONE]
+787. Air Quality Calculator [DONE]
+788. Pollution Calculator [DONE]
+789. E-Waste Calculator [DONE]
 
 ## Medical & Healthcare Calculators
-790. Dosage Calculator
-791. IV Flow Rate Calculator
-792. IV Drip Rate Calculator
-793. Body Surface Area Medical Calculator
-794. Creatinine Clearance Calculator
-795. GFR Calculator
-796. Kidney Function Calculator
-797. Liver Function Calculator
-798. Cholesterol Ratio Calculator
-799. Blood Pressure Calculator
-800. Heart Age Calculator
+790. Dosage Calculator [DONE]
+791. IV Flow Rate Calculator [DONE]
+792. IV Drip Rate Calculator [DONE]
+793. Body Surface Area Medical Calculator [DONE]
+794. Creatinine Clearance Calculator [DONE]
+795. GFR Calculator [DONE]
+796. Kidney Function Calculator [DONE]
+797. Liver Function Calculator [DONE]
+798. Cholesterol Ratio Calculator [DONE]
+799. Blood Pressure Calculator [DONE]
+800. Heart Age Calculator [DONE]
 
 ## Pharmacy Calculators
-801. Tablet Dosage Calculator
+801. Tablet Dosage Calculator [DONE]
 802. Liquid Dosage Calculator
 803. Weight-Based Dosage Calculator
 804. BSA Dosage Calculator
@@ -950,73 +951,73 @@
 846. Area on Earth Calculator
 
 ## Agriculture Calculators
-847. Crop Yield Calculator
-848. Fertilizer Calculator
-849. Irrigation Calculator
-850. Plant Spacing Calculator
-851. Seeding Rate Calculator
-852. Harvest Date Calculator
-853. Growth Degree Days Calculator
-854. Evapotranspiration Calculator
+847. Crop Yield Calculator [DONE]
+848. Fertilizer Calculator [DONE]
+849. Irrigation Calculator [DONE]
+850. Plant Spacing Calculator [DONE]
+851. Seeding Rate Calculator [DONE]
+852. Harvest Date Calculator [DONE]
+853. Growth Degree Days Calculator [DONE]
+854. Evapotranspiration Calculator [DONE]
 
 ## Food & Nutrition Calculators
-855. Nutritional Calories Calculator
-856. Macronutrient Calculator
-857. Micronutrient Calculator
-858. Vitamin Calculator
-859. Mineral Calculator
-860. Sodium Intake Calculator
-861. Sugar Intake Calculator
-862. Fiber Intake Calculator
-863. Caffeine Calculator
-864. Alcohol Calculator
+855. Nutritional Calories Calculator [DONE]
+856. Macronutrient Calculator [DONE]
+857. Micronutrient Calculator [DONE]
+858. Vitamin Calculator [DONE]
+859. Mineral Calculator [DONE]
+860. Sodium Intake Calculator [DONE]
+861. Sugar Intake Calculator [DONE]
+862. Fiber Intake Calculator [DONE]
+863. Caffeine Calculator [DONE]
+864. Alcohol Calculator [DONE]
 
 ## Wedding & Events Calculators
-865. Wedding Budget Calculator
-866. Wedding Cost Calculator
-867. Guest Count Calculator
-868. Seating Capacity Calculator
-869. Table Layout Calculator
-870. Catering Calculator
-871. Cake Size Calculator
-872. Dress Size Calculator
+865. Wedding Budget Calculator [DONE]
+866. Wedding Cost Calculator [DONE]
+867. Guest Count Calculator [DONE]
+868. Seating Capacity Calculator [DONE]
+869. Table Layout Calculator [DONE]
+870. Catering Calculator [DONE]
+871. Cake Size Calculator [DONE]
+872. Dress Size Calculator [DONE]
 
 ## Party & Entertainment Calculators
-873. Party Budget Calculator
-874. Guest List Calculator
-875. Invitation Count Calculator
-875. RSVP Calculator
-876. Food Quantity Calculator
-877. Drink Quantity Calculator
-878. Ice Quantity Calculator
-879. Decorations Calculator
+873. Party Budget Calculator [DONE]
+874. Guest List Calculator [DONE]
+875. Invitation Count Calculator [DONE]
+875. RSVP Calculator [DONE]
+876. Food Quantity Calculator [DONE]
+877. Drink Quantity Calculator [DONE]
+878. Ice Quantity Calculator [DONE]
+879. Decorations Calculator [DONE]
 
 ## Home Improvement Calculators
 880. Paint Calculator
-881. Primer Calculator
-882. Caulk Calculator
-883. Grout Calculator
-884. Adhesive Calculator
-885. Sealant Calculator
-886. Fastener Calculator
-887. Tool Cost Calculator
-888. Labor Cost Calculator
+881. Primer Calculator [DONE]
+882. Caulk Calculator [DONE]
+883. Grout Calculator [DONE]
+884. Adhesive Calculator [DONE]
+885. Sealant Calculator [DONE]
+886. Fastener Calculator [DONE]
+887. Tool Cost Calculator [DONE]
+888. Labor Cost Calculator [DONE]
 
 ## DIY & Craft Calculators
-889. Yarn Calculator
-890. Fabric Calculator
-891. Pattern Size Calculator
-892. Embroidery Calculator
-893. Quilting Calculator
-894. Crochet Calculator
-895. Knitting Calculator
-896. Sewing Calculator
+889. Yarn Calculator [DONE]
+890. Fabric Calculator [DONE]
+891. Pattern Size Calculator [DONE]
+892. Embroidery Calculator [DONE]
+893. Quilting Calculator [DONE]
+894. Crochet Calculator [DONE]
+895. Knitting Calculator [DONE]
+896. Sewing Calculator [DONE]
 
 ## Pet & Animal Calculators
-897. Pet Calorie Calculator
-898. Pet Food Calculator
-899. Pet Weight Calculator
-900. Pet Age Calculator
+897. Pet Calorie Calculator [DONE]
+898. Pet Food Calculator [DONE]
+899. Pet Weight Calculator [DONE]
+900. Pet Age Calculator [DONE]
 901. Dog Age Calculator
 902. Cat Age Calculator
 903. Horse Weight Calculator
@@ -1094,53 +1095,53 @@
 961. Decibel Wireless Calculator
 
 ## More Financial Tools
-962. Expense Track Calculator
-963. Cash Envelope Calculator
-964. Zero-Based Budget Calculator
-965. Envelope System Calculator
-966. Debt Payoff Spreadsheet Calculator
-967. wealth Building Calculator
-968. Financial Independence Calculator
-969. FIRE Calculator
-970. Savings Growth Calculator
+962. Expense Track Calculator [DONE]
+963. Cash Envelope Calculator [DONE]
+964. Zero-Based Budget Calculator [DONE]
+965. Envelope System Calculator [DONE]
+966. Debt Payoff Spreadsheet Calculator [DONE]
+967. wealth Building Calculator [DONE]
+968. Financial Independence Calculator [DONE]
+969. FIRE Calculator [DONE]
+970. Savings Growth Calculator [DONE]
 
 ## Additional Health Tools
-971. Waist Circumference Calculator
-972. Body Mass Index Calculator
-973. Activity Level Calculator
-974. Sedentary To Active Calculator
-975. Exercise Progression Calculator
-976. Fitness Plateau Breaker Calculator
-977. Recovery Time Calculator
-978. Resting Heart Rate Calculator
+971. Waist Circumference Calculator [DONE]
+972. Body Mass Index Calculator [DONE]
+973. Activity Level Calculator [DONE]
+974. Sedentary To Active Calculator [DONE]
+975. Exercise Progression Calculator [DONE]
+976. Fitness Plateau Breaker Calculator [DONE]
+977. Recovery Time Calculator [DONE]
+978. Resting Heart Rate Calculator [DONE]
 
 ## More Educational Tools
-979. Student Loan Calculator
-980. Student Loan Payoff Calculator
-981. Student Loan Refinance Calculator
-982. Income Driven Repayment Calculator
-983. Graduated Repayment Calculator
-984. Extended Repayment Calculator
+979. Student Loan Calculator [DONE]
+980. Student Loan Payoff Calculator [DONE]
+981. Student Loan Refinance Calculator [DONE]
+982. Income Driven Repayment Calculator [DONE]
+983. Graduated Repayment Calculator [DONE]
+984. Extended Repayment Calculator [DONE]
 
 ## Additional Industry Tools
-985. Manufacturing Cost Calculator
-986. Production Rate Calculator
-987. Efficiency Manufacturing Calculator
-988. Downtime Calculator
-989. Quality Control Calculator
-990. Defect Rate Calculator
+985. Manufacturing Cost Calculator [DONE]
+986. Production Rate Calculator [DONE]
+987. Efficiency Manufacturing Calculator [DONE]
+988. Downtime Calculator [DONE]
+989. Quality Control Calculator [DONE]
+990. Defect Rate Calculator [DONE]
 
 ## Additional Technology Tools
-991. Cloud Cost Calculator
-992. Server Load Calculator
-993. Bandwidth Cost Calculator
-994. Storage Cost Calculator
-995. License Cost Calculator
-996. Subscription Cost Calculator
-997. ROI Technology Calculator
-998. TCO Calculator
+991. Cloud Cost Calculator [DONE]
+992. Server Load Calculator [DONE]
+993. Bandwidth Cost Calculator [DONE]
+994. Storage Cost Calculator [DONE]
+995. License Cost Calculator [DONE]
+996. Subscription Cost Calculator [DONE]
+997. ROI Technology Calculator [DONE]
+998. TCO Calculator [DONE]
 
 ## Additional Personal Tools
-999. Life Insurance Need Calculator
-1000. Disability Insurance Calculator
-1001. Long-Term Care Calculator
+999. Life Insurance Need Calculator [DONE]
+1000. Disability Insurance Calculator [DONE]
+1001. Long-Term Care Calculator [DONE]

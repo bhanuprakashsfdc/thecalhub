@@ -1,0 +1,99 @@
+596	Cooking Time Calculator	/cooking-time-calculator.html	standard	BUILD	Cooking & Kitchen Calculators
+595	Serving Size Calculator	/serving-size-calculator.html	standard	BUILD	Cooking & Kitchen Calculators
+594	Portion Calculator	/portion-calculator.html	standard	BUILD	Cooking & Kitchen Calculators
+593	Recipe Scaler Calculator	/recipe-scaler-calculator.html	standard	BUILD	Cooking & Kitchen Calculators
+592	Value Over Replacement Calculator	/value-over-replacement-calculator.html	fitness	BUILD	Sports Calculators
+591	Win Shares Calculator	/win-shares-calculator.html	fitness	BUILD	Sports Calculators
+590	Player Efficiency Calculator	/player-efficiency-calculator.html	fitness	BUILD	Sports Calculators
+589	Three Point Percentage Calculator	/three-point-percentage-calculator.html	fitness	BUILD	Sports Calculators
+588	Free Throw Percentage Calculator	/free-throw-percentage-calculator.html	fitness	BUILD	Sports Calculators
+587	Field Goal Percentage Calculator	/field-goal-percentage-calculator.html	fitness	BUILD	Sports Calculators
+586	Yards Per Catch Calculator	/yards-per-catch-calculator.html	fitness	BUILD	Sports Calculators
+585	Yards Per Carry Calculator	/yards-per-carry-calculator.html	fitness	BUILD	Sports Calculators
+584	passer Rating Calculator	/passer-rating-calculator.html	fitness	BUILD	Sports Calculators
+583	QBR Calculator	/qbr-calculator.html	fitness	BUILD	Sports Calculators
+582	WHIP Calculator	/whip-calculator.html	fitness	BUILD	Sports Calculators
+581	ERA Calculator	/era-calculator.html	fitness	BUILD	Sports Calculators
+580	OPS Calculator	/ops-calculator.html	fitness	BUILD	Sports Calculators
+579	On-Base Percentage Calculator	/on-base-percentage-calculator.html	fitness	BUILD	Sports Calculators
+578	Slugging Percentage Calculator	/slugging-percentage-calculator.html	fitness	BUILD	Sports Calculators
+577	Batting Average Calculator	/batting-average-calculator.html	fitness	BUILD	Sports Calculators
+576	DPS Build Calculator	/dps-build-calculator.html	standard	BUILD	Gaming Calculators
+575	Cooldown Calculator	/cooldown-calculator.html	standard	BUILD	Gaming Calculators
+574	Magic Resistance Calculator	/magic-resistance-calculator.html	standard	BUILD	Gaming Calculators
+573	Resistance Calculator	/resistance-calculator.html	standard	BUILD	Gaming Calculators
+572	Armor Calculator	/armor-calculator.html	standard	BUILD	Gaming Calculators
+570	Parry Calculator	/parry-calculator.html	standard	BUILD	Gaming Calculators
+569	Dodge Calculator	/dodge-calculator.html	standard	BUILD	Gaming Calculators
+568	Critical Hit Calculator	/critical-hit-calculator.html	standard	BUILD	Gaming Calculators
+567	Attack Speed Calculator	/attack-speed-calculator.html	standard	BUILD	Gaming Calculators
+566	DPS Calculator	/dps-calculator.html	standard	BUILD	Gaming Calculators
+565	Level Up Calculator	/level-up-calculator.html	standard	BUILD	Gaming Calculators
+564	EXP Calculator	/exp-calculator.html	standard	BUILD	Gaming Calculators
+563	Heal Calculator	/heal-calculator.html	standard	BUILD	Gaming Calculators
+562	Damage Calculator	/damage-calculator.html	standard	BUILD	Gaming Calculators
+561	RPG Stat Calculator	/rpg-stat-calculator.html	standard	BUILD	Gaming Calculators
+560	Aspect Ratio Calculator	/aspect-ratio-calculator.html	standard	BUILD	Photography Calculators
+559	Print Size Calculator	/print-size-calculator.html	standard	BUILD	Photography Calculators
+558	Image Size Calculator	/image-size-calculator.html	standard	BUILD	Photography Calculators
+557	Megapixel Calculator	/megapixel-calculator.html	standard	BUILD	Photography Calculators
+556	Crop Factor Calculator	/crop-factor-calculator.html	standard	BUILD	Photography Calculators
+555	Focal Length Calculator	/focal-length-calculator.html	standard	BUILD	Photography Calculators
+554	Angle of View Calculator	/angle-of-view-calculator.html	standard	BUILD	Photography Calculators
+553	Field of View Calculator	/field-of-view-calculator.html	standard	BUILD	Photography Calculators
+552	Hyperfocal Distance Calculator	/hyperfocal-distance-calculator.html	standard	BUILD	Photography Calculators
+551	Depth of Field Calculator	/depth-of-field-calculator.html	standard	BUILD	Photography Calculators
+550	Exposure Calculator	/exposure-calculator.html	standard	BUILD	Photography Calculators
+549	ISO Calculator	/iso-calculator.html	standard	BUILD	Photography Calculators
+548	Shutter Speed Calculator	/shutter-speed-calculator.html	standard	BUILD	Photography Calculators
+547	Aperture Calculator	/aperture-calculator.html	standard	BUILD	Photography Calculators
+546	dB Calculator	/db-calculator.html	standard	BUILD	Music & Audio Calculators
+545	Sound Level Calculator	/sound-level-calculator.html	standard	BUILD	Music & Audio Calculators
+544	Decibel Calculator	/decibel-calculator.html	standard	BUILD	Music & Audio Calculators
+543	Audio Volume Calculator	/audio-volume-calculator.html	standard	BUILD	Music & Audio Calculators
+542	Scale Calculator	/scale-calculator.html	standard	BUILD	Music & Audio Calculators
+541	Chord Calculator	/chord-calculator.html	standard	BUILD	Music & Audio Calculators
+540	Interval Calculator	/interval-calculator.html	standard	BUILD	Music & Audio Calculators
+539	Pitch Calculator	/pitch-calculator.html	standard	BUILD	Music & Audio Calculators
+538	Note to Frequency Calculator	/note-to-frequency-calculator.html	standard	BUILD	Music & Audio Calculators
+537	Frequency to Note Calculator	/frequency-to-note-calculator.html	standard	BUILD	Music & Audio Calculators
+536	Metronome Calculator	/metronome-calculator.html	standard	BUILD	Music & Audio Calculators
+535	Tempo Calculator	/tempo-calculator.html	standard	BUILD	Music & Audio Calculators
+534	Time Signature Calculator	/time-signature-calculator.html	standard	BUILD	Music & Audio Calculators
+533	Note Length Calculator	/note-length-calculator.html	standard	BUILD	Music & Audio Calculators
+532	Beat Duration Calculator	/beat-duration-calculator.html	standard	BUILD	Music & Audio Calculators
+531	BPM Calculator	/bpm-calculator.html	standard	BUILD	Music & Audio Calculators
+530	Star Temperature Calculator	/star-temperature-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+529	Star Brightness Calculator	/star-brightness-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+528	Star Distance Calculator	/star-distance-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+527	Year Length on Other Planets Calculator	/year-length-on-other-planets-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+526	Day Length on Other Planets Calculator	/day-length-on-other-planets-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+525	Age on Other Planets Calculator	/age-on-other-planets-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+524	Weight on Other Planets Calculator	/weight-on-other-planets-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+523	Gravity on Other Planets Calculator	/gravity-on-other-planets-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+522	Orbital Distance Calculator	/orbital-distance-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+521	Orbital Period Calculator	/orbital-period-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+520	Escape Velocity Calculator	/escape-velocity-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+519	Orbital Velocity Calculator	/orbital-velocity-calculator.html	scientific	BUILD	Astronomy & Space Calculators
+518	Henry's Law Calculator	/henry-s-law-calculator.html	scientific	BUILD	Chemistry Calculators
+517	Partial Pressure Calculator	/partial-pressure-calculator.html	scientific	BUILD	Chemistry Calculators
+516	Graham's Law Calculator	/graham-s-law-calculator.html	scientific	BUILD	Chemistry Calculators
+515	Dalton's Law Calculator	/dalton-s-law-calculator.html	scientific	BUILD	Chemistry Calculators
+514	Avogadro's Law Calculator	/avogadro-s-law-calculator.html	scientific	BUILD	Chemistry Calculators
+513	Charles Law Calculator	/charles-law-calculator.html	scientific	BUILD	Chemistry Calculators
+512	Boyle's Law Calculator	/boyle-s-law-calculator.html	scientific	BUILD	Chemistry Calculators
+511	Ideal Gas Law Calculator	/ideal-gas-law-calculator.html	scientific	BUILD	Chemistry Calculators
+510	Gas Law Calculator	/gas-law-calculator.html	scientific	BUILD	Chemistry Calculators
+509	Titration Calculator	/titration-calculator.html	scientific	BUILD	Chemistry Calculators
+508	Buffer Calculator	/buffer-calculator.html	scientific	BUILD	Chemistry Calculators
+507	pOH Calculator	/poh-calculator.html	scientific	BUILD	Chemistry Calculators
+506	pH Calculator	/ph-calculator.html	scientific	BUILD	Chemistry Calculators
+505	Solution Concentration Calculator	/solution-concentration-calculator.html	scientific	BUILD	Chemistry Calculators
+504	Dilution Calculator	/dilution-calculator.html	scientific	BUILD	Chemistry Calculators
+503	Normality Calculator	/normality-calculator.html	scientific	BUILD	Chemistry Calculators
+502	Molality Calculator	/molality-calculator.html	scientific	BUILD	Chemistry Calculators
+501	Molarity Calculator	/molarity-calculator.html	scientific	BUILD	Chemistry Calculators
+500	Concentration Calculator	/concentration-calculator.html	scientific	BUILD	Chemistry Calculators
+499	Mole Calculator	/mole-calculator.html	scientific	BUILD	Chemistry Calculators
+498	Atomic Mass Calculator	/atomic-mass-calculator.html	scientific	BUILD	Chemistry Calculators
+497	Molecular Weight Calculator	/molecular-weight-calculator.html	scientific	BUILD	Chemistry Calculators

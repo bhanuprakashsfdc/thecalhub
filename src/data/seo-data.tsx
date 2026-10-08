@@ -1,9 +1,32 @@
 
 import { TrendingUp, Activity, Calculator, Heart, Clock, Hammer, FlaskConical } from 'lucide-react';
+import { SEO_DATA_BATCH_A } from './seo-data-batch-a';
+import { SEO_DATA_BATCH_B } from './seo-data-batch-b';
+import { SEO_DATA_BATCH_C } from './seo-data-batch-c';
+import { SEO_DATA_BATCH_D } from './seo-data-batch-d';
+import { REGISTRY_ROUTES } from './registry';
 
 export interface FAQ {
   question: string;
   answer: string;
+}
+
+export interface HowWeCalculate {
+  formula?: string;
+  explanation?: string;
+  example?: string;
+}
+
+export interface WorkedExample {
+  scenario: string;
+  steps: string[];
+  result: string;
+}
+
+export interface CommonValuesTable {
+  heading?: string;
+  columns: string[];
+  rows: string[][];
 }
 
 export interface CalculatorSEOContent {
@@ -13,6 +36,9 @@ export interface CalculatorSEOContent {
   mainContent: React.ReactNode;
   faqs: FAQ[];
   relatedCalculators: Array<{ name: string; path: string; icon?: any }>;
+  howWeCalculate?: HowWeCalculate;
+  workedExample?: WorkedExample;
+  commonValues?: CommonValuesTable;
 }
 
 export const SEO_DATA: Record<string, CalculatorSEOContent> = {
@@ -47,6 +73,30 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Does it show calculation steps?", answer: "Yes, for complex additions, we display the step-by-step process." },
       { question: "Can I use keyboard shortcuts?", answer: "Yes, press Enter to calculate and use Tab to navigate between input fields." }
     ],
+    howWeCalculate: {
+      formula: "sum = a + b + c + …",
+      explanation: "Every value you enter is added in sequence using exact decimal arithmetic, preserving up to 15 decimal places so carrying and alignment are always correct.",
+      example: "128 + 47 + 355 = 530"
+    },
+    workedExample: {
+      scenario: "Adding three items priced at 128, 47 and 355",
+      steps: [
+        "Start with the first value: 128",
+        "Add the second value: 128 + 47 = 175",
+        "Add the third value: 175 + 355 = 530"
+      ],
+      result: "530"
+    },
+    commonValues: {
+      heading: "Common additions at a glance",
+      columns: ["A", "B", "A + B"],
+      rows: [
+        ["10", "10", "20"],
+        ["25", "75", "100"],
+        ["99", "1", "100"],
+        ["0.5", "0.25", "0.75"]
+      ]
+    },
     relatedCalculators: [
       { name: 'Subtraction', path: '/subtraction-calculator.html', icon: Calculator },
       { name: 'Multiplication', path: '/multiplication-calculator.html', icon: Calculator },
@@ -191,6 +241,31 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Is it free?", answer: "Yes, completely free." },
       { question: "Mobile friendly?", answer: "Yes, works on all devices." }
     ],
+    howWeCalculate: {
+      formula: "percentage = (value ÷ total) × 100",
+      explanation: "The calculator converts the percentage to a decimal (percent ÷ 100) and multiplies it by the total. For percentage change it uses ((new − old) ÷ old) × 100.",
+      example: "20% of 150 = (20 ÷ 100) × 150 = 30"
+    },
+    workedExample: {
+      scenario: "A 2,500 jacket is discounted by 20%. What do you pay?",
+      steps: [
+        "Convert the percentage to a decimal: 20 ÷ 100 = 0.20",
+        "Find the discount: 0.20 × 2500 = 500",
+        "Subtract the discount: 2500 − 500 = 2000"
+      ],
+      result: "2000 (you save 500)"
+    },
+    commonValues: {
+      heading: "Common percentages of 1,000",
+      columns: ["Percentage", "Value", "Calculation"],
+      rows: [
+        ["1%", "10", "1000 × 0.01"],
+        ["10%", "100", "1000 × 0.10"],
+        ["25%", "250", "1000 × 0.25"],
+        ["50%", "500", "1000 × 0.50"],
+        ["75%", "750", "1000 × 0.75"]
+      ]
+    },
     relatedCalculators: [
       { name: 'Ratio', path: '/ratio-calculator.html', icon: Calculator },
       { name: 'Fraction', path: '/fraction-calculator.html', icon: Calculator },
@@ -302,7 +377,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Percentage', path: '/percentage-calculator.html', icon: Calculator },
       { name: 'Ratio', path: '/ratio-calculator.html', icon: Calculator },
-      { name: 'Decimal', path: '/decimal-calculator.html', icon: Calculator }
+      { name: 'Addition', path: '/addition-calculator.html', icon: Calculator }
     ]
   },
   ratio_calculator: {
@@ -338,7 +413,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Fraction', path: '/fraction-calculator.html', icon: Calculator },
       { name: 'Percentage', path: '/percentage-calculator.html', icon: Calculator },
-      { name: 'Proportion', path: '/proportion-calculator.html', icon: Calculator }
+      { name: 'GCD Calculator', path: '/gcd-calculator.html', icon: Calculator }
     ]
   },
   average_calculator: {
@@ -372,8 +447,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Can I copy result?", answer: "Click to copy." }
     ],
     relatedCalculators: [
-      { name: 'Median', path: '/median-calculator.html', icon: Calculator },
-      { name: 'Standard Deviation', path: '/standard-deviation-calculator.html', icon: Calculator },
+      { name: 'Probability', path: '/probability-calculator.html', icon: Calculator },
+      { name: 'Statistics', path: '/statistical-calculator.html', icon: Calculator },
       { name: 'Percentage', path: '/percentage-calculator.html', icon: Calculator }
     ]
   },
@@ -408,6 +483,31 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "How is interest calculated in an EMI?", answer: "Interest is usually calculated using the formula: Interest = Principal * Rate / 12." },
       { question: "What happens if I miss an EMI payment?", answer: "Missing an EMI payment can lead to late fees, increased interest burden, and a significant drop in your credit score." }
     ],
+    howWeCalculate: {
+      formula: "EMI = [P × R × (1 + R)^N] ÷ [(1 + R)^N − 1]",
+      explanation: "P is the principal loan amount, R is the monthly interest rate (annual rate ÷ 12 ÷ 100) and N is the tenure in months. The formula amortises the loan so every payment carries the same amount.",
+      example: "For a 5,00,000 loan at 10% p.a. over 5 years: R = 0.00833, N = 60, EMI ≈ 10,624"
+    },
+    workedExample: {
+      scenario: "5,00,000 personal loan at 10% p.a. for 5 years",
+      steps: [
+        "Monthly rate R = 10 ÷ 12 ÷ 100 = 0.00833",
+        "Tenure N = 5 × 12 = 60 months",
+        "(1 + R)^N = (1.00833)^60 ≈ 1.6453",
+        "EMI = 500000 × 0.00833 × 1.6453 ÷ (1.6453 − 1) ≈ 10,624"
+      ],
+      result: "EMI ≈ 10,624 per month (total payable ≈ 6,37,440, interest ≈ 1,37,440)"
+    },
+    commonValues: {
+      heading: "Indicative EMIs per 1,00,000 borrowed",
+      columns: ["Tenure", "9% p.a.", "10% p.a.", "12% p.a."],
+      rows: [
+        ["1 year", "8,791", "8,792", "8,885"],
+        ["3 years", "3,180", "3,227", "3,321"],
+        ["5 years", "2,076", "2,125", "2,224"],
+        ["10 years", "1,267", "1,321", "1,435"]
+      ]
+    },
     relatedCalculators: [
       { name: 'Home Loan Calc', path: '/home-loan-calculator.html', icon: TrendingUp },
       { name: 'Car Loan Calc', path: '/car-loan-calculator.html', icon: TrendingUp },
@@ -481,6 +581,31 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Is this calculator accurate?", answer: "Results are estimates based on assumed returns; actual returns vary with market performance." },
       { question: "Is it free?", answer: "Yes, 100% free to use." }
     ],
+    howWeCalculate: {
+      formula: "FV = P × [((1 + r)^n − 1) ÷ r] × (1 + r)",
+      explanation: "P is the monthly investment, r the monthly return rate (annual return ÷ 12) and n the number of months. Each instalment compounds until the end of the tenure, so the corpus grows faster than simple multiplication.",
+      example: "5,000/month for 10 years at 12% p.a. (r = 0.01) → future value ≈ 11,61,695"
+    },
+    workedExample: {
+      scenario: "5,000 monthly SIP for 10 years at an assumed 12% annual return",
+      steps: [
+        "Monthly rate r = 12 ÷ 12 ÷ 100 = 0.01",
+        "Number of instalments n = 10 × 12 = 120",
+        "Annuity factor = ((1.01)^120 − 1) ÷ 0.01 ≈ 230.04",
+        "FV = 5,000 × 230.04 × 1.01 ≈ 11,61,695"
+      ],
+      result: "Future value ≈ 11,61,695 (invested 6,00,000, gain ≈ 5,61,695)"
+    },
+    commonValues: {
+      heading: "Future value of a 1,000 monthly SIP (12% p.a.)",
+      columns: ["Tenure", "Amount invested", "Estimated value"],
+      rows: [
+        ["5 years", "60,000", "82,486"],
+        ["10 years", "1,20,000", "2,32,339"],
+        ["15 years", "1,80,000", "5,04,576"],
+        ["20 years", "2,40,000", "9,99,146"]
+      ]
+    },
     relatedCalculators: [
       { name: 'EMI Calculator', path: '/emi-calculator.html', icon: TrendingUp },
       { name: 'Compound Interest', path: '/compound-interest-calculator.html', icon: TrendingUp },
@@ -520,7 +645,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Compound Interest', path: '/compound-interest-calculator.html', icon: TrendingUp },
       { name: 'Investment', path: '/investment-calculator.html', icon: TrendingUp },
-      { name: 'ROI Calculator', path: '/roi-calculator.html', icon: TrendingUp }
+      { name: 'IRR Calculator', path: '/irr-calculator.html', icon: TrendingUp }
     ]
   },
   simple_interest_calculator: {
@@ -556,7 +681,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Compound Interest', path: '/compound-interest-calculator.html', icon: TrendingUp },
       { name: 'FD Calculator', path: '/fd-calculator.html', icon: TrendingUp },
-      { name: 'Interest Difference', path: '/interest-calculator.html', icon: TrendingUp }
+      { name: 'RD Calculator', path: '/rd-calculator.html', icon: TrendingUp }
     ]
   },
   inflation_calculator: {
@@ -662,9 +787,9 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Is it free?", answer: "Yes, 100% free." }
     ],
     relatedCalculators: [
-      { name: 'Salary Calculator', path: '/salary-calculator.html', icon: TrendingUp },
-      { name: 'HRA Calculator', path: '/hra-calculator.html', icon: TrendingUp },
-      { name: 'TDS Calculator', path: '/tds-calculator.html', icon: TrendingUp }
+      { name: 'PPF Calculator', path: '/ppf-calculator.html', icon: TrendingUp },
+      { name: 'Home Loan', path: '/home-loan-calculator.html', icon: TrendingUp },
+      { name: 'GST Calculator', path: '/gst-calculator.html', icon: TrendingUp }
     ]
   },
   npv_calculator: {
@@ -699,8 +824,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'IRR Calculator', path: '/irr-calculator.html', icon: TrendingUp },
-      { name: 'ROI Calculator', path: '/roi-calculator.html', icon: TrendingUp },
-      { name: 'Payback Period', path: '/payback-calculator.html', icon: TrendingUp }
+      { name: 'CAGR Calculator', path: '/cagr-calculator.html', icon: TrendingUp },
+      { name: 'Breakeven Calculator', path: '/breakeven-calculator.html', icon: TrendingUp }
     ]
   },
   irr_calculator: {
@@ -735,8 +860,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'NPV Calculator', path: '/npv-calculator.html', icon: TrendingUp },
-      { name: 'ROI Calculator', path: '/roi-calculator.html', icon: TrendingUp },
-      { name: 'Profit Calculator', path: '/profit-calculator.html', icon: TrendingUp }
+      { name: 'CAGR Calculator', path: '/cagr-calculator.html', icon: TrendingUp },
+      { name: 'P&L Calculator', path: '/pnl-calculator.html', icon: TrendingUp }
     ]
   },
   // HEALTH CALCULATORS
@@ -770,6 +895,30 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Is BMI the same as body fat percentage?", answer: "No, BMI is a measure of weight relative to height, while body fat percentage measures the actual proportion of fat in your body." },
       { question: "How can I improve my BMI?", answer: "A combination of a balanced diet and regular physical activity is the most effective way to reach a healthy BMI range." }
     ],
+    howWeCalculate: {
+      formula: "BMI = weight (kg) ÷ height² (m²)",
+      explanation: "Weight in kilograms is divided by the square of height in metres, then compared against the WHO adult classification bands to place you in an underweight, normal, overweight or obese range.",
+      example: "72 kg ÷ (1.75 m × 1.75 m) = 23.5 → healthy range"
+    },
+    workedExample: {
+      scenario: "A 72 kg adult who is 175 cm tall",
+      steps: [
+        "Convert height to metres: 175 cm = 1.75 m",
+        "Square the height: 1.75 × 1.75 = 3.0625",
+        "Divide weight by the squared height: 72 ÷ 3.0625 = 23.51"
+      ],
+      result: "BMI = 23.5 (healthy range 18.5 – 24.9)"
+    },
+    commonValues: {
+      heading: "BMI categories (WHO adults)",
+      columns: ["BMI range", "Category", "Health risk"],
+      rows: [
+        ["Below 18.5", "Underweight", "Increased"],
+        ["18.5 – 24.9", "Healthy weight", "Normal"],
+        ["25.0 – 29.9", "Overweight", "Increased"],
+        ["30.0 and above", "Obese", "High"]
+      ]
+    },
     relatedCalculators: [
       { name: 'BMR Estimator', path: '/bmr-calculator.html', icon: Activity },
       { name: 'Calorie Tracker', path: '/calorie-calculator.html', icon: Activity },
@@ -882,7 +1031,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Quadratic Calculator', path: '/quadratic-calculator.html', icon: Calculator },
-      { name: 'Algebra Solver', path: '/algebra-solver.html', icon: Calculator },
+      { name: 'Matrix Calculator', path: '/matrix-calculator.html', icon: Calculator },
       { name: 'Graphing Calculator', path: '/graphing-calculator.html', icon: Calculator }
     ]
   },
@@ -1027,7 +1176,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Permutation', path: '/permutation-calculator.html', icon: Calculator },
       { name: 'Combination', path: '/combination-calculator.html', icon: Calculator },
-      { name: 'Statistics', path: '/statistics-calculator.html', icon: Calculator }
+      { name: 'Statistics', path: '/statistical-calculator.html', icon: Calculator }
     ]
   },
   permutation_calculator: {
@@ -1205,9 +1354,9 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Finds pattern?", answer: "Yes, identifies pattern type automatically." }
     ],
     relatedCalculators: [
-      { name: 'Algebra Solver', path: '/algebra-solver.html', icon: Calculator },
+      { name: 'Equation Solver', path: '/equation-solver.html', icon: Calculator },
       { name: 'Factorial', path: '/factorial-calculator.html', icon: Calculator },
-      { name: 'Series Calculator', path: '/series-calculator.html', icon: Calculator }
+      { name: 'Exponential', path: '/exponential-calculator.html', icon: Calculator }
     ]
   },
   geometry_calculator: {
@@ -1604,8 +1753,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
-      { name: 'Birthday', path: '/birthday-calculator.html', icon: Clock },
-      { name: 'Anniversary', path: '/anniversary-calculator.html', icon: Clock }
+      { name: 'Date Calculator', path: '/date-calculator.html', icon: Clock },
+      { name: 'Date Add/Subtract', path: '/date-add-subtract-calculator.html', icon: Clock }
     ]
   },
   date_difference_calculator: {
@@ -1641,7 +1790,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Age Calculator', path: '/age-calculator.html', icon: Clock },
       { name: 'Business Days', path: '/business-days-calculator.html', icon: Clock },
-      { name: 'Countdown', path: '/countdown-timer.html', icon: Clock }
+      { name: 'Workout Timer', path: '/workout-timer.html', icon: Clock }
     ]
   },
   time_duration_calculator: {
@@ -1677,7 +1826,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Time Zone', path: '/time-zone-converter.html', icon: Clock },
       { name: 'Age Calculator', path: '/age-calculator.html', icon: Clock },
-      { name: 'Workdays', path: '/workdays-calculator.html', icon: Clock }
+      { name: 'Business Days', path: '/business-days-calculator.html', icon: Clock }
     ]
   },
   time_zone_converter: {
@@ -1712,7 +1861,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Time Duration', path: '/time-duration-calculator.html', icon: Clock },
-      { name: 'World Clock', path: '/world-clock.html', icon: Clock },
+      { name: 'Clock', path: '/clock.html', icon: Clock },
       { name: 'Date Calculator', path: '/date-calculator.html', icon: Clock }
     ]
   },
@@ -1749,7 +1898,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
       { name: 'Time Duration', path: '/time-duration-calculator.html', icon: Clock },
-      { name: 'Countdown', path: '/countdown-timer.html', icon: Clock }
+      { name: 'Workout Timer', path: '/workout-timer.html', icon: Clock }
     ]
   },
   countdown_timer: {
@@ -1820,7 +1969,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
-      { name: 'Calendar', path: '/calendar-calculator.html', icon: Clock },
+      { name: 'Date Calculator', path: '/date-calculator.html', icon: Clock },
       { name: 'Week Number', path: '/week-number-calculator.html', icon: Clock }
     ]
   },
@@ -1857,7 +2006,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
       { name: 'Leap Year', path: '/leap-year-calculator.html', icon: Clock },
-      { name: 'Calendar', path: '/calendar-calculator.html', icon: Clock }
+      { name: 'Date Add/Subtract', path: '/date-add-subtract-calculator.html', icon: Clock }
     ]
   },
   business_days_calculator: {
@@ -1892,7 +2041,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
-      { name: 'Workdays', path: '/workdays-calculator.html', icon: Clock },
+      { name: 'Week Number', path: '/week-number-calculator.html', icon: Clock },
       { name: 'Time Duration', path: '/time-duration-calculator.html', icon: Clock }
     ]
   },
@@ -1929,7 +2078,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Date Difference', path: '/date-difference-calculator.html', icon: Clock },
       { name: 'Age Calculator', path: '/age-calculator.html', icon: Clock },
-      { name: 'Countdown', path: '/countdown-timer.html', icon: Clock }
+      { name: 'Workout Timer', path: '/workout-timer.html', icon: Clock }
     ]
   },
   // CONSTRUCTION CALCULATORS
@@ -2038,7 +2187,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Concrete Calculator', path: '/concrete-calculator.html', icon: Hammer },
       { name: 'Cement Calculator', path: '/cement-calculator.html', icon: Hammer },
-      { name: 'Wall Area', path: '/wall-area-calculator.html', icon: Hammer }
+      { name: 'Area Calculator', path: '/area-calculator.html', icon: Hammer }
     ]
   },
   tile_calculator: {
@@ -2073,7 +2222,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Flooring Calculator', path: '/flooring-calculator.html', icon: Hammer },
-      { name: 'Grout Calculator', path: '/grout-calculator.html', icon: Hammer },
+      { name: 'Cement Calculator', path: '/cement-calculator.html', icon: Hammer },
       { name: 'Area Calculator', path: '/area-calculator.html', icon: Calculator }
     ]
   },
@@ -2108,9 +2257,9 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Shows cost estimate?", answer: "Enter price per gallon for total cost." }
     ],
     relatedCalculators: [
-      { name: 'Wall Area', path: '/wall-area-calculator.html', icon: Hammer },
-      { name: 'Coverage Calculator', path: '/coverage-calculator.html', icon: Hammer },
-      { name: 'Primer Calculator', path: '/primer-calculator.html', icon: Hammer }
+      { name: 'Area Calculator', path: '/area-calculator.html', icon: Hammer },
+      { name: 'Volume Calculator', path: '/volume-calculator.html', icon: Hammer },
+      { name: 'Unit Converter', path: '/unit-conversion-calculator.html', icon: Hammer }
     ]
   },
   steel_weight_calculator: {
@@ -2144,8 +2293,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
       { question: "Shows section properties?", answer: "Yes, also provides cross-sectional area." }
     ],
     relatedCalculators: [
-      { name: 'Metal Calculator', path: '/metal-calculator.html', icon: Hammer },
-      { name: 'Load Calculator', path: '/load-calculator.html', icon: Hammer },
+      { name: 'Wood Calculator', path: '/wood-calculator.html', icon: Hammer },
+      { name: 'Concrete Calculator', path: '/concrete-calculator.html', icon: Hammer },
       { name: 'Volume Calculator', path: '/volume-calculator.html', icon: Calculator }
     ]
   },
@@ -2253,8 +2402,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Area Calculator', path: '/area-calculator.html', icon: Calculator },
-      { name: 'Pitch Calculator', path: '/pitch-calculator.html', icon: Calculator },
-      { name: 'Siding Calculator', path: '/siding-calculator.html', icon: Hammer }
+      { name: 'Trigonometry', path: '/trigonometry-calculator.html', icon: Calculator },
+      { name: 'Wood Calculator', path: '/wood-calculator.html', icon: Hammer }
     ]
   },
   flooring_calculator: {
@@ -2290,7 +2439,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'Area Calculator', path: '/area-calculator.html', icon: Calculator },
       { name: 'Tile Calculator', path: '/tile-calculator.html', icon: Hammer },
-      { name: 'Carpet Calculator', path: '/carpet-calculator.html', icon: Hammer }
+      { name: 'Wood Calculator', path: '/wood-calculator.html', icon: Hammer }
     ]
   },
   // TRADING CALCULATORS
@@ -2470,8 +2619,8 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'P&L Calculator', path: '/pnl-calculator.html', icon: TrendingUp },
-      { name: 'Commission', path: '/commission-calculator.html', icon: TrendingUp },
-      { name: 'Margin Calculator', path: '/margin-calculator.html', icon: TrendingUp }
+      { name: 'Risk Reward', path: '/risk-reward-calculator.html', icon: TrendingUp },
+      { name: 'Liquidation Calculator', path: '/liquidation-calculator.html', icon: TrendingUp }
     ]
   },
   kelly_criterion_calculator: {
@@ -2579,7 +2728,7 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     relatedCalculators: [
       { name: 'P&L Calculator', path: '/pnl-calculator.html', icon: TrendingUp },
       { name: 'Drawdown', path: '/drawdown-calculator.html', icon: TrendingUp },
-      { name: 'ROI Calculator', path: '/roi-calculator.html', icon: TrendingUp }
+      { name: 'CAGR Calculator', path: '/cagr-calculator.html', icon: TrendingUp }
     ]
   },
   drawdown_calculator: {
@@ -2650,10 +2799,14 @@ export const SEO_DATA: Record<string, CalculatorSEOContent> = {
     ],
     relatedCalculators: [
       { name: 'Position Size', path: '/position-size-calculator.html', icon: TrendingUp },
-      { name: 'Leverage Calculator', path: '/leverage-calculator.html', icon: TrendingUp },
+      { name: 'Liquidation Calculator', path: '/liquidation-calculator.html', icon: TrendingUp },
       { name: 'P&L Calculator', path: '/pnl-calculator.html', icon: TrendingUp }
     ]
   },
+  ...SEO_DATA_BATCH_A,
+  ...SEO_DATA_BATCH_B,
+  ...SEO_DATA_BATCH_C,
+  ...SEO_DATA_BATCH_D
 };
 
 const CATEGORY_FAQS: Record<string, FAQ[]> = {
@@ -2695,32 +2848,247 @@ const CATEGORY_FAQS: Record<string, FAQ[]> = {
   ]
 };
 
-const getRandomRelatedCalculators = (currentId: string, count: number = 5): Array<{ name: string; path: string; icon?: any }> => {
-  const allKeys = Object.keys(SEO_DATA).filter(key => key !== currentId);
-  
-  const shuffled = allKeys.sort(() => Math.random() - 0.5);
-  const selected = shuffled.slice(0, count);
-  
-  return selected.map(key => {
-    const item = SEO_DATA[key];
-    return {
-      name: item.subtitle.replace('Calculator', '').trim(),
-      path: `/${key.replace(/_/g, '-')}.html`,
-      icon: item.relatedCalculators[0]?.icon || Calculator
-    };
+const ROUTE_PATHS = new Set<string>([
+  ...REGISTRY_ROUTES,
+  '/',
+  '/addition-calculator.html',
+  '/age-calculator.html',
+  '/all.html',
+  '/area-calculator.html',
+  '/average-calculator.html',
+  '/base64-encoder.html',
+  '/basic-arithmetic-calculator.html',
+  '/big-o-analyzer.html',
+  '/binary-hex-decimal-converter.html',
+  '/bitwise-calculator.html',
+  '/blog.html',
+  '/bmi-calculator.html',
+  '/bmr-calculator.html',
+  '/body-fat-calculator.html',
+  '/breakeven-calculator.html',
+  '/brick-calculator.html',
+  '/business-days-calculator.html',
+  '/cagr-calculator.html',
+  '/calorie-calculator.html',
+  '/calories-burned-calculator.html',
+  '/car-loan-calculator.html',
+  '/cement-calculator.html',
+  '/clock.html',
+  '/code-beautifier.html',
+  '/combination-calculator.html',
+  '/complex-number-calculator.html',
+  '/compound-interest-calculator.html',
+  '/concrete-calculator.html',
+  '/contact.html',
+  '/cubic-yards-calculator.html',
+  '/date-add-subtract-calculator.html',
+  '/date-calculator.html',
+  '/date-difference-calculator.html',
+  '/datetime.html',
+  '/dca-calculator.html',
+  '/division-calculator.html',
+  '/drawdown-calculator.html',
+  '/emi-calculator.html',
+  '/equation-solver.html',
+  '/exponential-calculator.html',
+  '/factorial-calculator.html',
+  '/fd-calculator.html',
+  '/financial-calculator.html',
+  '/financial.html',
+  '/fitness.html',
+  '/flooring-calculator.html',
+  '/fraction-calculator.html',
+  '/gcd-calculator.html',
+  '/geometry-calculator.html',
+  '/graphing-calculator.html',
+  '/gravel-calculator.html',
+  '/gst-calculator.html',
+  '/hash-generator.html',
+  '/health.html',
+  '/heart-rate-calculator.html',
+  '/home-loan-calculator.html',
+  '/ideal-weight-calculator.html',
+  '/index.html',
+  '/inflation-calculator.html',
+  '/investment-calculator.html',
+  '/investment-pnl-calculator.html',
+  '/irr-calculator.html',
+  '/json-formatter.html',
+  '/kelly-criterion-calculator.html',
+  '/lcm-calculator.html',
+  '/lean-mass-calculator.html',
+  '/leap-year-calculator.html',
+  '/liquidation-calculator.html',
+  '/loan-calculator.html',
+  '/logarithm-calculator.html',
+  '/logarithmic-calculator.html',
+  '/macro-calculator.html',
+  '/macro-split-calculator.html',
+  '/math.html',
+  '/matrix-calculator.html',
+  '/memory-size-calculator.html',
+  '/mortgage-calculator.html',
+  '/multiplication-calculator.html',
+  '/notepad.html',
+  '/nps-calculator.html',
+  '/npv-calculator.html',
+  '/one-rep-max-calculator.html',
+  '/ovulation-calculator.html',
+  '/pace-calculator.html',
+  '/paint-calculator.html',
+  '/percent-calculator.html',
+  '/percentage-calculator.html',
+  '/permutation-calculator.html',
+  '/personal-loan-calculator.html',
+  '/pnl-calculator.html',
+  '/pomodoro-timer.html',
+  '/position-size-calculator.html',
+  '/power-calculator.html',
+  '/ppf-calculator.html',
+  '/pregnancy-calculator.html',
+  '/prime-number-calculator.html',
+  '/privacy-policy.html',
+  '/probability-calculator.html',
+  '/programming-calculator.html',
+  '/programming.html',
+  '/quadratic-calculator.html',
+  '/ratio-calculator.html',
+  '/rd-calculator.html',
+  '/regex-tester.html',
+  '/retirement-calculator.html',
+  '/risk-of-ruin-calculator.html',
+  '/risk-reward-calculator.html',
+  '/roofing-calculator.html',
+  '/scientific-calculator.html',
+  '/scientific-constants.html',
+  '/scientific-notation-calculator.html',
+  '/scientific.html',
+  '/sequence-calculator.html',
+  '/simple-interest-calculator.html',
+  '/sip-calculator.html',
+  '/square-root-calculator.html',
+  '/stair-calculator.html',
+  '/standard.html',
+  '/statistical-calculator.html',
+  '/steel-weight-calculator.html',
+  '/step-counter-calculator.html',
+  '/stop-loss-calculator.html',
+  '/subtraction-calculator.html',
+  '/support.html',
+  '/tax-calculator.html',
+  '/tdee-calculator.html',
+  '/terms-of-service.html',
+  '/tile-calculator.html',
+  '/time-complexity-calculator.html',
+  '/time-duration-calculator.html',
+  '/time-zone-converter.html',
+  '/tip-calculator.html',
+  '/trading.html',
+  '/trigonometric-calculator.html',
+  '/trigonometry-calculator.html',
+  '/unit-conversion-calculator.html',
+  '/vector-calculator.html',
+  '/vo2-max-calculator.html',
+  '/volume-calculator.html',
+  '/water-intake-calculator.html',
+  '/week-number-calculator.html',
+  '/wood-calculator.html',
+  '/workout-timer.html'
+]);
+
+const getKeyPathCandidates = (key: string): string[] => {
+  const variants = [key, key.replace(/_/g, '-'), key.replace(/-/g, '_')];
+  const candidates: string[] = [];
+  variants.forEach(variant => {
+    candidates.push(`/${variant}.html`);
+    if (/[-_]calculator$/.test(variant)) {
+      candidates.push(`/${variant.replace(/[-_]calculator$/, '')}.html`);
+    } else {
+      candidates.push(`/${variant}-calculator.html`);
+    }
   });
+  return candidates;
+};
+
+const KEY_TO_PATH: Record<string, string> = Object.keys(SEO_DATA).reduce((map, key) => {
+  const match = getKeyPathCandidates(key).find(candidate => ROUTE_PATHS.has(candidate));
+  if (match) {
+    map[key] = match;
+  }
+  return map;
+}, {} as Record<string, string>);
+
+const getSEOCandidateKeys = (id: string): string[] => {
+  const bases = [id, id.replace(/-/g, '_'), id.replace(/_/g, '-')];
+  const keys: string[] = [];
+  const add = (key: string) => {
+    if (key && !keys.includes(key)) keys.push(key);
+  };
+  bases.forEach(add);
+  bases.forEach(base => add(base.replace(/[-_]calculator$/, '')));
+  bases.forEach(base => {
+    if (!/[-_]calculator$/.test(base)) {
+      add(`${base}-calculator`);
+      add(`${base}_calculator`);
+    }
+  });
+  return keys;
+};
+
+export const getRandomRelatedCalculators = (
+  currentId: string,
+  count: number = 5,
+  content?: CalculatorSEOContent
+): Array<{ name: string; path: string; icon?: any }> => {
+  const currentPaths = new Set(getKeyPathCandidates(currentId));
+  const currentKeys = new Set(getSEOCandidateKeys(currentId).map(key => key.toLowerCase()));
+  const related: Array<{ name: string; path: string; icon?: any }> = [];
+  const usedPaths = new Set<string>();
+
+  (content?.relatedCalculators || []).forEach(item => {
+    if (related.length >= count) return;
+    if (!ROUTE_PATHS.has(item.path)) return;
+    if (currentPaths.has(item.path) || usedPaths.has(item.path)) return;
+    usedPaths.add(item.path);
+    related.push(item);
+  });
+
+  const pool = Object.keys(KEY_TO_PATH).filter(key => {
+    const path = KEY_TO_PATH[key];
+    if (usedPaths.has(path) || currentPaths.has(path)) return false;
+    if (currentKeys.has(key.toLowerCase())) return false;
+    return true;
+  });
+
+  pool.sort(() => Math.random() - 0.5);
+
+  pool.forEach(key => {
+    if (related.length >= count) return;
+    const item = SEO_DATA[key];
+    const path = KEY_TO_PATH[key];
+    usedPaths.add(path);
+    related.push({
+      name: (item.subtitle || key).replace('Calculator', '').trim() || key,
+      path,
+      icon: item.relatedCalculators?.[0]?.icon || Calculator
+    });
+  });
+
+  return related;
 };
 
 export const getSEOContent = (id: string, category: string = 'finance'): CalculatorSEOContent => {
-  const content = SEO_DATA[id];
+  const key = getSEOCandidateKeys(id).find(candidate => Boolean(SEO_DATA[candidate]));
+  const content = key ? SEO_DATA[key] : undefined;
+
   if (content) {
-    const randomRelated = getRandomRelatedCalculators(id, 5);
     return {
       ...content,
-      relatedCalculators: randomRelated
+      relatedCalculators: getRandomRelatedCalculators(id, 5, content)
     };
   }
 
+  const fallbackCategory = category === 'financial' ? 'finance' : category;
   const fallbackRelated = getRandomRelatedCalculators(id, 5);
 
   // Fallback with category-specific FAQs
@@ -2734,7 +3102,7 @@ export const getSEOContent = (id: string, category: string = 'finance'): Calcula
         Designed with a focus on user experience and technical accuracy.
       </p>
     ),
-    faqs: CATEGORY_FAQS[category] || CATEGORY_FAQS.finance,
+    faqs: CATEGORY_FAQS[fallbackCategory] || CATEGORY_FAQS.finance,
     relatedCalculators: fallbackRelated
   };
 };
