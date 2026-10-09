@@ -1,25 +1,102 @@
 import { useState } from 'react';
-import { Activity } from 'lucide-react';
+import {
+  CalcGrid,
+  Panel,
+  PanelEyebrow,
+  NumberField,
+  SegmentedControl,
+  ResultHero,
+  ResultRows,
+  ResultRow,
+  Hint,
+  formatMoney,
+} from './kit';
 
-export function VO2MaxCalculator() {
-  const [gender, setGender] = useState('male');
-  const [age, setAge] = useState(30);
-  const [restingHR, setRestingHR] = useState(60);
-  const [hrAfterRun, setHrAfterRun] = useState(160);
-  const vo2 = gender === 'male' ? 15.3 * (hrAfterRun - restingHR) / (age + 5) : 15.3 * (hrAfterRun - restingHR) / (age + 5) - 5;
+export interface Vo2MaxInput {
+  sex: 'male' | 'female';
+  age: number;
+  weightKg: number;
+  walkTimeMinutes: number;
+  heartRate: number;
+}
+
+export function computeVo2Max(input: Vo2MaxInput) {
+  const weightLbs = input.weightKg * 2.20462;
+  const gender = input.sex === 'male' ? 1 : 0;
+  const vo2 =
+    132.853 -
+    0.0769 * weightLbs -
+    0.3877 * input.age +
+    6.315 * gender -
+    3.2649 * input.walkTimeMinutes -
+    0.1565 * input.heartRate;
+  const category =
+    vo2 >= 45 ? 'Excellent' : vo2 >= 35 ? 'Good' : vo2 >= 25 ? 'Fair' : 'Poor';
+  const walkSeconds = input.walkTimeMinutes * 60;
+  return { vo2, weightLbs, category, walkSeconds };
+}
+
+export function Vo2MaxCalculator() {
+  const [sex, setSex] = useState('male');
+  const [age, setAge] = useState('30');
+  const [weightKg, setWeightKg] = useState('70');
+  const [walkTimeMinutes, setWalkTimeMinutes] = useState('15');
+  const [heartRate, setHeartRate] = useState('120');
+
+  const result = computeVo2Max({
+    sex: sex === 'female' ? 'female' : 'male',
+    age: Number(age) || 0,
+    weightKg: Number(weightKg) || 0,
+    walkTimeMinutes: Number(walkTimeMinutes) || 0,
+    heartRate: Number(heartRate) || 0,
+  });
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div className="lg:col-span-5"><div className="bg-surface-container-low p-8 rounded-xl border border-white/5 space-y-6">
-        <div className="grid grid-cols-2 gap-2"><button onClick={() => setGender('male')} className={`py-3 rounded-lg ${gender === 'male' ? 'bg-primary-fixed' : 'bg-surface-container-highest'}`}>Male</button><button onClick={() => setGender('female')} className={`py-3 rounded-lg ${gender === 'female' ? 'bg-primary-fixed' : 'bg-surface-container-highest'}`}>Female</button></div>
-        <div className="group"><label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Age</label><input className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl" type="number" value={age} onChange={(e) => setAge(Number(e.target.value))} /></div>
-        <div className="group"><label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">Resting HR</label><input className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl" type="number" value={restingHR} onChange={(e) => setRestingHR(Number(e.target.value))} /></div>
-        <div className="group"><label className="block text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-3">HR After Run</label><input className="w-full bg-surface-container-highest border-none rounded-lg py-4 px-4 text-white mono text-xl" type="number" value={hrAfterRun} onChange={(e) => setHrAfterRun(Number(e.target.value))} /></div>
-      </div></div>
-      <div className="lg:col-span-7"><div className="bg-surface-container-low p-8 rounded-xl border border-white/5">
-        <div className="flex items-center gap-2 text-primary-fixed mb-6"><Activity className="w-4 h-4" /><span className="text-[10px] uppercase tracking-[0.2em] font-bold">VO2 Max</span></div>
-        <div className="bg-surface-container-highest p-8 rounded-xl"><p className="text-4xl font-bold text-white mono">{vo2.toFixed(1)} ml/kg/min</p></div>
-      </div></div>
-    </div>
+    <CalcGrid
+      inputs={
+        <Panel>
+          <PanelEyebrow>Inputs</PanelEyebrow>
+          <div className="space-y-6">
+            <SegmentedControl
+              label="Sex"
+              value={sex}
+              onChange={setSex}
+              options={[
+                { value: 'male', label: 'Male' },
+                { value: 'female', label: 'Female' },
+              ]}
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <NumberField label="Age" value={age} onChange={setAge} min={0} step="1" />
+              <NumberField label="Weight (kg)" value={weightKg} onChange={setWeightKg} min={0} step="0.1" />
+            </div>
+            <NumberField label="1-mile walk time (minutes)" value={walkTimeMinutes} onChange={setWalkTimeMinutes} min={0} step="0.1" />
+            <NumberField label="Heart rate at finish (bpm)" value={heartRate} onChange={setHeartRate} min={0} step="1" />
+          </div>
+          <Hint>
+            Rockport 1-mile walk test: VO₂max = 132.853 −
+            0.0769×weight(lbs) − 0.3877×age + 6.315×sex − 3.2649×time −
+            0.1565×HR.
+          </Hint>
+        </Panel>
+      }
+      results={
+        <Panel>
+          <PanelEyebrow>Result</PanelEyebrow>
+          <ResultHero
+            label="VO2 max"
+            value={`${formatMoney(result.vo2)} mL/kg/min`}
+            sub={result.category}
+          />
+          <ResultRows>
+            <ResultRow label="Weight (lbs)" value={formatMoney(result.weightLbs)} />
+            <ResultRow label="Fitness category" value={result.category} />
+            <ResultRow label="Walk time (seconds)" value={formatMoney(result.walkSeconds)} />
+          </ResultRows>
+        </Panel>
+      }
+    />
   );
 }
-export default VO2MaxCalculator;
+
+export default Vo2MaxCalculator;

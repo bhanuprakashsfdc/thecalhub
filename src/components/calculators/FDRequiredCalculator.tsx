@@ -1,7 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Lock, ArrowLeftRight } from 'lucide-react';
-import { motion } from 'motion/react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useI18n } from '../../lib/i18n';
 import { CalcGrid, Panel, PanelEyebrow, NumberField, ResultHero, ResultRows, ResultRow, Hint, formatMoney } from '../calculators/kit';
 
@@ -19,11 +17,6 @@ export function FDRequiredCalculator() {
     const interest = targetAmount - principal;
     return { principal, interest, targetAmount };
   }, [targetAmount, rate, time]);
-
-  const pieData = [
-    { name: 'Required Principal', value: Math.round(calc.principal), color: '#D6ED79' },
-    { name: 'Interest Earned', value: Math.round(calc.interest), color: '#BDC2FF' },
-  ];
 
   const yearlyData = useMemo(() => {
     const data = [];
@@ -44,21 +37,21 @@ export function FDRequiredCalculator() {
             <NumberField
               label={`Target maturity amount (${symbol})`}
               value={String(targetAmount)}
-              onChange={setTargetAmount}
+              onChange={(v) => setTargetAmount(Number(v))}
               min={0}
             />
             <div className="grid grid-cols-2 gap-4">
               <NumberField
                 label="Annual interest rate (%)"
                 value={String(rate)}
-                onChange={setRate}
+                onChange={(v) => setRate(Number(v))}
                 min={0}
                 step="0.1"
               />
               <NumberField
                 label="Tenure (years)"
                 value={String(time)}
-                onChange={setTime}
+                onChange={(v) => setTime(Number(v))}
                 min={0}
                 step="1"
               />

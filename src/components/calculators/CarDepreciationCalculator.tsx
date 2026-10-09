@@ -1,6 +1,4 @@
 import { useState, useMemo } from 'react';
-import { Car, TrendingDown } from 'lucide-react';
-import { motion } from 'motion/react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useI18n } from '../../lib/i18n';
 import { CalcGrid, Panel, PanelEyebrow, NumberField, ResultHero, ResultRows, ResultRow, Hint, formatMoney } from '../calculators/kit';

@@ -11,31 +11,56 @@ import {
   formatMoney,
 } from './kit';
 
-export interface RFPowerInput {
-  transmitterPower: number;
-  cableLossDb: number;
-  antennaGainDbi: number;
+export interface RfPowerInput {
+  /** Input power in dBm (dB re 1 mW); negative values are valid. */
+  powerDbm: number;
+  /** Gain added along the chain, in dB. Defaults to 0. */
+  gainDb?: number;
+  /** Loss subtracted along the chain, in dB. Defaults to 0. */
+  lossDb?: number;
+  /** Load impedance in ohms; negative values are clamped to 0. */
+  impedance: number;
 }
 
-export function computeRFPower(input: RFPowerInput) {
-  const power = Math.max(0, input.transmitterPower);
-  const gain = Math.max(0, input.antennaGainDbi) - Math.max(0, input.cableLossDb);
-  const eirp = power * Math.pow(10, gain / 10);
-  const eirpDbm = eirp > 0 ? 10 * Math.log10(eirp * 1000) : 0;
-  const powerAtAntenna = power * Math.pow(10, -Math.max(0, input.cableLossDb) / 10);
-
-  return { gain, eirp, eirpDbm, powerAtAntenna };
+export interface RfPowerResult {
+  /** P_out in dBm: P_in + gain - loss. */
+  outputDbm: number;
+  /** P_out in dBW: dBm - 30. */
+  outputDbW: number;
+  watts: number;
+  milliwatts: number;
+  /** RMS voltage across the load, sqrt(P x R). */
+  voltage: number;
 }
 
-export function RFPowerCalculator() {
-  const [transmitterPower, setTransmitterPower] = useState('50');
-  const [cableLossDb, setCableLossDb] = useState('3');
-  const [antennaGainDbi, setAntennaGainDbi] = useState('6');
+const finite = (n: number | undefined) => (typeof n === 'number' && Number.isFinite(n) ? n : 0);
 
-  const result = computeRFPower({
-    transmitterPower: Number(transmitterPower) || 0,
-    cableLossDb: Number(cableLossDb) || 0,
-    antennaGainDbi: Number(antennaGainDbi) || 0,
+export function computeRfPower(input: RfPowerInput): RfPowerResult {
+  const powerDbm = finite(input.powerDbm);
+  const gainDb = finite(input.gainDb);
+  const lossDb = finite(input.lossDb);
+  const impedance = Math.max(0, finite(input.impedance));
+
+  const outputDbm = powerDbm + gainDb - lossDb;
+  const outputDbW = outputDbm - 30;
+  const watts = Math.pow(10, outputDbW / 10);
+  const milliwatts = watts * 1000;
+  const voltage = Math.sqrt(watts * impedance);
+
+  return { outputDbm, outputDbW, watts, milliwatts, voltage };
+}
+
+export function RfPowerCalculator() {
+  const [powerDbm, setPowerDbm] = useState('20');
+  const [gainDb, setGainDb] = useState('0');
+  const [lossDb, setLossDb] = useState('0');
+  const [impedance, setImpedance] = useState('50');
+
+  const result = computeRfPower({
+    powerDbm: Number(powerDbm),
+    gainDb: Number(gainDb),
+    lossDb: Number(lossDb),
+    impedance: Number(impedance),
   });
 
   return (
@@ -44,15 +69,16 @@ export function RFPowerCalculator() {
         <Panel>
           <PanelEyebrow>Inputs</PanelEyebrow>
           <div className="space-y-6">
-            <NumberField label="Transmitter power (W)" value={transmitterPower} onChange={setTransmitterPower} min={0} step="0.5" />
+            <NumberField label="Input power (dBm)" value={powerDbm} onChange={setPowerDbm} step="0.1" />
             <div className="grid grid-cols-2 gap-4">
-              <NumberField label="Cable loss (dB)" value={cableLossDb} onChange={setCableLossDb} min={0} step="0.1" />
-              <NumberField label="Antenna gain (dBi)" value={antennaGainDbi} onChange={setAntennaGainDbi} step="0.1" />
+              <NumberField label="Gain (dB)" value={gainDb} onChange={setGainDb} step="0.1" />
+              <NumberField label="Loss (dB)" value={lossDb} onChange={setLossDb} min={0} step="0.1" />
             </div>
+            <NumberField label="Impedance (Ω)" value={impedance} onChange={setImpedance} min={0} step="1" />
           </div>
           <Hint>
-            EIRP is what regulators and link budgets care about: transmitter power, minus cable loss, plus
-            antenna gain, expressed as the equivalent isotropic radiated power.
+            Link budgets add in dB: P_out = P_in + gain - loss. dBW is dBm minus 30, and linear power
+            follows P(W) = 10^(dBW / 10). The load voltage is the RMS value sqrt(P x R).
           </Hint>
         </Panel>
       }
@@ -60,13 +86,15 @@ export function RFPowerCalculator() {
         <Panel>
           <PanelEyebrow>Result</PanelEyebrow>
           <ResultHero
-            label="EIRP"
-            value={`${formatMoney(result.eirp)} W`}
-            sub={`${formatMoney(result.eirpDbm)} dBm effective`}
+            label="Output power"
+            value={`${formatMoney(result.watts)} W`}
+            sub={`${formatMoney(result.outputDbm)} dBm at the load`}
           />
           <ResultRows>
-            <ResultRow label="Net system gain" value={`${formatMoney(result.gain)} dB`} />
-            <ResultRow label="Power at antenna" value={`${formatMoney(result.powerAtAntenna)} W`} />
+            <ResultRow label="Power (dBm)" value={formatMoney(result.outputDbm)} />
+            <ResultRow label="Power (dBW)" value={formatMoney(result.outputDbW)} />
+            <ResultRow label="Power (mW)" value={formatMoney(result.milliwatts)} />
+            <ResultRow label="Voltage across load (V)" value={formatMoney(result.voltage)} />
           </ResultRows>
         </Panel>
       }
@@ -74,4 +102,4 @@ export function RFPowerCalculator() {
   );
 }
 
-export default RFPowerCalculator;
+export default RfPowerCalculator;
