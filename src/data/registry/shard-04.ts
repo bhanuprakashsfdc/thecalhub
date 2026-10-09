@@ -497,4 +497,22 @@ export const SHARD_04: CalculatorDef[] = [
     keywords: ['retirement savings', 'future value', 'contributions', 'compound growth'],
     component: lazy(() => import('../../components/calculators/RetirementSavingsCalculator')),
   },
+  {
+    id: 'ctc-to-monthly-salary-calculator',
+    title: 'CTC to Monthly Salary Calculator',
+    path: '/ctc-to-monthly-salary-calculator.html',
+    description: 'Convert an annual CTC offer into monthly gross and take-home pay after tax and deductions.',
+    category: 'financial',
+    keywords: ['ctc', 'salary', 'monthly take home', 'deductions', 'gross pay'],
+    component: lazy(() => import('../../components/calculators/CtcToMonthlySalaryCalculator')),
+  },
+  {
+    id: 'hourly-to-annual-rate-calculator',
+    title: 'Hourly to Annual Rate Calculator',
+    path: '/hourly-to-annual-rate-calculator.html',
+    description: 'Turn an hourly wage, weekly hours and working weeks into weekly, monthly and annual earnings.',
+    category: 'financial',
+    keywords: ['hourly wage', 'annual salary', 'weekly earnings', 'overtime', 'pay rate'],
+    component: lazy(() => import('../../components/calculators/HourlyToAnnualRateCalculator')),
+  },
 ];

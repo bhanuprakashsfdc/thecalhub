@@ -18,15 +18,20 @@ export interface SmithChartInput {
 }
 
 export function computeSmithChart(input: SmithChartInput) {
-  const z0 = Math.max(1, input.impedance);
-  const r = Math.max(0, input.resistance);
-  const x = input.reactance;
-  const numerator = Math.pow(r - z0, 2) + Math.pow(x, 2);
-  const denominator = Math.pow(r + z0, 2) + Math.pow(x, 2);
-  const gamma = denominator > 0 ? Math.sqrt(numerator / denominator) : 1;
+  const z0 = Number.isFinite(input.impedance) ? Math.max(1, input.impedance) : 50;
+  const r = Number.isFinite(input.resistance) ? Math.max(0, input.resistance) : Infinity;
+  const x = Number.isFinite(input.reactance) ? input.reactance : Infinity;
+
+  let gamma = 1;
+  if (Number.isFinite(r) && Number.isFinite(x)) {
+    const numerator = Math.pow(r - z0, 2) + Math.pow(x, 2);
+    const denominator = Math.pow(r + z0, 2) + Math.pow(x, 2);
+    gamma = denominator > 0 ? Math.min(1, Math.sqrt(numerator / denominator)) : 1;
+  }
+
   const vswr = gamma < 1 ? (1 + gamma) / (1 - gamma) : Infinity;
-  const returnLoss = gamma > 0 ? -20 * Math.log10(gamma) : Infinity;
-  const magnitude = Math.sqrt(Math.pow(r, 2) + Math.pow(x, 2));
+  const returnLoss = gamma === 0 ? Infinity : gamma >= 1 ? 0 : -20 * Math.log10(gamma);
+  const magnitude = Math.hypot(r, x);
 
   return { gamma, vswr, returnLoss, magnitude };
 }
@@ -65,13 +70,13 @@ export function SmithChartCalculator() {
           <PanelEyebrow>Result</PanelEyebrow>
           <ResultHero
             label="VSWR"
-            value={Number.isFinite(result.vswr) ? formatMoney(result.vswr) : 'Infinite'}
+            value={Number.isFinite(result.vswr) ? formatMoney(result.vswr) : '∞'}
             sub={`Reflection coefficient ${formatMoney(result.gamma)}`}
           />
           <ResultRows>
             <ResultRow
               label="Return loss (dB)"
-              value={Number.isFinite(result.returnLoss) ? `${formatMoney(result.returnLoss)} dB` : '0 dB'}
+              value={Number.isFinite(result.returnLoss) ? `${formatMoney(result.returnLoss)} dB` : '∞ dB'}
             />
             <ResultRow label="Impedance magnitude" value={`${formatMoney(result.magnitude)} ohm`} />
           </ResultRows>

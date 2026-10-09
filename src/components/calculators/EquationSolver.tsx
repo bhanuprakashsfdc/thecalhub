@@ -6,6 +6,9 @@ export function EquationSolver() {
   const [result, setResult] = useState<{ roots: (number | string)[]; type: string } | null>(null);
 
   const solveQuadratic = (a: number, b: number, c: number) => {
+    if (a === 0) {
+      return solveLinear(b, c);
+    }
     const discriminant = b * b - 4 * a * c;
     
     if (discriminant > 0) {

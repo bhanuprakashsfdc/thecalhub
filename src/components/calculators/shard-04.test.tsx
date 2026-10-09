@@ -2114,3 +2114,72 @@ describe('RetirementSavingsCalculator', () => {
 });
 
 /* APPEND-MARKER */
+import CtcToMonthlySalaryCalculator from './CtcToMonthlySalaryCalculator';
+import HourlyToAnnualRateCalculator from './HourlyToAnnualRateCalculator';
+
+describe('CtcToMonthlySalaryCalculator', () => {
+  const page: CalculatorPage = {
+    title: 'CTC to Monthly Salary Calculator',
+    description: 'Convert an annual CTC offer into monthly gross and take-home pay.',
+    path: '/ctc-to-monthly-salary-calculator.html',
+    category: 'financial',
+  };
+
+  it('renders through CalculatorPageLayout', () => {
+    renderCalculatorPage(<CtcToMonthlySalaryCalculator />, page);
+    expect(screen.getByRole('heading', { level: 1, name: 'CTC to Monthly Salary Calculator' })).toBeDefined();
+    expect(screen.getByLabelText('Annual CTC ($)')).toBeDefined();
+    expect(screen.getByLabelText('Tax & Deductions (%)')).toBeDefined();
+  });
+
+  it('divides annual CTC by 12 and subtracts deductions', () => {
+    const { container } = renderCalculatorPage(<CtcToMonthlySalaryCalculator />, page);
+    const monthlyGross = 60000 / 12;
+    const takeHome = monthlyGross * (1 - 18 / 100);
+    expect(container.querySelector('p.text-4xl')!.textContent).toBe(`${money(takeHome)}/mo`);
+    expect(screen.getByText('Annual Take-Home').nextElementSibling!.textContent).toBe(
+      money(takeHome * 12)
+    );
+  });
+
+  it('raises take-home when the CTC grows', () => {
+    const { container } = renderCalculatorPage(<CtcToMonthlySalaryCalculator />, page);
+    fireEvent.change(screen.getByLabelText('Annual CTC ($)'), { target: { value: '120000' } });
+    const monthlyGross = 120000 / 12;
+    const takeHome = monthlyGross * (1 - 18 / 100);
+    expect(container.querySelector('p.text-4xl')!.textContent).toBe(`${money(takeHome)}/mo`);
+  });
+});
+
+describe('HourlyToAnnualRateCalculator', () => {
+  const page: CalculatorPage = {
+    title: 'Hourly to Annual Rate Calculator',
+    description: 'Turn an hourly wage into weekly, monthly and annual earnings.',
+    path: '/hourly-to-annual-rate-calculator.html',
+    category: 'financial',
+  };
+
+  it('renders through CalculatorPageLayout', () => {
+    renderCalculatorPage(<HourlyToAnnualRateCalculator />, page);
+    expect(screen.getByRole('heading', { level: 1, name: 'Hourly to Annual Rate Calculator' })).toBeDefined();
+    expect(screen.getByLabelText('Hourly Rate ($/hr)')).toBeDefined();
+    expect(screen.getByLabelText('Hours per Week')).toBeDefined();
+  });
+
+  it('multiplies hourly rate by hours and weeks', () => {
+    const { container } = renderCalculatorPage(<HourlyToAnnualRateCalculator />, page);
+    const weekly = 25 * 40;
+    const annual = weekly * 52;
+    expect(container.querySelector('p.text-4xl')!.textContent).toBe(`${money(annual)}/yr`);
+    expect(screen.getByText('Weekly Earnings').nextElementSibling!.textContent).toBe(
+      `${money(weekly)}/wk`
+    );
+  });
+
+  it('raises annual earnings when the hourly rate rises', () => {
+    const { container } = renderCalculatorPage(<HourlyToAnnualRateCalculator />, page);
+    fireEvent.change(screen.getByLabelText('Hourly Rate ($/hr)'), { target: { value: '30' } });
+    const annual = 30 * 40 * 52;
+    expect(container.querySelector('p.text-4xl')!.textContent).toBe(`${money(annual)}/yr`);
+  });
+});

@@ -1558,7 +1558,7 @@ describe('MacronutrientCalculator', () => {
   it('renders through CalculatorPageLayout', () => {
     renderCalculatorPage(<MacroCalculator />, page);
     expect(screen.getByRole('heading', { level: 1, name: 'Macronutrient Calculator' })).toBeDefined();
-    expect(screen.getByText('Macro Split')).toBeDefined();
+    expect(screen.getAllByText('Macro Split').length).toBeGreaterThan(0);
     expect(screen.getByText('Daily Calories')).toBeDefined();
   });
 

@@ -17,12 +17,12 @@ export interface WaveguideInput {
 }
 
 export function computeWaveguide(input: WaveguideInput) {
-  const width = Math.max(0.0001, input.widthCm);
-  const frequency = Math.max(0, input.frequencyGhz);
+  const width = Number.isFinite(input.widthCm) ? Math.max(0.0001, input.widthCm) : 0.0001;
+  const frequency = Number.isFinite(input.frequencyGhz) ? Math.max(0, input.frequencyGhz) : 0;
   const cutoff = 15 / width;
   const freeSpace = frequency > 0 ? 30 / frequency : 0;
-  const guide = frequency > cutoff ? freeSpace / Math.sqrt(1 - Math.pow(cutoff / frequency, 2)) : 0;
   const operating = frequency > cutoff;
+  const guide = operating ? freeSpace / Math.sqrt(1 - Math.pow(cutoff / frequency, 2)) : 0;
 
   return { cutoff, freeSpace, guide, operating };
 }

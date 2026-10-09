@@ -19,13 +19,25 @@ export interface AntennaRangeInput {
   sensitivityDbm: number;
 }
 
+const finite = (n: number) => (Number.isFinite(n) ? n : 0);
+
 export function computeAntennaRange(input: AntennaRangeInput) {
-  const linkBudget =
-    Math.max(0, input.txPowerDbm) + Math.max(0, input.txGain) + Math.max(0, input.rxGain) - input.sensitivityDbm;
-  const frequencyMhz = Math.max(0, input.frequencyGhz) * 1000;
+  const txPowerDbm = Math.max(0, finite(input.txPowerDbm));
+  const txGain = Math.max(0, finite(input.txGain));
+  const rxGain = Math.max(0, finite(input.rxGain));
+  const sensitivityDbm = finite(input.sensitivityDbm);
+  const frequencyMhz = Math.max(0, finite(input.frequencyGhz)) * 1000;
+
+  const linkBudget = txPowerDbm + txGain + rxGain - sensitivityDbm;
+
+  if (!(frequencyMhz > 0) || !Number.isFinite(linkBudget)) {
+    return { linkBudget: finite(linkBudget), constant: 0, distanceKm: 0, distanceMiles: 0 };
+  }
+
   const constant = 20 * Math.log10(frequencyMhz) + 32.44;
   const exponent = (linkBudget - constant) / 20;
-  const distanceKm = Math.pow(10, exponent);
+  const solved = Math.pow(10, exponent);
+  const distanceKm = Number.isFinite(solved) ? solved : 0;
   const distanceMiles = distanceKm * 0.621371;
 
   return { linkBudget, constant, distanceKm, distanceMiles };
@@ -74,11 +86,11 @@ export function AntennaRangeCalculator() {
           <ResultHero
             label="Maximum range"
             value={`${formatMoney(result.distanceKm)} km`}
-            sub={`Free-space path loss of ${formatMoney(result.linkBudget)} dB`}
+            sub={`Link budget (max free-space path loss) ${formatMoney(result.linkBudget)} dB`}
           />
           <ResultRows>
             <ResultRow label="Range in miles" value={`${formatMoney(result.distanceMiles)} mi`} />
-            <ResultRow label="Frequency constant" value={formatMoney(result.constant)} />
+            <ResultRow label="Path loss constant" value={formatMoney(result.constant)} />
           </ResultRows>
         </Panel>
       }
