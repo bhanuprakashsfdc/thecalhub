@@ -24,11 +24,8 @@
 21. Future Value Calculator
 22. Net Present Value Calculator
 23. Return on Investment Calculator
-24. Amortization Calculator
-25. Interest Calculator
-26. Payment Calculator [DONE]
-27. Monthly Payment Calculator [DONE]
-28. Loan Affordability Calculator
+24. Amortization Calculator\n25. Interest Calculator\n26. Payment Calculator [DONE]\n27. Monthly Payment Calculator [DONE]\n28. EMI vs Full Pay with Points
+
 29. Home Affordability Calculator
 30. Rent vs Buy Calculator
 31. Break-Even Calculator [DONE]

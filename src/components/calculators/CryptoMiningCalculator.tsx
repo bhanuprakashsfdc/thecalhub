@@ -94,7 +94,6 @@ export function CryptoMiningCalculator() {
     poolFeePercent: Number(poolFeePercent) || 0,
   });
 
-  const coinPriceNum = Number(coinPrice) || 0;
 
   return (
     <CalcGrid

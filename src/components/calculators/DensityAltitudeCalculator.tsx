@@ -29,7 +29,6 @@ export interface DensityAltitudeResult {
 }
 
 const finite = (n: number) => (Number.isFinite(n) ? n : 0);
-const P0 = 101325;
 const RHO0 = 1.225;
 const RD = 287.058;
 

@@ -58,8 +58,9 @@ const MESSAGES: Record<Locale, MessageBundle> = {
     'home.seoHeading':
       'The Ultimate Hub for Precision Calculations and Financial Planning',
     'seo.emi-calculator.title': 'EMI Calculator',
-    'seo.emi-calculator.description':
-      'Calculate your loan EMI online with reducing balance method.',
+    'seo.emi-calculator.description': 'Calculate your loan EMI online with reducing balance method.',
+    'seo.emi-vs-full-pay-with-points.title': 'EMI vs Full Pay with Points',
+    'seo.emi-vs-full-pay-with-points.description': 'Compare EMI vs full payment with credit card points',
     'seo.bmi-calculator.title': 'BMI Calculator',
     'seo.bmi-calculator.description':
       'Calculate your Body Mass Index (BMI) online for free.',
@@ -151,13 +152,15 @@ interface LocaleContextType {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 function readStoredLocale(): Locale {
-  const saved = localStorage.getItem(LOCALE_STORAGE_KEY);
+  const saved =
+    typeof localStorage !== 'undefined' ? localStorage.getItem(LOCALE_STORAGE_KEY) : null;
   return isLocale(saved) ? saved : DEFAULT_LOCALE;
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [currency, setCurrencyState] = useState<Currency>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved =
+      typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
     return (saved as Currency) || 'USD';
   });
 
@@ -170,12 +173,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const setCurrency = (newCurrency: Currency) => {
     setCurrencyState(newCurrency);
-    localStorage.setItem(STORAGE_KEY, newCurrency);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, newCurrency);
+    }
   };
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
-    localStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
+    }
   };
 
   const getCurrencySymbol = () => {

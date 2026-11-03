@@ -3,6 +3,7 @@ import { TrendingUp, CreditCard } from 'lucide-react';
 
 const financialCalculators = [
   { name: 'EMI Calculator', path: '/emi-calculator.html', description: 'Calculate monthly installments' },
+  { name: 'EMI vs Full Pay with Points', path: '/emi-vs-full-pay-with-points-calculator.html', description: 'Compare EMI vs full payment with credit card points' },
   { name: 'Compound Interest Calculator', path: '/compound-interest-calculator.html', description: 'Calculate CI with compounding' },
   { name: 'Simple Interest Calculator', path: '/simple-interest-calculator.html', description: 'Calculate simple interest' },
   { name: 'FD Calculator', path: '/fd-calculator.html', description: 'Fixed deposit returns' },

@@ -50,11 +50,13 @@ const RetirementCalculator = lazy(() => import('./components/calculators/Retirem
 const InvestmentCalculator = lazy(() => import('./components/calculators/InvestmentCalculator'));
 const CompoundInterestCalc = lazy(() => import('./components/calculators/CompoundInterestCalc'));
 const SimpleInterestCalc = lazy(() => import('./components/calculators/SimpleInterestCalc'));
+const EMIVsFullPayWithPointsCalculator = lazy(() => import('./components/calculators/EMIVsFullPayWithPointsCalculator'));
 const FDCalculator = lazy(() => import('./components/calculators/FDCalculator'));
-const RDCalculator = lazy(() => import('./components/calculators/RDCalculator'));
+
 const SIPCalculator = lazy(() => import('./components/calculators/SIPCalculator'));
 const NPSCalculator = lazy(() => import('./components/calculators/NPSCalculator'));
 const PPFCalculator = lazy(() => import('./components/calculators/PPFCalculator'));
+const RDCalculator = lazy(() => import('./components/calculators/RDCalculator'));
 const HomeLoanCalc = lazy(() => import('./components/calculators/HomeLoanCalc'));
 const PaceCalculator = lazy(() => import('./components/calculators/PaceCalculator'));
 const TDEECalculator = lazy(() => import('./components/calculators/TDEECalculator'));
@@ -183,6 +185,7 @@ const calculatorSeo: Record<string, { title: string; description: string; keywor
   '/tdee-calculator.html': { title: 'TDEE Calculator', description: 'Calculate your Total Daily Energy Expenditure (TDEE).', category: 'health' },
   '/gst-calculator.html': { title: 'GST Calculator', description: 'Calculate GST amount and final price.', category: 'finance' },
    '/emi-calculator.html': { title: 'EMI Calculator', description: 'Calculate your loan EMI online with reducing balance method.', category: 'finance' },
+  '/emi-vs-full-pay-with-points-calculator.html': { title: 'EMI vs Full Pay with Points', description: 'Compare EMI vs full payment with credit card points', category: 'finance' },
    '/financial-calculator.html': { title: 'Financial Calculator', description: 'Simple loan EMI calculator with instant results.', category: 'finance' },
    '/compound-interest-calculator.html': { title: 'Compound Interest Calculator', description: 'Calculate compound interest and see investment growth.', category: 'finance' },
   '/simple-interest-calculator.html': { title: 'Simple Interest Calculator', description: 'Calculate simple interest on loans or investments.', category: 'finance' },
@@ -487,6 +490,7 @@ function AppContent() {
                 <Route path="/pace-calculator.html" element={<CalculatorWrapper component={PaceCalculator} />} />
                 <Route path="/tdee-calculator.html" element={<CalculatorWrapper component={TDEECalculator} />} />
                 <Route path="/emi-calculator.html" element={<CalculatorWrapper component={EMICalculator} />} />
+                <Route path="/emi-vs-full-pay-with-points-calculator.html" element={<CalculatorWrapper component={EMIVsFullPayWithPointsCalculator} />} />
                 <Route path="/financial-calculator.html" element={<CalculatorWrapper component={FinancialCalc} />} />
                 <Route path="/age-calculator.html" element={<CalculatorWrapper component={AgeCalculator} />} />
                 <Route path="/date-calculator.html" element={<CalculatorWrapper component={DateCalculator} />} />

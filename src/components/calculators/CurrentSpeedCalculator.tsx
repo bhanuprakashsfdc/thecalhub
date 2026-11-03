@@ -10,7 +10,6 @@ import {
   ResultRow,
   Hint,
   formatMoney,
-  safeDiv,
 } from './kit';
 
 export interface CurrentSpeedInput {

@@ -37,6 +37,7 @@ export const CALCULATORS = {
     { id: 'cagr', name: 'CAGR Calculator', path: '/cagr-calculator.html', description: 'Compound annual growth rate', keywords: ['compound', 'growth', 'annual', 'return', 'investment'] },
     { id: 'compound-interest', name: 'Compound Interest Calculator', path: '/compound-interest-calculator.html', description: 'Calculate CI with compounding', keywords: ['compound', 'interest', 'compounding', 'investment'] },
     { id: 'emi', name: 'EMI Calculator', path: '/emi-calculator.html', description: 'Calculate monthly installments', keywords: ['emi', 'loan', 'installment', 'monthly payment'] },
+    { id: 'emi-vs-full-pay-with-points', name: 'EMI vs Full Pay with Points', path: '/emi-vs-full-pay-with-points-calculator.html', description: 'Compare EMI vs full payment with credit card points', keywords: ['emi', 'full pay', 'points', 'comparison'] },
     { id: 'inflation', name: 'Inflation Calculator', path: '/inflation-calculator.html', description: 'Calculate inflation effects', keywords: ['inflation', 'purchasing power', 'cpi'] },
     { id: 'irr', name: 'IRR Calculator', path: '/irr-calculator.html', description: 'Internal rate of return', keywords: ['irr', 'internal rate', 'return', 'investment'] },
     { id: 'loan', name: 'Loan Calculator', path: '/loan-calculator.html', description: 'Calculate loan payments', keywords: ['loan', 'mortgage', 'payment', 'amortization'] },
